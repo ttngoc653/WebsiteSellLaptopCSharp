@@ -1,8 +1,33 @@
-﻿@model SellLaptop.RouteConfig
-
+﻿
 @{
-    ViewBag.Title = "HOME";
+    ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            DANH SÁCH SẢN PHẨM MỚI NHẤT
+        </div>
+        <div class="panel panel-body">
+            @{
+                Html.RenderAction("Top10Moi", "Home");
+            }
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            DANH SÁCH SẢN PHẨM BÁN CHẠY NHẤT
+        </div>
+        <div class="panel panel-body">
 
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            DANH SÁCH SẢN PHẨM NHIỀU NGƯỜI XEM NHẤT
+        </div>
+        <div class="panel panel-body">
+
+        </div>
+    </div>
+</div>
