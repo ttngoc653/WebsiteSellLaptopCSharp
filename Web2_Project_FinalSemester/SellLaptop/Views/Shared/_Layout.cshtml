@@ -5,36 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index","Home")" class="navbar-brand">content</a>
+                    </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                    
+                    <form class="navbar-form navbar-left">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-header">Hãng</li>
+                                    <li>
+                                        <a>
+                                            <label class="radio-inline"><input name="hang" checked="checked" value="" type="radio">Tất cả</label>
+                                            <label class="radio-inline"><input name="hang" value="Acer" type="radio">Acer</label>
+                                            <label class="radio-inline"><input name="hang" value="Apple" type="radio">Apple</label>
+                                            <label class="radio-inline"><input name="hang" value="Asus" type="radio">Asus</label>
+                                            <label class="radio-inline"><input name="hang" value="Dell" type="radio">Dell</label>
+                                            <label class="radio-inline"><input name="hang" value="HP" type="radio">HP</label>
+                                            <label class="radio-inline"><input name="hang" value="Lenovo" type="radio">Lenovo</label>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-header">Giá cả</li>
+                                    <li>
+                                        <a>
+                                            <input type="number" name="tu" value="10" max="1000" min="10" step="5" placeholder="giá từ"> 00,000 VNĐ - <input type="number" name="den" value="1000" max="1000" min="10" step="5" placeholder="giá đến"> 00,000, VNĐ
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-header">Thiết kế card đồ họa</li>
+                                    <li>
+                                        <a>
+                                            <label class="radio-inline"><input name="dohoa" checked="checked" value="" type="radio">Tất cả</label>
+                                            <label class="radio-inline"><input name="dohoa" value="tích hợp với RAM" type="radio">tích hợp với RAM</label>
+                                            <label class="radio-inline"><input name="dohoa" value="rời (Optimus)" type="radio">rời (Optimus)</label>
+                                            <label class="radio-inline"><input name="dohoa" value="đồ họa tích hợp" type="radio">đồ họa tích hợp</label>
+                                            <label class="radio-inline"><input name="dohoa" value="Cart đồ họa rời" type="radio">Cart đồ họa rời</label>
+                                        </a>
+                                    </li>                                    
+                                        <li><a><label class="radio-inline"><input name="dohoa" value="Card đồ họa rời" type="radio">Card đồ họa rời</label></a></li>
+                                    <li>
+                                        <a>
+                                            <b>Dung lượng ram:</b>&nbsp; &nbsp;
+                                            <label class="radio-inline"><input name="ram" checked="checked" value="" type="radio">Tất cả</label>
+                                            <label class="radio-inline"><input name="ram" value="2" type="radio">2 GB</label>
+                                            <label class="radio-inline"><input name="ram" value="4" type="radio">4 GB</label>
+                                            <label class="radio-inline"><input name="ram" value="8" type="radio">8 GB</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <b>CPU:</b>&nbsp; &nbsp;
+                                            <label class="radio-inline"><input name="cpu" checked="checked" value="" type="radio">Tất cả</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i3" type="radio">Core i3</label>
+                                            <label class="radio-inline"><input name="cpu" value="Pentium" type="radio">Pentium</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i5" type="radio">Core i5</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i7 Skylake" type="radio">Core i7 Skylake</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i7 Broadwell" type="radio">Core i7 Broadwell</label>
+                                            <label class="radio-inline"><input name="cpu" value="Celeron" type="radio">Celeron</label>
+                                            <label class="radio-inline"><input name="cpu" value="Atom" type="radio">Atom</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core 3 Broadwell" type="radio">Core 3 Broadwell</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i3 Broadwell" type="radio">Core i3 Broadwell</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i7 Haswell" type="radio">Core i7 Haswell</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core M" type="radio">Core M</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i5 Broadwell" type="radio">Core i5 Broadwell</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i5 Skylake" type="radio">Core i5 Skylake</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i5 Kabylake" type="radio">Core i5 Kabylake</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i3 Kabylake" type="radio">Core i3 Kabylake</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i7 Kabylake" type="radio">Core i7 Kabylake</label>
+                                            <label class="radio-inline"><input name="cpu" value="Core i3 Skylake" type="radio">Core i3 Skylake</label>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="cần tìm gì?" />
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+    <div class="container">
+        <div class="body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
     </div>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.11.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
