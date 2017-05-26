@@ -1,0 +1,912 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sellLaptopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="anh_sp">
+          <Key>
+            <PropertyRef Name="masp" />
+            <PropertyRef Name="tenfile" />
+          </Key>
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="tenfile" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cart_do_hoa">
+          <Key>
+            <PropertyRef Name="tencartdohoa" />
+          </Key>
+          <Property Name="tencartdohoa" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="dungluong" Type="int" />
+          <Property Name="thietke" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="an" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chi_tiet_don_hang">
+          <Key>
+            <PropertyRef Name="madh" />
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="madh" Type="int" Nullable="false" />
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="soluongsp" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cpu">
+          <Key>
+            <PropertyRef Name="maloai" />
+          </Key>
+          <Property Name="hangsx" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="congnghe" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="maloai" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="tocdo" Type="float" Nullable="false" />
+          <Property Name="thongtinbodem" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="tocdotoida" Type="float" />
+          <Property Name="an" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="danh_gia">
+          <Key>
+            <PropertyRef Name="masp" />
+            <PropertyRef Name="thoigian" />
+          </Key>
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="khachhang" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="thoigian" Type="datetime" Nullable="false" />
+          <Property Name="diem" Type="int" />
+          <Property Name="noidung" Type="text" />
+        </EntityType>
+        <EntityType Name="don_hang">
+          <Key>
+            <PropertyRef Name="madh" />
+          </Key>
+          <Property Name="madh" Type="int" Nullable="false" />
+          <Property Name="khachhang" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="ngaygiolap" Type="datetime" Nullable="false" />
+          <Property Name="diachinhan" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="tongtien" Type="int" Nullable="false" />
+          <Property Name="dagiao" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hang_sx">
+          <Key>
+            <PropertyRef Name="tenhangsx" />
+          </Key>
+          <Property Name="tenhangsx" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="truso" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="mota" Type="text" Nullable="false" />
+          <Property Name="an" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="khach_hang">
+          <Key>
+            <PropertyRef Name="tendn" />
+          </Key>
+          <Property Name="tendn" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="mk" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="hoten" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="ngsinh" Type="date" Nullable="false" />
+          <Property Name="gioitinh" Type="bit" Nullable="false" />
+          <Property Name="sdt" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="quyen" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="o_dia_cung">
+          <Key>
+            <PropertyRef Name="masp" />
+            <PropertyRef Name="loaiodia" />
+          </Key>
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="loaiodia" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="dungluong" Type="int" Nullable="false" />
+          <Property Name="an" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="san_pham">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="int" Nullable="false" />
+          <Property Name="tensp" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="tenhangsx" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="gia" Type="int" Nullable="false" />
+          <Property Name="mau" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="icon" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="loaicpu" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="ramdl" Type="int" Nullable="false" />
+          <Property Name="ramloai" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="rambus" Type="int" Nullable="false" />
+          <Property Name="kichthuocmh" Type="float" Nullable="false" />
+          <Property Name="dophangiai" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="cnmanhinh" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="camung" Type="bit" Nullable="false" />
+          <Property Name="tencartdohoa" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="cnamthanh" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="oquang" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="sousb" Type="bit" Nullable="false" />
+          <Property Name="hdmi" Type="bit" Nullable="false" />
+          <Property Name="cartsd" Type="bit" Nullable="false" />
+          <Property Name="ketnoikhac" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="chucnangkhac" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="wifi" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="lan" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="btoothver" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="camera" Type="float" Nullable="false" />
+          <Property Name="pin" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="hdh" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="khoiluong" Type="float" Nullable="false" />
+          <Property Name="dai" Type="int" Nullable="false" />
+          <Property Name="rong" Type="int" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="chatlieu" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="slcon" Type="int" Nullable="false" />
+          <Property Name="luotview" Type="int" Nullable="false" />
+          <Property Name="an" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="anh_sp_ibfk_1">
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+          <End Role="anh_sp" Type="Self.anh_sp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="anh_sp">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="chi_tiet_don_hang_ibfk_1">
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+          <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="chi_tiet_don_hang">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="chi_tiet_don_hang_ibfk_2">
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="1" />
+          <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="don_hang">
+              <PropertyRef Name="madh" />
+            </Principal>
+            <Dependent Role="chi_tiet_don_hang">
+              <PropertyRef Name="madh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cpu_ibfk_1">
+          <End Role="hang_sx" Type="Self.hang_sx" Multiplicity="1" />
+          <End Role="cpu" Type="Self.cpu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hang_sx">
+              <PropertyRef Name="tenhangsx" />
+            </Principal>
+            <Dependent Role="cpu">
+              <PropertyRef Name="hangsx" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="danh_gia_ibfk_1">
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+          <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="danh_gia">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="danh_gia_ibfk_2">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
+          <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="tendn" />
+            </Principal>
+            <Dependent Role="danh_gia">
+              <PropertyRef Name="khachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="don_hang_ibfk_1">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="tendn" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="khachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_danh_gia_khach_hang">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
+          <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="tendn" />
+            </Principal>
+            <Dependent Role="danh_gia">
+              <PropertyRef Name="khachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_o_dia_cung_san_pham">
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+          <End Role="o_dia_cung" Type="Self.o_dia_cung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="o_dia_cung">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_san_pham_cart_do_hoa">
+          <End Role="cart_do_hoa" Type="Self.cart_do_hoa" Multiplicity="1" />
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cart_do_hoa">
+              <PropertyRef Name="tencartdohoa" />
+            </Principal>
+            <Dependent Role="san_pham">
+              <PropertyRef Name="tencartdohoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_san_pham_cpu">
+          <End Role="cpu" Type="Self.cpu" Multiplicity="1" />
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cpu">
+              <PropertyRef Name="maloai" />
+            </Principal>
+            <Dependent Role="san_pham">
+              <PropertyRef Name="loaicpu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_san_pham_hang_sx">
+          <End Role="hang_sx" Type="Self.hang_sx" Multiplicity="1" />
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hang_sx">
+              <PropertyRef Name="tenhangsx" />
+            </Principal>
+            <Dependent Role="san_pham">
+              <PropertyRef Name="tenhangsx" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sellLaptopModelStoreContainer">
+          <EntitySet Name="anh_sp" EntityType="Self.anh_sp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cart_do_hoa" EntityType="Self.cart_do_hoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chi_tiet_don_hang" EntityType="Self.chi_tiet_don_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cpu" EntityType="Self.cpu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="danh_gia" EntityType="Self.danh_gia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="don_hang" EntityType="Self.don_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hang_sx" EntityType="Self.hang_sx" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khach_hang" EntityType="Self.khach_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="o_dia_cung" EntityType="Self.o_dia_cung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="san_pham" EntityType="Self.san_pham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="anh_sp_ibfk_1" Association="Self.anh_sp_ibfk_1">
+            <End Role="san_pham" EntitySet="san_pham" />
+            <End Role="anh_sp" EntitySet="anh_sp" />
+          </AssociationSet>
+          <AssociationSet Name="chi_tiet_don_hang_ibfk_1" Association="Self.chi_tiet_don_hang_ibfk_1">
+            <End Role="san_pham" EntitySet="san_pham" />
+            <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="chi_tiet_don_hang_ibfk_2" Association="Self.chi_tiet_don_hang_ibfk_2">
+            <End Role="don_hang" EntitySet="don_hang" />
+            <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="cpu_ibfk_1" Association="Self.cpu_ibfk_1">
+            <End Role="hang_sx" EntitySet="hang_sx" />
+            <End Role="cpu" EntitySet="cpu" />
+          </AssociationSet>
+          <AssociationSet Name="danh_gia_ibfk_1" Association="Self.danh_gia_ibfk_1">
+            <End Role="san_pham" EntitySet="san_pham" />
+            <End Role="danh_gia" EntitySet="danh_gia" />
+          </AssociationSet>
+          <AssociationSet Name="danh_gia_ibfk_2" Association="Self.danh_gia_ibfk_2">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="danh_gia" EntitySet="danh_gia" />
+          </AssociationSet>
+          <AssociationSet Name="don_hang_ibfk_1" Association="Self.don_hang_ibfk_1">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_danh_gia_khach_hang" Association="Self.FK_danh_gia_khach_hang">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="danh_gia" EntitySet="danh_gia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_o_dia_cung_san_pham" Association="Self.FK_o_dia_cung_san_pham">
+            <End Role="san_pham" EntitySet="san_pham" />
+            <End Role="o_dia_cung" EntitySet="o_dia_cung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_san_pham_cart_do_hoa" Association="Self.FK_san_pham_cart_do_hoa">
+            <End Role="cart_do_hoa" EntitySet="cart_do_hoa" />
+            <End Role="san_pham" EntitySet="san_pham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_san_pham_cpu" Association="Self.FK_san_pham_cpu">
+            <End Role="cpu" EntitySet="cpu" />
+            <End Role="san_pham" EntitySet="san_pham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_san_pham_hang_sx" Association="Self.FK_san_pham_hang_sx">
+            <End Role="hang_sx" EntitySet="hang_sx" />
+            <End Role="san_pham" EntitySet="san_pham" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sellLaptopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="anh_sp">
+          <Key>
+            <PropertyRef Name="masp" />
+            <PropertyRef Name="tenfile" />
+          </Key>
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="tenfile" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="san_pham" Relationship="Self.anh_sp_ibfk_1" FromRole="anh_sp" ToRole="san_pham" />
+        </EntityType>
+        <EntityType Name="cart_do_hoa">
+          <Key>
+            <PropertyRef Name="tencartdohoa" />
+          </Key>
+          <Property Name="tencartdohoa" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dungluong" Type="Int32" />
+          <Property Name="thietke" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="an" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="san_pham" Relationship="Self.FK_san_pham_cart_do_hoa" FromRole="cart_do_hoa" ToRole="san_pham" />
+        </EntityType>
+        <EntityType Name="chi_tiet_don_hang">
+          <Key>
+            <PropertyRef Name="madh" />
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="madh" Type="Int32" Nullable="false" />
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="soluongsp" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="san_pham" Relationship="Self.chi_tiet_don_hang_ibfk_1" FromRole="chi_tiet_don_hang" ToRole="san_pham" />
+          <NavigationProperty Name="don_hang" Relationship="Self.chi_tiet_don_hang_ibfk_2" FromRole="chi_tiet_don_hang" ToRole="don_hang" />
+        </EntityType>
+        <EntityType Name="cpu">
+          <Key>
+            <PropertyRef Name="maloai" />
+          </Key>
+          <Property Name="hangsx" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="congnghe" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="maloai" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tocdo" Type="Double" Nullable="false" />
+          <Property Name="thongtinbodem" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tocdotoida" Type="Double" />
+          <Property Name="an" Type="Double" Nullable="false" />
+          <NavigationProperty Name="hang_sx" Relationship="Self.cpu_ibfk_1" FromRole="cpu" ToRole="hang_sx" />
+          <NavigationProperty Name="san_pham" Relationship="Self.FK_san_pham_cpu" FromRole="cpu" ToRole="san_pham" />
+        </EntityType>
+        <EntityType Name="danh_gia">
+          <Key>
+            <PropertyRef Name="masp" />
+            <PropertyRef Name="thoigian" />
+          </Key>
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="khachhang" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="thoigian" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="diem" Type="Int32" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="san_pham" Relationship="Self.danh_gia_ibfk_1" FromRole="danh_gia" ToRole="san_pham" />
+          <NavigationProperty Name="khach_hang" Relationship="Self.danh_gia_ibfk_2" FromRole="danh_gia" ToRole="khach_hang" />
+          <NavigationProperty Name="khach_hang1" Relationship="Self.FK_danh_gia_khach_hang" FromRole="danh_gia" ToRole="khach_hang" />
+        </EntityType>
+        <EntityType Name="don_hang">
+          <Key>
+            <PropertyRef Name="madh" />
+          </Key>
+          <Property Name="madh" Type="Int32" Nullable="false" />
+          <Property Name="khachhang" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ngaygiolap" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="diachinhan" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tongtien" Type="Int32" Nullable="false" />
+          <Property Name="dagiao" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="chi_tiet_don_hang" Relationship="Self.chi_tiet_don_hang_ibfk_2" FromRole="don_hang" ToRole="chi_tiet_don_hang" />
+          <NavigationProperty Name="khach_hang" Relationship="Self.don_hang_ibfk_1" FromRole="don_hang" ToRole="khach_hang" />
+        </EntityType>
+        <EntityType Name="hang_sx">
+          <Key>
+            <PropertyRef Name="tenhangsx" />
+          </Key>
+          <Property Name="tenhangsx" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="truso" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="an" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cpus" Relationship="Self.cpu_ibfk_1" FromRole="hang_sx" ToRole="cpu" />
+          <NavigationProperty Name="san_pham" Relationship="Self.FK_san_pham_hang_sx" FromRole="hang_sx" ToRole="san_pham" />
+        </EntityType>
+        <EntityType Name="khach_hang">
+          <Key>
+            <PropertyRef Name="tendn" />
+          </Key>
+          <Property Name="tendn" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mk" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hoten" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ngsinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="gioitinh" Type="Boolean" Nullable="false" />
+          <Property Name="sdt" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="quyen" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="danh_gia" Relationship="Self.danh_gia_ibfk_2" FromRole="khach_hang" ToRole="danh_gia" />
+          <NavigationProperty Name="danh_gia1" Relationship="Self.FK_danh_gia_khach_hang" FromRole="khach_hang" ToRole="danh_gia" />
+          <NavigationProperty Name="don_hang" Relationship="Self.don_hang_ibfk_1" FromRole="khach_hang" ToRole="don_hang" />
+        </EntityType>
+        <EntityType Name="o_dia_cung">
+          <Key>
+            <PropertyRef Name="masp" />
+            <PropertyRef Name="loaiodia" />
+          </Key>
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="loaiodia" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dungluong" Type="Int32" Nullable="false" />
+          <Property Name="an" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="san_pham" Relationship="Self.FK_o_dia_cung_san_pham" FromRole="o_dia_cung" ToRole="san_pham" />
+        </EntityType>
+        <EntityType Name="san_pham">
+          <Key>
+            <PropertyRef Name="masp" />
+          </Key>
+          <Property Name="masp" Type="Int32" Nullable="false" />
+          <Property Name="tensp" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tenhangsx" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gia" Type="Int32" Nullable="false" />
+          <Property Name="mau" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="icon" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="loaicpu" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ramdl" Type="Int32" Nullable="false" />
+          <Property Name="ramloai" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rambus" Type="Int32" Nullable="false" />
+          <Property Name="kichthuocmh" Type="Double" Nullable="false" />
+          <Property Name="dophangiai" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cnmanhinh" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="camung" Type="Boolean" Nullable="false" />
+          <Property Name="tencartdohoa" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cnamthanh" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="oquang" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sousb" Type="Boolean" Nullable="false" />
+          <Property Name="hdmi" Type="Boolean" Nullable="false" />
+          <Property Name="cartsd" Type="Boolean" Nullable="false" />
+          <Property Name="ketnoikhac" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="chucnangkhac" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="wifi" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lan" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="btoothver" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="camera" Type="Double" Nullable="false" />
+          <Property Name="pin" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hdh" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="khoiluong" Type="Double" Nullable="false" />
+          <Property Name="dai" Type="Int32" Nullable="false" />
+          <Property Name="rong" Type="Int32" Nullable="false" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="chatlieu" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="slcon" Type="Int32" Nullable="false" />
+          <Property Name="luotview" Type="Int32" Nullable="false" />
+          <Property Name="an" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="anh_sp" Relationship="Self.anh_sp_ibfk_1" FromRole="san_pham" ToRole="anh_sp" />
+          <NavigationProperty Name="cart_do_hoa" Relationship="Self.FK_san_pham_cart_do_hoa" FromRole="san_pham" ToRole="cart_do_hoa" />
+          <NavigationProperty Name="chi_tiet_don_hang" Relationship="Self.chi_tiet_don_hang_ibfk_1" FromRole="san_pham" ToRole="chi_tiet_don_hang" />
+          <NavigationProperty Name="cpu" Relationship="Self.FK_san_pham_cpu" FromRole="san_pham" ToRole="cpu" />
+          <NavigationProperty Name="danh_gia" Relationship="Self.danh_gia_ibfk_1" FromRole="san_pham" ToRole="danh_gia" />
+          <NavigationProperty Name="hang_sx" Relationship="Self.FK_san_pham_hang_sx" FromRole="san_pham" ToRole="hang_sx" />
+          <NavigationProperty Name="o_dia_cung" Relationship="Self.FK_o_dia_cung_san_pham" FromRole="san_pham" ToRole="o_dia_cung" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="anh_sp_ibfk_1">
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+          <End Role="anh_sp" Type="Self.anh_sp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="anh_sp">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_san_pham_cart_do_hoa">
+          <End Role="cart_do_hoa" Type="Self.cart_do_hoa" Multiplicity="1" />
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cart_do_hoa">
+              <PropertyRef Name="tencartdohoa" />
+            </Principal>
+            <Dependent Role="san_pham">
+              <PropertyRef Name="tencartdohoa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="chi_tiet_don_hang_ibfk_1">
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+          <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="chi_tiet_don_hang">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="chi_tiet_don_hang_ibfk_2">
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="1" />
+          <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="don_hang">
+              <PropertyRef Name="madh" />
+            </Principal>
+            <Dependent Role="chi_tiet_don_hang">
+              <PropertyRef Name="madh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cpu_ibfk_1">
+          <End Role="hang_sx" Type="Self.hang_sx" Multiplicity="1" />
+          <End Role="cpu" Type="Self.cpu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hang_sx">
+              <PropertyRef Name="tenhangsx" />
+            </Principal>
+            <Dependent Role="cpu">
+              <PropertyRef Name="hangsx" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_san_pham_cpu">
+          <End Role="cpu" Type="Self.cpu" Multiplicity="1" />
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cpu">
+              <PropertyRef Name="maloai" />
+            </Principal>
+            <Dependent Role="san_pham">
+              <PropertyRef Name="loaicpu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="danh_gia_ibfk_1">
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+          <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="danh_gia">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="danh_gia_ibfk_2">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
+          <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="tendn" />
+            </Principal>
+            <Dependent Role="danh_gia">
+              <PropertyRef Name="khachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_danh_gia_khach_hang">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
+          <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="tendn" />
+            </Principal>
+            <Dependent Role="danh_gia">
+              <PropertyRef Name="khachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="don_hang_ibfk_1">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="tendn" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="khachhang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_san_pham_hang_sx">
+          <End Role="hang_sx" Type="Self.hang_sx" Multiplicity="1" />
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hang_sx">
+              <PropertyRef Name="tenhangsx" />
+            </Principal>
+            <Dependent Role="san_pham">
+              <PropertyRef Name="tenhangsx" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_o_dia_cung_san_pham">
+          <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+          <End Role="o_dia_cung" Type="Self.o_dia_cung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham">
+              <PropertyRef Name="masp" />
+            </Principal>
+            <Dependent Role="o_dia_cung">
+              <PropertyRef Name="masp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sellLaptopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="anh_sp" EntityType="Self.anh_sp" />
+          <EntitySet Name="cart_do_hoa" EntityType="Self.cart_do_hoa" />
+          <EntitySet Name="chi_tiet_don_hang" EntityType="Self.chi_tiet_don_hang" />
+          <EntitySet Name="cpus" EntityType="Self.cpu" />
+          <EntitySet Name="danh_gia" EntityType="Self.danh_gia" />
+          <EntitySet Name="don_hang" EntityType="Self.don_hang" />
+          <EntitySet Name="hang_sx" EntityType="Self.hang_sx" />
+          <EntitySet Name="khach_hang" EntityType="Self.khach_hang" />
+          <EntitySet Name="o_dia_cung" EntityType="Self.o_dia_cung" />
+          <EntitySet Name="san_pham" EntityType="Self.san_pham" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="anh_sp_ibfk_1" Association="Self.anh_sp_ibfk_1">
+            <End Role="san_pham" EntitySet="san_pham" />
+            <End Role="anh_sp" EntitySet="anh_sp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_san_pham_cart_do_hoa" Association="Self.FK_san_pham_cart_do_hoa">
+            <End Role="cart_do_hoa" EntitySet="cart_do_hoa" />
+            <End Role="san_pham" EntitySet="san_pham" />
+          </AssociationSet>
+          <AssociationSet Name="chi_tiet_don_hang_ibfk_1" Association="Self.chi_tiet_don_hang_ibfk_1">
+            <End Role="san_pham" EntitySet="san_pham" />
+            <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="chi_tiet_don_hang_ibfk_2" Association="Self.chi_tiet_don_hang_ibfk_2">
+            <End Role="don_hang" EntitySet="don_hang" />
+            <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="cpu_ibfk_1" Association="Self.cpu_ibfk_1">
+            <End Role="hang_sx" EntitySet="hang_sx" />
+            <End Role="cpu" EntitySet="cpus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_san_pham_cpu" Association="Self.FK_san_pham_cpu">
+            <End Role="cpu" EntitySet="cpus" />
+            <End Role="san_pham" EntitySet="san_pham" />
+          </AssociationSet>
+          <AssociationSet Name="danh_gia_ibfk_1" Association="Self.danh_gia_ibfk_1">
+            <End Role="san_pham" EntitySet="san_pham" />
+            <End Role="danh_gia" EntitySet="danh_gia" />
+          </AssociationSet>
+          <AssociationSet Name="danh_gia_ibfk_2" Association="Self.danh_gia_ibfk_2">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="danh_gia" EntitySet="danh_gia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_danh_gia_khach_hang" Association="Self.FK_danh_gia_khach_hang">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="danh_gia" EntitySet="danh_gia" />
+          </AssociationSet>
+          <AssociationSet Name="don_hang_ibfk_1" Association="Self.don_hang_ibfk_1">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_san_pham_hang_sx" Association="Self.FK_san_pham_hang_sx">
+            <End Role="hang_sx" EntitySet="hang_sx" />
+            <End Role="san_pham" EntitySet="san_pham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_o_dia_cung_san_pham" Association="Self.FK_o_dia_cung_san_pham">
+            <End Role="san_pham" EntitySet="san_pham" />
+            <End Role="o_dia_cung" EntitySet="o_dia_cung" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sellLaptopModelStoreContainer" CdmEntityContainer="sellLaptopEntities">
+          <EntitySetMapping Name="anh_sp">
+            <EntityTypeMapping TypeName="sellLaptopModel.anh_sp">
+              <MappingFragment StoreEntitySet="anh_sp">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tenfile" ColumnName="tenfile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cart_do_hoa">
+            <EntityTypeMapping TypeName="sellLaptopModel.cart_do_hoa">
+              <MappingFragment StoreEntitySet="cart_do_hoa">
+                <ScalarProperty Name="tencartdohoa" ColumnName="tencartdohoa" />
+                <ScalarProperty Name="dungluong" ColumnName="dungluong" />
+                <ScalarProperty Name="thietke" ColumnName="thietke" />
+                <ScalarProperty Name="an" ColumnName="an" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chi_tiet_don_hang">
+            <EntityTypeMapping TypeName="sellLaptopModel.chi_tiet_don_hang">
+              <MappingFragment StoreEntitySet="chi_tiet_don_hang">
+                <ScalarProperty Name="madh" ColumnName="madh" />
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="soluongsp" ColumnName="soluongsp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cpus">
+            <EntityTypeMapping TypeName="sellLaptopModel.cpu">
+              <MappingFragment StoreEntitySet="cpu">
+                <ScalarProperty Name="hangsx" ColumnName="hangsx" />
+                <ScalarProperty Name="congnghe" ColumnName="congnghe" />
+                <ScalarProperty Name="maloai" ColumnName="maloai" />
+                <ScalarProperty Name="tocdo" ColumnName="tocdo" />
+                <ScalarProperty Name="thongtinbodem" ColumnName="thongtinbodem" />
+                <ScalarProperty Name="tocdotoida" ColumnName="tocdotoida" />
+                <ScalarProperty Name="an" ColumnName="an" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="danh_gia">
+            <EntityTypeMapping TypeName="sellLaptopModel.danh_gia">
+              <MappingFragment StoreEntitySet="danh_gia">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="khachhang" ColumnName="khachhang" />
+                <ScalarProperty Name="thoigian" ColumnName="thoigian" />
+                <ScalarProperty Name="diem" ColumnName="diem" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="don_hang">
+            <EntityTypeMapping TypeName="sellLaptopModel.don_hang">
+              <MappingFragment StoreEntitySet="don_hang">
+                <ScalarProperty Name="madh" ColumnName="madh" />
+                <ScalarProperty Name="khachhang" ColumnName="khachhang" />
+                <ScalarProperty Name="ngaygiolap" ColumnName="ngaygiolap" />
+                <ScalarProperty Name="diachinhan" ColumnName="diachinhan" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+                <ScalarProperty Name="dagiao" ColumnName="dagiao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hang_sx">
+            <EntityTypeMapping TypeName="sellLaptopModel.hang_sx">
+              <MappingFragment StoreEntitySet="hang_sx">
+                <ScalarProperty Name="tenhangsx" ColumnName="tenhangsx" />
+                <ScalarProperty Name="truso" ColumnName="truso" />
+                <ScalarProperty Name="mota" ColumnName="mota" />
+                <ScalarProperty Name="an" ColumnName="an" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khach_hang">
+            <EntityTypeMapping TypeName="sellLaptopModel.khach_hang">
+              <MappingFragment StoreEntitySet="khach_hang">
+                <ScalarProperty Name="tendn" ColumnName="tendn" />
+                <ScalarProperty Name="mk" ColumnName="mk" />
+                <ScalarProperty Name="hoten" ColumnName="hoten" />
+                <ScalarProperty Name="ngsinh" ColumnName="ngsinh" />
+                <ScalarProperty Name="gioitinh" ColumnName="gioitinh" />
+                <ScalarProperty Name="sdt" ColumnName="sdt" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="quyen" ColumnName="quyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="o_dia_cung">
+            <EntityTypeMapping TypeName="sellLaptopModel.o_dia_cung">
+              <MappingFragment StoreEntitySet="o_dia_cung">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="loaiodia" ColumnName="loaiodia" />
+                <ScalarProperty Name="dungluong" ColumnName="dungluong" />
+                <ScalarProperty Name="an" ColumnName="an" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="san_pham">
+            <EntityTypeMapping TypeName="sellLaptopModel.san_pham">
+              <MappingFragment StoreEntitySet="san_pham">
+                <ScalarProperty Name="masp" ColumnName="masp" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="tenhangsx" ColumnName="tenhangsx" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="mau" ColumnName="mau" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="loaicpu" ColumnName="loaicpu" />
+                <ScalarProperty Name="ramdl" ColumnName="ramdl" />
+                <ScalarProperty Name="ramloai" ColumnName="ramloai" />
+                <ScalarProperty Name="rambus" ColumnName="rambus" />
+                <ScalarProperty Name="kichthuocmh" ColumnName="kichthuocmh" />
+                <ScalarProperty Name="dophangiai" ColumnName="dophangiai" />
+                <ScalarProperty Name="cnmanhinh" ColumnName="cnmanhinh" />
+                <ScalarProperty Name="camung" ColumnName="camung" />
+                <ScalarProperty Name="tencartdohoa" ColumnName="tencartdohoa" />
+                <ScalarProperty Name="cnamthanh" ColumnName="cnamthanh" />
+                <ScalarProperty Name="oquang" ColumnName="oquang" />
+                <ScalarProperty Name="sousb" ColumnName="sousb" />
+                <ScalarProperty Name="hdmi" ColumnName="hdmi" />
+                <ScalarProperty Name="cartsd" ColumnName="cartsd" />
+                <ScalarProperty Name="ketnoikhac" ColumnName="ketnoikhac" />
+                <ScalarProperty Name="chucnangkhac" ColumnName="chucnangkhac" />
+                <ScalarProperty Name="wifi" ColumnName="wifi" />
+                <ScalarProperty Name="lan" ColumnName="lan" />
+                <ScalarProperty Name="btoothver" ColumnName="btoothver" />
+                <ScalarProperty Name="camera" ColumnName="camera" />
+                <ScalarProperty Name="pin" ColumnName="pin" />
+                <ScalarProperty Name="hdh" ColumnName="hdh" />
+                <ScalarProperty Name="khoiluong" ColumnName="khoiluong" />
+                <ScalarProperty Name="dai" ColumnName="dai" />
+                <ScalarProperty Name="rong" ColumnName="rong" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="chatlieu" ColumnName="chatlieu" />
+                <ScalarProperty Name="slcon" ColumnName="slcon" />
+                <ScalarProperty Name="luotview" ColumnName="luotview" />
+                <ScalarProperty Name="an" ColumnName="an" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="sellLaptopModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
