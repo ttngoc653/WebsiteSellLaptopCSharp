@@ -1,0 +1,11 @@
+﻿@model IEnumerable<SellLaptop.Models.san_pham>
+
+<li>
+    <a>
+        <label class="radio-inline"><input name="ram" checked="checked" value="" type="radio">Tất cả</label>
+        @foreach (var i in Model)
+        {
+            <label class="radio-inline"><input name="ram" value="@i.ramdl" type="radio">@i.ramdl GB</label>
+        }
+    </a>
+</li>

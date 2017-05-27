@@ -1,0 +1,17 @@
+﻿@model IEnumerable<SellLaptop.Models.cpu>
+
+@{ var count = 0;}
+<li>
+    <a>
+        <label class="radio-inline"><input name="cpu" checked="checked" value="" type="radio">Tất cả</label>
+        @foreach (var i in Model)
+        {
+            if (((count + 1) % 5) == 0)
+            {
+                @Html.Raw("</a></li><li><a>");
+            }
+            <label class="radio-inline"><input name="cpu" value="@i.congnghe" type="radio">@i.congnghe</label>
+            count++;
+        }
+    </a>
+</li>
