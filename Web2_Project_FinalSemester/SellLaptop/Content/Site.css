@@ -2,13 +2,26 @@
     padding-top: 50px;
     padding-bottom: 20px;
     width: 1024px;
-    background: url(../Image/background.jpg);
+    background: url(../Image/background.jpg) fixed;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.purport{
+    width: 308px;
+    float: left;
+    margin-left: 15px;
+}
+
+.menu-right{
+    text-align:right;
+    float: right;
+    width: 165px;
+    margin-right: 15px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
