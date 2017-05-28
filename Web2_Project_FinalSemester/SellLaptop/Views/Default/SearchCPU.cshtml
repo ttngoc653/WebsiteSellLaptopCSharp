@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SellLaptop.Models.cpu>
+﻿@model IEnumerable<String>
 
 @{ var count = 0;}
 <li>
@@ -10,7 +10,7 @@
             {
                 @Html.Raw("</a></li><li><a>");
             }
-            <label class="radio-inline"><input name="cpu" value="@i.congnghe" type="radio">@i.congnghe</label>
+            <label class="radio-inline"><input name="cpu" value="@i" type="radio">@i</label>
             count++;
         }
     </a>

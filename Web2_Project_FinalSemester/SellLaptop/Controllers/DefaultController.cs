@@ -31,17 +31,8 @@ namespace SellLaptop.Controllers
         {
             using (var ent = new sellLaptopEntities())
             {
-                List<cart_do_hoa> l = ent.cart_do_hoa.OrderBy(x =>x.thietke).ToList();
-                String tam = "";
-                for (int i = 0; i < l.Count; i++)
-                {
-                    if (tam == l[i].thietke)
-                    {
-                        l.RemoveAt(i);
-                        i--;
-                    }
-                    else tam = l[i].thietke;
-                }
+                List<String> l = ent.cart_do_hoa.OrderBy(x =>x.thietke).Select(x=>x.thietke).Distinct().ToList();
+                
                 return PartialView(l);
             }
             return PartialView();
@@ -52,17 +43,7 @@ namespace SellLaptop.Controllers
         {
             using (var ent = new sellLaptopEntities())
             {
-                List<san_pham> l = ent.san_pham.OrderBy(x => x.ramdl).ToList();
-                int tam = 0;
-                for (int i = 0; i < l.Count; i++)
-                {
-                    if (tam == l[i].ramdl)
-                    {
-                        l.RemoveAt(i);
-                        i--;
-                    }
-                    else tam = l[i].ramdl;
-                }
+                List<int> l = ent.san_pham.OrderBy(x => x.ramdl).Select(x => x.ramdl).Distinct().ToList();
                 return PartialView(l);
             }
             return PartialView();
@@ -73,17 +54,8 @@ namespace SellLaptop.Controllers
         {
             using (var ent = new sellLaptopEntities())
             {
-                List<cpu> l = ent.cpus.OrderBy(x => x.congnghe).ToList();
-                String tam = "";
-                for (int i = 0; i < l.Count; i++)
-                {
-                    if (tam == l[i].congnghe)
-                    {
-                        l.RemoveAt(i);
-                        i--;
-                    }
-                    else tam = l[i].congnghe;
-                }
+                List<String> l = ent.cpus.OrderBy(x => x.congnghe).Select(x=>x.congnghe).Distinct().ToList();
+                
                 return PartialView(l);
             }
             return PartialView();
