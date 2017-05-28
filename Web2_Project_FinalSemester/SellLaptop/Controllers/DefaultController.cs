@@ -60,19 +60,73 @@ namespace SellLaptop.Controllers
             }
             return PartialView();
         }
-
+        
         [ChildActionOnly]
         public ActionResult Log()
         {
-            Session["user"] = "abc";
+            if (Request.Cookies["user"]!=null)
+            {
+                Session["user"] = Request.Cookies["user"]["name"];
+                Session["role"] = Request.Cookies["user"]["role"];
+            }
             if (Session["user"]==null)
             {
                 return PartialView();
             }
             else
             {
-                return PartialView("LogIned");
+                khach_hang u;
+                using (var ent = new sellLaptopEntities())
+                {
+                    String username = Session["user"].ToString();
+                    u = ent.khach_hang.Where(x => x.tendn == username).FirstOrDefault();
+                }
+                return PartialView("LogIned",u);
             }
+        }
+
+        public ActionResult LogIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LogIn(LogIn login)
+        {
+            khach_hang u;
+            using (var ent=new sellLaptopEntities())
+            {
+                u = ent.khach_hang.Where(x => x.tendn == login.user).FirstOrDefault();
+            }
+            if (u == null)
+            {
+                WebMsgBox.ShowMessage(@"ĐĂNG NHẬP THẤT BẠI.");
+                return View();
+            }
+            else
+            {
+                if (login.remenber==true)
+                {
+                    Response.Cookies["user"]["name"] = u.tendn;
+                    Response.Cookies["user"]["role"] = u.quyen.ToString();
+                    Response.Cookies["user"].Expires = DateTime.Now.AddDays(3);
+                }
+                Session["user"] = u.tendn;
+                WebMsgBox.ShowMessage(@"ĐĂNG NHẬP THÀNH CÔNG.");
+                return View();
+            }            
+        }
+
+        public ActionResult LogOut()
+        {
+            if (Request.Cookies["user"] != null)
+            {
+                Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
+            }
+            String url = Session["url"].ToString();
+            Session.RemoveAll();
+            Session["url"] = url;
+            return View("LogIn");
         }
     }
 }

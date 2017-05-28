@@ -11,6 +11,22 @@ namespace SellLaptop.Controllers
     {
         // GET: Home
         public ActionResult Index()
+        {            
+            return View();
+        }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        public ActionResult Search(int page = 0)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Search(searchProduct pro)
         {
             return View();
         }

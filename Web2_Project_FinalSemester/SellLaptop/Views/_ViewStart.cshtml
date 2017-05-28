@@ -1,3 +1,13 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Request.Url.ToString().Contains("Default/LogIn"))
+    {
+    }
+    else if (Request.Url.ToString().Contains("Default/LogOut"))
+    {
+    }
+    else
+    {
+        Session["url"] = Request.Url.ToString();
+    }
 }

@@ -144,6 +144,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\WebMsgBox.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +221,8 @@
     <Content Include="Views\Default\Search.cshtml" />
     <Content Include="Views\Default\Log.cshtml" />
     <Content Include="Views\Default\LogIned.cshtml" />
+    <Content Include="Views\Default\LogIn.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
