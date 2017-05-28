@@ -60,5 +60,19 @@ namespace SellLaptop.Controllers
             }
             return PartialView();
         }
+
+        [ChildActionOnly]
+        public ActionResult Log()
+        {
+            Session["user"] = "abc";
+            if (Session["user"]==null)
+            {
+                return PartialView();
+            }
+            else
+            {
+                return PartialView("LogIned");
+            }
+        }
     }
 }

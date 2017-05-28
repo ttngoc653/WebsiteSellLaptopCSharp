@@ -171,6 +171,7 @@
     <Compile Include="Models\khach_hang.cs">
       <DependentUpon>sellLaptopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LogIn.cs" />
     <Compile Include="Models\o_dia_cung.cs">
       <DependentUpon>sellLaptopModel.tt</DependentUpon>
     </Compile>
@@ -217,6 +218,8 @@
     <Content Include="Views\Default\SearchDungLuongRam.cshtml" />
     <Content Include="Views\Default\SearchCPU.cshtml" />
     <Content Include="Views\Default\Search.cshtml" />
+    <Content Include="Views\Default\Log.cshtml" />
+    <Content Include="Views\Default\LogIned.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
