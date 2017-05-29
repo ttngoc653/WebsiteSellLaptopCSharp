@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SellLaptop.Models.chi_tiet_don_hang>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.san_pham.tensp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.san_pham.gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.san_pham.mau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.san_pham.icon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.san_pham.ramdl)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.san_pham.tensp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.san_pham.gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.san_pham.mau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.san_pham.icon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.san_pham.ramdl)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.san_pham.masp }) |
+            @Html.ActionLink("Details", "Details", new { id = item.san_pham.masp }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.san_pham.masp })
+        </td>
+    </tr>
+}
+</table>

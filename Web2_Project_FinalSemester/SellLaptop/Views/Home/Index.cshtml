@@ -1,20 +1,22 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "TRANG CHỦ";
 }
-
-<h2>Index</h2>
-@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-<div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Dropdown
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-    </ul>
+<div class="panel panel-info">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        @{ Html.RenderAction("ShowTop10Buy");}
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        @{ Html.RenderAction("ShowTop10New");}
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        @{ Html.RenderAction("ShowTop10View");}
+    </div>
 </div>

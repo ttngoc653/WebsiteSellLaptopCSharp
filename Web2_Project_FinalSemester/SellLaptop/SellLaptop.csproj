@@ -224,6 +224,9 @@
     <Content Include="Views\Default\LogIned.cshtml" />
     <Content Include="Views\Default\LogIn.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\ShowTop10View.cshtml" />
+    <Content Include="Views\Home\ShowTop10New.cshtml" />
+    <Content Include="Views\Home\ShowTop10Buy.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

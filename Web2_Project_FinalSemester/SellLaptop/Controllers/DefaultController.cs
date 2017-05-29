@@ -62,6 +62,12 @@ namespace SellLaptop.Controllers
             }
             return PartialView();
         }
+
+       [ChildActionOnly]
+       public ActionResult Menu()
+        {
+            return PartialView();
+        }
         
         [ChildActionOnly]
         public ActionResult Log()
