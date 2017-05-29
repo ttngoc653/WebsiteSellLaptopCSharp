@@ -151,6 +151,7 @@
     <Compile Include="Models\anh_sp.cs">
       <DependentUpon>sellLaptopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\cart_do_hoa.cs">
       <DependentUpon>sellLaptopModel.tt</DependentUpon>
     </Compile>
