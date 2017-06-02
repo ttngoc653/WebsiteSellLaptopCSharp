@@ -10,6 +10,13 @@ namespace SellLaptop.Controllers
     public class MenuController : Controller
     {
         [ChildActionOnly]
+        public ActionResult MenuAdmin()
+        {
+
+            return PartialView();
+        }
+
+        [ChildActionOnly]
         public ActionResult MenuRight()
         {
             return PartialView();

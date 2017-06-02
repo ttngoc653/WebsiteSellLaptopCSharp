@@ -241,6 +241,7 @@
     <Content Include="Views\Menu\RightRAM.cshtml" />
     <Content Include="Views\Menu\RightHDH.cshtml" />
     <Content Include="Views\Menu\RightBoNho.cshtml" />
+    <Content Include="Views\Search\SearchSP.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -250,7 +251,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

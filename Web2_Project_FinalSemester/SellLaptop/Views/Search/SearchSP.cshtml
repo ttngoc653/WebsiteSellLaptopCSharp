@@ -1,0 +1,19 @@
+﻿@model IList<SellLaptop.Models.san_pham>
+
+@if (Model.Count==0)
+{
+    <div>
+        RẤT TIẾC!!! KHÔNG CÓ SẢN PHẨM NÀO THUỘC NHÓM NÀY.
+    </div>
+}
+
+@foreach (var item in Model)
+{
+    <div style="border: dotted;margin: 5px;    float: none;    width: 137px;   text-align: center;    border-radius: 10px;    float: left;    border-color:#faebcc;">
+        <a href="index.php?act=chitiet&masp=63" title="@item.tencartdohoa,@item.cpu.congnghe, RAM @item.ramdl GB">
+            <img width="120px" height="120px" src="./image/63/acer-aspire-z1402-39kt-i3-5005u-4gb-500gb-win10-400b-400x400.png" />
+            <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.tenhangsx @item.tensp</div>
+            <div style="font: bold 12px arial;    color: #f30;">Giá: @item.gia VNĐ</div>
+        </a>
+    </div>
+}

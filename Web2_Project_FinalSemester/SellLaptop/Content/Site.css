@@ -1,8 +1,9 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    width: 1024px;
+    min-width: 1024px;
     background: url(../Image/background.jpg) fixed;
+    margin: 0 auto;
 }
 
 /* Set padding to keep content from hitting the edges */

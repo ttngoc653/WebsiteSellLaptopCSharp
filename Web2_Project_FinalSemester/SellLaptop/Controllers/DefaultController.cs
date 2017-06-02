@@ -100,7 +100,7 @@ namespace SellLaptop.Controllers
             khach_hang u;
             using (var ent=new sellLaptopEntities())
             {
-                u = ent.khach_hang.Where(x => x.tendn == login.user).FirstOrDefault();
+                u = ent.khach_hang.Where(x => x.tendn == login.user && x.mk==GetMD5(login.pass)).FirstOrDefault();
             }
             if (u == null)
             {
