@@ -1,0 +1,7 @@
+﻿@model IList<String>
+
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("", "", new { hdh = item })" class="list-group-item"><div style="opacity: 1">@item</div></a>
+}
+

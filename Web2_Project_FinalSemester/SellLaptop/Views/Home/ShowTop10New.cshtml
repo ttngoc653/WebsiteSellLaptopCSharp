@@ -1,47 +1,11 @@
 ﻿@model IEnumerable<SellLaptop.Models.san_pham>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tensp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.icon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ramdl)
-        </th>
-        <th></th>
-    </tr>
-
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tensp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.icon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ramdl)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.masp }) |
-            @Html.ActionLink("Details", "Details", new { id = item.masp }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.masp })
-          </td>
-    </tr>
+    <div style="border: dotted;margin: 5px;    float: none;    width: 137px;   text-align: center;    border-radius: 10px;    float: left;    border-color:#faebcc;">
+        <a href="index.php?act=chitiet&masp=63" title="@item.tencartdohoa,@item.cpu.congnghe, RAM @item.ramdl GB">
+            <img width="120px" height="120px" src="./image/63/acer-aspire-z1402-39kt-i3-5005u-4gb-500gb-win10-400b-400x400.png" />
+            <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.tenhangsx @item.tensp</div>
+            <div style="font: bold 12px arial;    color: #f30;">Giá: @item.gia VNĐ</div>
+        </a>
+    </div>
 }
-</table>

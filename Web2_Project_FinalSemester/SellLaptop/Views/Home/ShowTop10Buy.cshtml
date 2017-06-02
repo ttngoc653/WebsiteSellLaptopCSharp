@@ -1,48 +1,13 @@
 ﻿@model IEnumerable<SellLaptop.Models.chi_tiet_don_hang>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.san_pham.tensp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.san_pham.gia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.san_pham.mau)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.san_pham.icon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.san_pham.ramdl)
-        </th>
-        <th></th>
-    </tr>
-
 @foreach (var item in Model)
 {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.san_pham.tensp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.san_pham.gia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.san_pham.mau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.san_pham.icon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.san_pham.ramdl)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.san_pham.masp }) |
-            @Html.ActionLink("Details", "Details", new { id = item.san_pham.masp }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.san_pham.masp })
-        </td>
-    </tr>
+    <div style="border: dotted;margin: 5px;    float: none;    width: 137px;   text-align: center;    border-radius: 10px;    float: left;    border-color:#d6e9c6;">
+        <a href="index.php?act=chitiet&masp=63" title="@item.san_pham.tencartdohoa,@item.san_pham.cpu.congnghe, RAM @item.san_pham.ramdl GB">
+            <img width="120px" height="120px" src="./image/63/acer-aspire-z1402-39kt-i3-5005u-4gb-500gb-win10-400b-400x400.png" />
+            <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.san_pham.tenhangsx @item.san_pham.tensp</div>
+            <div style="font: bold 12px arial;    color: #f30;">Giá: @item.san_pham.gia VNĐ</div>
+            <div>Đã bán: @item.soluongsp máy</div>
+        </a>
+    </div>
 }
-</table>

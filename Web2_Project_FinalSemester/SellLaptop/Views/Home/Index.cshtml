@@ -2,21 +2,21 @@
 @{
     ViewBag.Title = "TRANG CHỦ";
 }
-<div class="panel panel-info">
-    <div class="panel-heading"></div>
-    <div class="panel-body">
-        @{ Html.RenderAction("ShowTop10Buy");}
+    <div class="panel panel-success">
+        <div class="panel-heading">TOP 10 SẢN PHẨM MUA NHIỀU NHẤT</div>
+        <div class="panel-body">
+            @{ Html.RenderAction("ShowTop10Buy");}
+        </div>
     </div>
-</div>
-<div class="panel panel-info">
-    <div class="panel-heading"></div>
-    <div class="panel-body">
-        @{ Html.RenderAction("ShowTop10New");}
+    <div class="panel panel-warning">
+        <div class="panel-heading">TOP 10 SẢN PHẨM MỚI NHẤT</div>
+        <div class="panel-body">
+            @{ Html.RenderAction("ShowTop10New");}
+        </div>
     </div>
-</div>
-<div class="panel panel-info">
-    <div class="panel-heading"></div>
-    <div class="panel-body">
-        @{ Html.RenderAction("ShowTop10View");}
+    <div class="panel panel-danger">
+        <div class="panel-heading">TOP 10 SẢN PHẨM XEM NHIỀU NHẤT</div>
+        <div class="panel-body">
+            @{ Html.RenderAction("ShowTop10View");}
+        </div>
     </div>
-</div>

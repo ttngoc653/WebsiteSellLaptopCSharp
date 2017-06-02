@@ -1,0 +1,6 @@
+﻿@model IList<int>
+
+@foreach (var item in Model)
+{
+    <a href="@Url.Action("Search","Search",new { hang=item})" class="list-group-item"><div style="opacity: 1">@item GB</div></a>
+}

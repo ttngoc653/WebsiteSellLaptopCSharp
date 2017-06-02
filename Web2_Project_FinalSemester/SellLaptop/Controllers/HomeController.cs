@@ -46,11 +46,10 @@ namespace SellLaptop.Controllers
                 IList<chi_tiet_don_hang> lFull = ent.chi_tiet_don_hang.Include("san_pham").ToList();
                 List<chi_tiet_don_hang> l = (from a in lFull
                             group a by a.masp into z
-                            select new chi_tiet_don_hang {san_pham=ent.san_pham.Where(a=>a.masp==z.Key).FirstOrDefault(),don_hang=null,madh=0, masp = z.Key, soluongsp = z.Sum(a => a.soluongsp) }).OrderByDescending(a=>a.soluongsp).ToList();
+                            select new chi_tiet_don_hang {san_pham=ent.san_pham.Include("cpu").Where(a=>a.masp==z.Key).FirstOrDefault(),don_hang=null,madh=0, masp = z.Key, soluongsp = z.Sum(a => a.soluongsp) }).OrderByDescending(a=>a.soluongsp).ToList();
                 l = l.Take(10).ToList();
                 return PartialView(l);
             }
-            return PartialView();
         }
 
         [ChildActionOnly]
@@ -58,10 +57,9 @@ namespace SellLaptop.Controllers
         {
             using (var ent=new sellLaptopEntities())
             {
-                List<san_pham> l = ent.san_pham.OrderByDescending(a => a.masp).Take(10).ToList();
+                List<san_pham> l = ent.san_pham.Include("cpu").OrderByDescending(a => a.masp).Take(10).ToList();
                 return PartialView(l);
             }
-            return PartialView();
         }
 
         [ChildActionOnly]
@@ -69,10 +67,9 @@ namespace SellLaptop.Controllers
         {
             using (var ent = new sellLaptopEntities())
             {
-                List<san_pham> l = ent.san_pham.OrderByDescending(a => a.luotview).Take(10).ToList();
+                List<san_pham> l = ent.san_pham.Include("cpu").OrderByDescending(a => a.luotview).Take(10).ToList();
                 return PartialView(l);
             }
-            return PartialView();
         }
     }
 }

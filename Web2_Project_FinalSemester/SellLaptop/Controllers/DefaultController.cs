@@ -22,7 +22,6 @@ namespace SellLaptop.Controllers
                 List<hang_sx> l = ent.hang_sx.ToList();
                 return PartialView(l);
             }
-            return PartialView();
         }
 
         [ChildActionOnly]
@@ -37,7 +36,6 @@ namespace SellLaptop.Controllers
                 
                 return PartialView(l);
             }
-            return PartialView();
         }
         
         [ChildActionOnly]
@@ -48,7 +46,6 @@ namespace SellLaptop.Controllers
                 List<int> l = ent.san_pham.OrderBy(x => x.ramdl).Select(x => x.ramdl).Distinct().ToList();
                 return PartialView(l);
             }
-            return PartialView();
         }
 
         [ChildActionOnly]
@@ -60,7 +57,6 @@ namespace SellLaptop.Controllers
                 
                 return PartialView(l);
             }
-            return PartialView();
         }
 
        [ChildActionOnly]

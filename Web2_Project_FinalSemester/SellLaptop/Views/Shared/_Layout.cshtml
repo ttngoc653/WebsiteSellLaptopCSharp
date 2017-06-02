@@ -30,63 +30,7 @@
 
     <div class="container" style="width:1024px;margin-top:10px;">
         <div class="menu-right">
-            <div style="opacity:0.9;" class="list-group">
-                <a href="" class="list-group-item list-group-item-success" onclick="">
-                    <b>HÃNG</b>
-                </a>
-                <a href="index.php?act=timkiem&hang=Acer" class="list-group-item"><div style="opacity: 1">Acer</div></a>
-                <a href="index.php?act=timkiem&hang=Apple" class="list-group-item"><div style="opacity: 1">Apple</div></a>
-                <a href="index.php?act=timkiem&hang=Asus" class="list-group-item"><div style="opacity: 1">Asus</div></a>
-                <a href="index.php?act=timkiem&hang=Dell" class="list-group-item"><div style="opacity: 1">Dell</div></a>
-                <a href="index.php?act=timkiem&hang=HP" class="list-group-item"><div style="opacity: 1">HP</div></a>
-                <a href="index.php?act=timkiem&hang=Lenovo" class="list-group-item"><div style="opacity: 1">Lenovo</div></a>
-            </div>
-
-            <div style="opacity:0.9;" class="list-group">
-                <a href="" class="list-group-item list-group-item-success" onclick="">
-                    <b>CPU</b>
-                </a>
-                <a href="index.php?act=timkiem&cpu=Atom" class="list-group-item">Atom</a>
-                <a href="index.php?act=timkiem&cpu=Celeron" class="list-group-item">Celeron</a>
-                <a href="index.php?act=timkiem&cpu=Core 3 Broadwell" class="list-group-item">Core 3 Broadwell</a>
-                <a href="index.php?act=timkiem&cpu=Core i3 Kabylake" class="list-group-item">Core i3 Kabylake</a>
-                <a href="index.php?act=timkiem&cpu=Core i3 Skylake" class="list-group-item">Core i3 Skylake</a>
-                <a href="index.php?act=timkiem&cpu=Core i5 Broadwell" class="list-group-item">Core i5 Broadwell</a>
-                <a href="index.php?act=timkiem&cpu=Core i5 Kabylake" class="list-group-item">Core i5 Kabylake</a>
-                <a href="index.php?act=timkiem&cpu=Core i5 Skylake" class="list-group-item">Core i5 Skylake</a>
-                <a href="index.php?act=timkiem&cpu=Core i7 Kabylake" class="list-group-item">Core i7 Kabylake</a>
-                <a href="index.php?act=timkiem&cpu=Core i7 Skylake" class="list-group-item">Core i7 Skylake</a>
-                <a href="index.php?act=timkiem&cpu=Core M" class="list-group-item">Core M</a>
-                <a href="index.php?act=timkiem&cpu=Pentium" class="list-group-item">Pentium</a>
-            </div>
-            <div style="opacity:0.9;" class="list-group">
-                <a href="#" class="list-group-item list-group-item-success" onclick="">
-                    <b>LƯỢNG RAM</b>
-                </a>
-                <a href="index.php?act=timkiem&ram=2" class="list-group-item">2 GB</a>
-                <a href="index.php?act=timkiem&ram=4" class="list-group-item">4 GB</a>
-                <a href="index.php?act=timkiem&ram=8" class="list-group-item">8 GB</a>
-            </div>
-            <div style="opacity: 0.9;" class="list-group">
-                <a href="#" class="list-group-item list-group-item-success" onclick="">
-                    <b>HỆ ĐIỀU HÀNH</b>
-                </a>
-                <a href="index.php?act=timkiem&hdh=Chrome OS" class="list-group-item">Chrome OS</a>
-                <a href="index.php?act=timkiem&hdh=Mac OS" class="list-group-item">Mac OS</a>
-                <a href="index.php?act=timkiem&hdh=Windows 10" class="list-group-item">Windows 10</a>
-            </div>
-            <div style="opacity: 0.9;" class="list-group">
-                <a href="#" class="list-group-item list-group-item-success" onclick="">
-                    <b>BỘ NHỚ MÁY</b>
-                </a>
-                <a href="index.php?act=timkiem&rom=32" class="list-group-item">32 GB</a>
-                <a href="index.php?act=timkiem&rom=128" class="list-group-item">128 GB</a>
-                <a href="index.php?act=timkiem&rom=256" class="list-group-item">256 GB</a>
-                <a href="index.php?act=timkiem&rom=500" class="list-group-item">500 GB</a>
-                <a href="index.php?act=timkiem&rom=512" class="list-group-item">512 GB</a>
-                <a href="index.php?act=timkiem&rom=628" class="list-group-item">628 GB</a>
-                <a href="index.php?act=timkiem&rom=1024" class="list-group-item">1024 GB</a>
-            </div>
+            @{ Html.RenderAction("MenuRight", "Menu");}
         </div>
         <div class="purport">
             <div class="body-content">
