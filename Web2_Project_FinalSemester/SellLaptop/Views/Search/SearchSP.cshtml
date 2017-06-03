@@ -1,19 +1,61 @@
 ﻿@model IList<SellLaptop.Models.san_pham>
 
-@if (Model.Count==0)
+@if (Model.Count == 0)
 {
     <div>
-        RẤT TIẾC!!! KHÔNG CÓ SẢN PHẨM NÀO THUỘC NHÓM NÀY.
+        <h1>RẤT TIẾC!!! KHÔNG CÓ SẢN PHẨM NÀO THUỘC NHÓM NÀY.</h1>
     </div>
 }
-
-@foreach (var item in Model)
+else
 {
-    <div style="border: dotted;margin: 5px;    float: none;    width: 137px;   text-align: center;    border-radius: 10px;    float: left;    border-color:#faebcc;">
-        <a href="index.php?act=chitiet&masp=63" title="@item.tencartdohoa,@item.cpu.congnghe, RAM @item.ramdl GB">
-            <img width="120px" height="120px" src="./image/63/acer-aspire-z1402-39kt-i3-5005u-4gb-500gb-win10-400b-400x400.png" />
-            <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.tenhangsx @item.tensp</div>
-            <div style="font: bold 12px arial;    color: #f30;">Giá: @item.gia VNĐ</div>
-        </a>
+    <div>
+        @foreach (var item in Model)
+        {
+        <div style="border: dotted;margin: 5px;margin:auto   ; width: 190px; min-height:234px;  text-align: center;    border-radius: 10px;position:relative;    float: left;    border-color:#d9edf7;">
+            <a href="index.php?act=chitiet&masp=63" title="xem Chi tiết" style="position:absolute;top:50%;left:50%;width:189px;-webkit-transform:translateX(-50%) translateY(-50%);">
+                <img width="120px" height="120px" src="~/Image/background.jpg" />
+                <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.tenhangsx @item.tensp</div>
+                <div>@item.cpu.congnghe, @item.tencartdohoa, RAM @item.ramdl GB</div>
+                <div style="font: bold 12px arial;    color: #f30;">Giá: @String.Format("{0:C}", item.gia)</div>
+            </a>
+        </div>
+        }
     </div>
+    if ((int)Session["npage"] > 1)
+    {
+        <br/>
+        <nav aria-label="Pager navigation">
+            <ul class="pagination" style="text-align:center;">
+                @if ((int)Session["page"] == 1)
+                {
+                    <li class="disabled"><a href="@Url.Action("SearchSPByPage", "Search", new { page = 1 })">&laquo;</a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.Action("SearchSPByPage", "Search", new { page = 1 })">&laquo;</a></li>
+                }
+                @{int temp = (int)Session["page"];
+                    for (int i = 1; i <= (int)Session["npage"]; i++)
+                    {
+                        if (temp == i)
+                        {
+                            <li class="active"><a href="@Url.Action("SearchSPByPage", "Search", new { page = i })">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("SearchSPByPage", "Search", new { page = i })">@i</a></li>
+                        }
+                    }
+                }
+                @if ((int)Session["page"] == (int)Session["npage"])
+                {
+                    <li class="disabled"><a href="@Url.Action("SearchSPByPage", "Search", new { page = (int)Session["npage"] })">&raquo;</a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.Action("SearchSPByPage", "Search", new { page = (int)Session["npage"] })">&raquo;</a></li>
+                }
+            </ul>
+        </nav>
+    }
 }
