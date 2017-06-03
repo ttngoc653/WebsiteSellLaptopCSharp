@@ -20,8 +20,7 @@ namespace SellLaptop.Models
         public Nullable<int> diem { get; set; }
         public string noidung { get; set; }
     
-        public virtual san_pham san_pham { get; set; }
         public virtual khach_hang khach_hang { get; set; }
-        public virtual khach_hang khach_hang1 { get; set; }
+        public virtual san_pham san_pham { get; set; }
     }
 }

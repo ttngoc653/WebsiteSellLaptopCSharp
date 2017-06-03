@@ -40,7 +40,7 @@ namespace SellLaptop.Models
         public string tencartdohoa { get; set; }
         public string cnamthanh { get; set; }
         public string oquang { get; set; }
-        public bool sousb { get; set; }
+        public int sousb { get; set; }
         public bool hdmi { get; set; }
         public bool cartsd { get; set; }
         public string ketnoikhac { get; set; }

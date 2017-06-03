@@ -18,7 +18,7 @@ namespace SellLaptop.Models
         public int masp { get; set; }
         public int soluongsp { get; set; }
     
-        public virtual san_pham san_pham { get; set; }
         public virtual don_hang don_hang { get; set; }
+        public virtual san_pham san_pham { get; set; }
     }
 }

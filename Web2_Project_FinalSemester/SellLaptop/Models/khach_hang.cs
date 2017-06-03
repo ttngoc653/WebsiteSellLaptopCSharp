@@ -18,7 +18,6 @@ namespace SellLaptop.Models
         public khach_hang()
         {
             this.danh_gia = new HashSet<danh_gia>();
-            this.danh_gia1 = new HashSet<danh_gia>();
             this.don_hang = new HashSet<don_hang>();
         }
     
@@ -33,8 +32,6 @@ namespace SellLaptop.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<danh_gia> danh_gia { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<danh_gia> danh_gia1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<don_hang> don_hang { get; set; }
     }

@@ -108,6 +108,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Image\background.jpg" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Models\sellLaptopModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>sellLaptopModel.edmx</DependentUpon>
@@ -118,16 +126,15 @@
       <DependentUpon>sellLaptopModel.edmx</DependentUpon>
       <LastGenOutput>sellLaptopModel.cs</LastGenOutput>
     </Content>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\sellLaptopModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>sellLaptopModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\sellLaptopModel.edmx.diagram">
+      <DependentUpon>sellLaptopModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -149,6 +156,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -212,13 +220,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\sellLaptopModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>sellLaptopModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\sellLaptopModel.edmx.diagram">
-      <DependentUpon>sellLaptopModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -242,6 +243,9 @@
     <Content Include="Views\Menu\RightHDH.cshtml" />
     <Content Include="Views\Menu\RightBoNho.cshtml" />
     <Content Include="Views\Search\SearchSP.cshtml" />
+    <Content Include="Views\Detail\Index.cshtml" />
+    <Content Include="Views\Detail\ShowCungLoai.cshtml" />
+    <Content Include="Views\Detail\ShowCungHang.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

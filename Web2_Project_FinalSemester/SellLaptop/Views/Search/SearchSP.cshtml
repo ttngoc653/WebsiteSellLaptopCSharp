@@ -8,11 +8,11 @@
 }
 else
 {
-    <div>
+    <div style="margin:0px;">
         @foreach (var item in Model)
         {
         <div style="border: dotted;margin: 5px;margin:auto   ; width: 190px; min-height:234px;  text-align: center;    border-radius: 10px;position:relative;    float: left;    border-color:#d9edf7;">
-            <a href="index.php?act=chitiet&masp=63" title="xem Chi tiết" style="position:absolute;top:50%;left:50%;width:189px;-webkit-transform:translateX(-50%) translateY(-50%);">
+            <a href="@Url.Action("","Detail", new { id=item.masp})" title="xem Chi tiết" style="position:absolute;top:50%;left:50%;width:189px;-webkit-transform:translateX(-50%) translateY(-50%);">
                 <img width="120px" height="120px" src="~/Image/background.jpg" />
                 <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.tenhangsx @item.tensp</div>
                 <div>@item.cpu.congnghe, @item.tencartdohoa, RAM @item.ramdl GB</div>
@@ -24,8 +24,8 @@ else
     if ((int)Session["npage"] > 1)
     {
         <br/>
-        <nav aria-label="Pager navigation">
-            <ul class="pagination" style="text-align:center;">
+        <p style="width:771px;position:relative;margin-top:450px;">
+            <ul class="pagination" style="position:absolute;left:43%;-webkit-transform:translateX(-50%);">
                 @if ((int)Session["page"] == 1)
                 {
                     <li class="disabled"><a href="@Url.Action("SearchSPByPage", "Search", new { page = 1 })">&laquo;</a></li>
@@ -56,6 +56,6 @@ else
                     <li><a href="@Url.Action("SearchSPByPage", "Search", new { page = (int)Session["npage"] })">&raquo;</a></li>
                 }
             </ul>
-        </nav>
-    }
-}
+        </p>
+                        }
+                    }

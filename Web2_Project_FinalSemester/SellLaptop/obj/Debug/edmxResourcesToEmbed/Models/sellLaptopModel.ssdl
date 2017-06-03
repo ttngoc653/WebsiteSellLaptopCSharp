@@ -14,7 +14,7 @@
     </Key>
     <Property Name="tencartdohoa" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="dungluong" Type="int" />
-    <Property Name="thietke" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="thietke" Type="nvarchar" MaxLength="64" Nullable="false" />
     <Property Name="an" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="chi_tiet_don_hang">
@@ -53,10 +53,10 @@
     <Key>
       <PropertyRef Name="madh" />
     </Key>
-    <Property Name="madh" Type="int" Nullable="false" />
+    <Property Name="madh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="khachhang" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="ngaygiolap" Type="datetime" Nullable="false" />
-    <Property Name="diachinhan" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="diachinhan" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="tongtien" Type="int" Nullable="false" />
     <Property Name="dagiao" Type="bit" Nullable="false" />
   </EntityType>
@@ -65,8 +65,8 @@
       <PropertyRef Name="tenhangsx" />
     </Key>
     <Property Name="tenhangsx" Type="varchar" MaxLength="8" Nullable="false" />
-    <Property Name="truso" Type="varchar" MaxLength="64" Nullable="false" />
-    <Property Name="mota" Type="text" Nullable="false" />
+    <Property Name="truso" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="mota" Type="ntext" Nullable="false" />
     <Property Name="an" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="khach_hang">
@@ -75,7 +75,7 @@
     </Key>
     <Property Name="tendn" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="mk" Type="varchar" MaxLength="32" Nullable="false" />
-    <Property Name="hoten" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="hoten" Type="nvarchar" MaxLength="64" Nullable="false" />
     <Property Name="ngsinh" Type="date" Nullable="false" />
     <Property Name="gioitinh" Type="bit" Nullable="false" />
     <Property Name="sdt" Type="int" Nullable="false" />
@@ -96,39 +96,39 @@
     <Key>
       <PropertyRef Name="masp" />
     </Key>
-    <Property Name="masp" Type="int" Nullable="false" />
+    <Property Name="masp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tensp" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="tenhangsx" Type="varchar" MaxLength="8" Nullable="false" />
     <Property Name="gia" Type="int" Nullable="false" />
-    <Property Name="mau" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="mau" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="icon" Type="varchar" MaxLength="128" Nullable="false" />
     <Property Name="loaicpu" Type="varchar" MaxLength="6" Nullable="false" />
     <Property Name="ramdl" Type="int" Nullable="false" />
-    <Property Name="ramloai" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="ramloai" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="rambus" Type="int" Nullable="false" />
     <Property Name="kichthuocmh" Type="float" Nullable="false" />
     <Property Name="dophangiai" Type="varchar" MaxLength="9" Nullable="false" />
-    <Property Name="cnmanhinh" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="cnmanhinh" Type="nvarchar" MaxLength="64" Nullable="false" />
     <Property Name="camung" Type="bit" Nullable="false" />
     <Property Name="tencartdohoa" Type="varchar" MaxLength="32" Nullable="false" />
-    <Property Name="cnamthanh" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="cnamthanh" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="oquang" Type="varchar" MaxLength="32" Nullable="false" />
-    <Property Name="sousb" Type="bit" Nullable="false" />
+    <Property Name="sousb" Type="int" Nullable="false" />
     <Property Name="hdmi" Type="bit" Nullable="false" />
     <Property Name="cartsd" Type="bit" Nullable="false" />
-    <Property Name="ketnoikhac" Type="varchar" MaxLength="64" Nullable="false" />
-    <Property Name="chucnangkhac" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="ketnoikhac" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="chucnangkhac" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="wifi" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="lan" Type="varchar" MaxLength="16" Nullable="false" />
-    <Property Name="btoothver" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="btoothver" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="camera" Type="float" Nullable="false" />
-    <Property Name="pin" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="pin" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="hdh" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="khoiluong" Type="float" Nullable="false" />
     <Property Name="dai" Type="int" Nullable="false" />
     <Property Name="rong" Type="int" Nullable="false" />
     <Property Name="day" Type="int" Nullable="false" />
-    <Property Name="chatlieu" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="chatlieu" Type="nvarchar" MaxLength="64" Nullable="false" />
     <Property Name="slcon" Type="int" Nullable="false" />
     <Property Name="luotview" Type="int" Nullable="false" />
     <Property Name="an" Type="bit" Nullable="false" />
@@ -143,7 +143,7 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <Association Name="anh_sp_ibfk_1">
+  <Association Name="FK_anh_sp_san_pham">
     <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
     <End Role="anh_sp" Type="Self.anh_sp" Multiplicity="*" />
     <ReferentialConstraint>
@@ -155,19 +155,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="chi_tiet_don_hang_ibfk_1">
-    <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
-    <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="san_pham">
-        <PropertyRef Name="masp" />
-      </Principal>
-      <Dependent Role="chi_tiet_don_hang">
-        <PropertyRef Name="masp" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="chi_tiet_don_hang_ibfk_2">
+  <Association Name="FK_chi_tiet_don_hang_don_hang">
     <End Role="don_hang" Type="Self.don_hang" Multiplicity="1" />
     <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
     <ReferentialConstraint>
@@ -179,7 +167,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="cpu_ibfk_1">
+  <Association Name="FK_chi_tiet_don_hang_san_pham">
+    <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
+    <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="san_pham">
+        <PropertyRef Name="masp" />
+      </Principal>
+      <Dependent Role="chi_tiet_don_hang">
+        <PropertyRef Name="masp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cpu_hang_sx">
     <End Role="hang_sx" Type="Self.hang_sx" Multiplicity="1" />
     <End Role="cpu" Type="Self.cpu" Multiplicity="*" />
     <ReferentialConstraint>
@@ -191,7 +191,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="danh_gia_ibfk_1">
+  <Association Name="FK_danh_gia_khach_hang">
+    <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
+    <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="khach_hang">
+        <PropertyRef Name="tendn" />
+      </Principal>
+      <Dependent Role="danh_gia">
+        <PropertyRef Name="khachhang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_danh_gia_san_pham">
     <End Role="san_pham" Type="Self.san_pham" Multiplicity="1" />
     <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
     <ReferentialConstraint>
@@ -203,19 +215,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="danh_gia_ibfk_2">
-    <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
-    <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="khach_hang">
-        <PropertyRef Name="tendn" />
-      </Principal>
-      <Dependent Role="danh_gia">
-        <PropertyRef Name="khachhang" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="don_hang_ibfk_1">
+  <Association Name="FK_don_hang_khach_hang">
     <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
     <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
     <ReferentialConstraint>
@@ -223,18 +223,6 @@
         <PropertyRef Name="tendn" />
       </Principal>
       <Dependent Role="don_hang">
-        <PropertyRef Name="khachhang" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_danh_gia_khach_hang">
-    <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="1" />
-    <End Role="danh_gia" Type="Self.danh_gia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="khach_hang">
-        <PropertyRef Name="tendn" />
-      </Principal>
-      <Dependent Role="danh_gia">
         <PropertyRef Name="khachhang" />
       </Dependent>
     </ReferentialConstraint>
@@ -299,37 +287,33 @@
     <EntitySet Name="o_dia_cung" EntityType="Self.o_dia_cung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="san_pham" EntityType="Self.san_pham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="anh_sp_ibfk_1" Association="Self.anh_sp_ibfk_1">
+    <AssociationSet Name="FK_anh_sp_san_pham" Association="Self.FK_anh_sp_san_pham">
       <End Role="san_pham" EntitySet="san_pham" />
       <End Role="anh_sp" EntitySet="anh_sp" />
     </AssociationSet>
-    <AssociationSet Name="chi_tiet_don_hang_ibfk_1" Association="Self.chi_tiet_don_hang_ibfk_1">
-      <End Role="san_pham" EntitySet="san_pham" />
-      <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
-    </AssociationSet>
-    <AssociationSet Name="chi_tiet_don_hang_ibfk_2" Association="Self.chi_tiet_don_hang_ibfk_2">
+    <AssociationSet Name="FK_chi_tiet_don_hang_don_hang" Association="Self.FK_chi_tiet_don_hang_don_hang">
       <End Role="don_hang" EntitySet="don_hang" />
       <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
     </AssociationSet>
-    <AssociationSet Name="cpu_ibfk_1" Association="Self.cpu_ibfk_1">
+    <AssociationSet Name="FK_chi_tiet_don_hang_san_pham" Association="Self.FK_chi_tiet_don_hang_san_pham">
+      <End Role="san_pham" EntitySet="san_pham" />
+      <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cpu_hang_sx" Association="Self.FK_cpu_hang_sx">
       <End Role="hang_sx" EntitySet="hang_sx" />
       <End Role="cpu" EntitySet="cpu" />
-    </AssociationSet>
-    <AssociationSet Name="danh_gia_ibfk_1" Association="Self.danh_gia_ibfk_1">
-      <End Role="san_pham" EntitySet="san_pham" />
-      <End Role="danh_gia" EntitySet="danh_gia" />
-    </AssociationSet>
-    <AssociationSet Name="danh_gia_ibfk_2" Association="Self.danh_gia_ibfk_2">
-      <End Role="khach_hang" EntitySet="khach_hang" />
-      <End Role="danh_gia" EntitySet="danh_gia" />
-    </AssociationSet>
-    <AssociationSet Name="don_hang_ibfk_1" Association="Self.don_hang_ibfk_1">
-      <End Role="khach_hang" EntitySet="khach_hang" />
-      <End Role="don_hang" EntitySet="don_hang" />
     </AssociationSet>
     <AssociationSet Name="FK_danh_gia_khach_hang" Association="Self.FK_danh_gia_khach_hang">
       <End Role="khach_hang" EntitySet="khach_hang" />
       <End Role="danh_gia" EntitySet="danh_gia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_danh_gia_san_pham" Association="Self.FK_danh_gia_san_pham">
+      <End Role="san_pham" EntitySet="san_pham" />
+      <End Role="danh_gia" EntitySet="danh_gia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_don_hang_khach_hang" Association="Self.FK_don_hang_khach_hang">
+      <End Role="khach_hang" EntitySet="khach_hang" />
+      <End Role="don_hang" EntitySet="don_hang" />
     </AssociationSet>
     <AssociationSet Name="FK_o_dia_cung_san_pham" Association="Self.FK_o_dia_cung_san_pham">
       <End Role="san_pham" EntitySet="san_pham" />

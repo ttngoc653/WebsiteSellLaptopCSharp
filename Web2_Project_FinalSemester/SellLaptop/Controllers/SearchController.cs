@@ -144,6 +144,7 @@ namespace SellLaptop.Controllers
             List<san_pham> l = Session["sp"] as List<san_pham>;
             if (page>0)
             {
+                ViewBag.Title = "KẾT QUẢ TÌM KIẾM";
                 l = l.Skip((page - 1) * 8).ToList();
             }
             Session["page"] = page;

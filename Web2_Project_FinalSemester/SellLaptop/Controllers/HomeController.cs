@@ -43,7 +43,7 @@ namespace SellLaptop.Controllers
             LIMIT 10*/
             using (var ent = new sellLaptopEntities())
             {
-                IList<chi_tiet_don_hang> lFull = ent.chi_tiet_don_hang.Include("san_pham").ToList();
+                IList<chi_tiet_don_hang> lFull = ent.chi_tiet_don_hang.Include("san_pham").ToList();                
                 List<chi_tiet_don_hang> l = (from a in lFull
                             group a by a.masp into z
                             select new chi_tiet_don_hang {san_pham=ent.san_pham.Include("cpu").Where(a=>a.masp==z.Key).FirstOrDefault(),don_hang=null,madh=0, masp = z.Key, soluongsp = z.Sum(a => a.soluongsp) }).OrderByDescending(a=>a.soluongsp).ToList();
