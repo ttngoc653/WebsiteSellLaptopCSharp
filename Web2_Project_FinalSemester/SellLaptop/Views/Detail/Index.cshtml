@@ -10,7 +10,7 @@
         <br>
     </div>
     <div class="col-lg-5" style="text-align: center;">
-        <img src="~/Image/background.jpg" width="300px" width="300px" />
+        <img src="@String.Format("/image/{0}/{1}", Model.masp, Model.icon)" width="300px" width="300px" />
     </div>
     <div class="col-lg-7">
         <form class="form-horizontal" action="index.php" method="GET">
@@ -43,7 +43,7 @@
         <div style="text-align: center;background-color: #c9e1e3;opacity: 0.9;margin-bottom: 450px;">
             <h2>Hình ảnh sản phẩm</h2>
             <div class="col-sm-10 image-run">
-                <img style="width:680px;height:378px;margin-left:15px;" src="~/Image/background.jpg" id="photo">
+                <img style="width:680px;height:378px;margin-left:15px;" src="@String.Format("/image/{0}/{1}", Model.masp, Model.icon)" id="photo">
             </div>
 
             <div class="col-sm-12">
@@ -51,12 +51,12 @@
                     int i = 0;
                     foreach (var item in Model.anh_sp)
                     {
-                        <img style="width:85px;height:47px" onmousemove="@String.Format("img{0}()", i)" class="img-change" id="@i" src="~/image/@Model.masp/@item.tenfile">
+                        <img style="width:85px;height:47px" onmousemove="@String.Format("img{0}()", i)" class="img-change" id="@i" src="/image/@Model.masp/@item.tenfile">
                         <script>
                             function @String.Format("img{0}()", i) {
                                 var x=document.getElementById("photo")
                                 if (x) {
-                                    x.src = "~/image/@String.Format("{0}",item.masp)/@String.Format("{0}",item.tenfile)"
+                                    x.src = "/image/@String.Format("{0}",item.masp)/@String.Format("{0}",item.tenfile)"
                                 }
                             }
                         </script>
