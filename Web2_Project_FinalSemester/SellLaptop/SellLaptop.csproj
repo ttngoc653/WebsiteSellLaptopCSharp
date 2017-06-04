@@ -369,6 +369,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -460,6 +461,7 @@
     <Content Include="Views\Detail\Index.cshtml" />
     <Content Include="Views\Detail\ShowCungLoai.cshtml" />
     <Content Include="Views\Detail\ShowCungHang.cshtml" />
+    <Content Include="Views\Cart\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

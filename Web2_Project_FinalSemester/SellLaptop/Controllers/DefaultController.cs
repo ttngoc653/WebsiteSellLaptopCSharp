@@ -97,10 +97,11 @@ namespace SellLaptop.Controllers
         [HttpPost]
         public ActionResult LogIn(LogIn login)
         {
+            String p = GetMD5(login.pass);
             khach_hang u;
             using (var ent=new sellLaptopEntities())
             {
-                u = ent.khach_hang.Where(x => x.tendn == login.user && x.mk==GetMD5(login.pass)).FirstOrDefault();
+                u = ent.khach_hang.Where(x => x.tendn == login.user && x.mk == p).FirstOrDefault();
             }
             if (u == null)
             {
@@ -109,6 +110,7 @@ namespace SellLaptop.Controllers
             }
             else
             {
+                if (Session["count_sp"] == null) Session["count_sp"] = 0;
                 if (login.remenber==true)
                 {
                     Response.Cookies["user"]["name"] = u.tendn;
@@ -116,6 +118,7 @@ namespace SellLaptop.Controllers
                     Response.Cookies["user"].Expires = DateTime.Now.AddDays(3);
                 }
                 Session["user"] = u.tendn;
+                Session["role"] = u.quyen;
                 WebMsgBox.ShowMessage(@"ĐĂNG NHẬP THÀNH CÔNG.");
                 return View();
             }            
@@ -132,9 +135,9 @@ namespace SellLaptop.Controllers
             Session["url"] = url;
             return View("LogIn");
         }
-
+        
         // source: http://www.hanhtranglaptrinh.com/2012/06/ma-hoa-md5-trong-c-aspnet.html
-        public static string GetMD5(string str)
+        public string GetMD5(string str)
         {
 
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();

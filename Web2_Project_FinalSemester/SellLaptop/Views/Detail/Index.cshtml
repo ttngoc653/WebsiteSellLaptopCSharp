@@ -13,18 +13,19 @@
         <img src="@String.Format("/image/{0}/{1}", Model.masp, Model.icon)" width="300px" width="300px" />
     </div>
     <div class="col-lg-7">
-        <form class="form-horizontal" action="index.php" method="GET">
+        @using (Html.BeginForm("Add", "Cart", FormMethod.Get, new { @class = "form-horizontal" }))
+        { 
             <div class="form-group">
                 <h1 style="text-align: center;">@Model.tenhangsx @Model.tensp</h1>
             </div>
-            <label control-label" style="font-size: 16px;"><i>Giá sản phẩm: @String.Format("{0:C}",Model.gia)</i></label><br>
+            <label control-label" style="font-size: 16px;"><i>Giá sản phẩm: @String.Format("{0:C}", Model.gia)</i></label><br>
             <label control-label"><i><b><h5>@Model.tencartdohoa, @Model.loaicpu, @Model.ramdl GB, @Model.kichthuocmh inch</h5></b></i></label><br>
             <label control-label">Còn @Model.slcon sản phẩm</label><br>
             <label for="SoLuongXem" control-label">Số lượng xem: @Model.luotview</label>
-            @if (Session["role"] != null)
+            if (Session["role"] != null)
             {
                 <div class="form-group">
-                    <input type="hidden" name="gio" value="'.$row['masp'].'" placeholder="">
+                    <input type="hidden" name="gio" value="'@Model.masp'" placeholder="">
                     <label for="SoLuongDat" class="col-md-7" style="text-align:right;" control-label">Số lượng muốn đặt:</label>
                     <input class="col-md-3" type="number" name="sl" value="1" min="0" max="@Model.slcon" class="form-control" id="SoLuongDat">
                 </div>
@@ -34,7 +35,7 @@
                     </button>
                 </div>
             }
-        </form>
+        }
     </div>
 </div>
 <br />
@@ -56,11 +57,11 @@
                             function @String.Format("img{0}()", i) {
                                 var x=document.getElementById("photo")
                                 if (x) {
-                                    x.src = "/image/@String.Format("{0}",item.masp)/@String.Format("{0}",item.tenfile)"
+                                    x.src = "/image/@String.Format("{0}", item.masp)/@String.Format("{0}", item.tenfile)"
                                 }
                             }
                         </script>
-                                i++;
+                        i++;
                     }
                 }
             </div>
@@ -155,7 +156,7 @@
                             i = 0;
                             foreach (var item in Model.o_dia_cung)
                             {
-                                if (i>0)
+                                if (i > 0)
                                 {
                                     String.Format(" + ");
                                 }
@@ -304,13 +305,13 @@
                     </tr>
                     <tr>
                         <td>Kết nối không dây</td>
-                        <td>@{if (Model.btoothver!="không")
+                        <td>@{if (Model.btoothver != "không")
                             {
-                                String.Format("Bluetooth {0}",Model.btoothver);
+                                String.Format("Bluetooth {0}", Model.btoothver);
                             }
                             else
                             {
-                                String.Format("{0}",Model.btoothver);
+                                String.Format("{0}", Model.btoothver);
                             }}</td>
                     </tr>
                 </tbody>
@@ -359,7 +360,7 @@
                 <tbody>
                     <tr>
                         <td>Kích thước (ngang x dọc x dày)</td>
-                        <td>@String.Format("{0} mm x {1} mm x {2} mm",Model.dai,Model.rong,Model.day)</td>
+                        <td>@String.Format("{0} mm x {1} mm x {2} mm", Model.dai, Model.rong, Model.day)</td>
                     </tr>
                     <tr>
                         <td>Trọng lượng (kg)</td>

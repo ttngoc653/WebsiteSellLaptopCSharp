@@ -3,5 +3,6 @@
 
     if (Request.Url.ToString().Contains("Default/LogIn")) { }
     else if (Request.Url.ToString().Contains("Default/LogOut")) { }
+    else if (Request.Url.ToString().Contains("Cart/Add")) { }
     else { Session["url"] = Request.Url.ToString(); }
 }

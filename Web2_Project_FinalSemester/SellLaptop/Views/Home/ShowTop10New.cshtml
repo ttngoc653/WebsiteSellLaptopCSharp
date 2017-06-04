@@ -6,6 +6,14 @@
             <img width="120px" height="120px" src="@String.Format("image/{0}/{1}",item.masp,item.icon)" />
             <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.tenhangsx @item.tensp</div>
             <div style="font: bold 12px arial;    color: #f30;">Giá: @String.Format("{0:C}", item.gia)</div>
+            @if (Session["role"] != null)
+            {
+                using (Html.BeginForm("Add", "Cart", FormMethod.Post))
+                {
+                    <input type="hidden" name="id" value="@item.masp" />
+                    <button title="Đặt hàng" type="submit"><span class="glyphicon glyphicon-shopping-cart" /></button>
+                }
+            }
         </a>
     </div>
 }

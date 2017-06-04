@@ -1,8 +1,7 @@
 ﻿@model SellLaptop.Models.khach_hang
 
-
 <li class="dropdown">
-    <a href="http://phpoll.com/register" class="dropdown-toggle">số sản phẩm</a>
+    <a href="@Url.Action("","Cart")" title="xem Giỏ hàng" class="dropdown-toggle"><img src="~/Image/shopping.png" width="22px" alt=""/> <span class="badge">@Session["count_sp"]</span> sản phẩm</a>
 </li>
 <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
