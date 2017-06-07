@@ -35,3 +35,10 @@ D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\bin\Sys
 D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\obj\Debug\SellLaptop.csprojResolveAssemblyReference.cache
 D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\obj\Debug\SellLaptop.dll
 D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\obj\Debug\SellLaptop.pdb
+D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\bin\CaptchaMvc.dll
+D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\bin\CaptchaMvc.pdb
+D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\bin\CaptchaMvc.xml
+D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\bin\Canducci.ReCAPTCHA.dll
+D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\bin\Newtonsoft.Json.dll
+D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\bin\Canducci.ReCAPTCHA.pdb
+D:\1617.II\LTW2\LTW2.LT\Web2_Final\Web2_Project_FinalSemester\SellLaptop\bin\Newtonsoft.Json.xml

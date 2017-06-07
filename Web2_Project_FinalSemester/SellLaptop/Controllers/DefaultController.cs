@@ -1,11 +1,13 @@
 ﻿using SellLaptop.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using CaptchaMvc.HtmlHelpers;
 
 namespace SellLaptop.Controllers
 {
@@ -135,7 +137,94 @@ namespace SellLaptop.Controllers
             Session["url"] = url;
             return View("LogIn");
         }
+
+        public ActionResult Register()
+        {
+            var model = new Register();
+            return View(model);
+        }
         
+        [HttpPost]
+        public ActionResult Register(Register obj,HttpPostedFileBase icon)
+        {
+            if (obj.chapnhandieukhoan==false)
+            {
+                WebMsgBox.ShowMessage("HÃY CHẤP NHẬN ĐIỀU KHOẢN.");
+                ViewBag.DK = "HÃY NHẤP VÀO Ô CHẤP NHẬN ĐIỀU KHOẢN.";
+                return View();
+            }
+
+            if (this.IsCaptchaValid("SAI CAPTCHA. HÃY NHẬP LẠI."))
+            {
+                WebMsgBox.ShowMessage("CHÚC MỪNG BẠN ĐÃ ĐĂNG KÝ THÀNH CÔNG.");
+                return RedirectToAction("Index","Home");
+            }
+            WebMsgBox.ShowMessage("LỖI: CAPTCHA KHÔNG HỢP LỆ.");
+            ViewBag.ErrMsg = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
+
+            return View();
+        }
+
+        public ActionResult Register1()
+        {
+            var model = new Register();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Register1(Register obj, HttpPostedFileBase icon)
+        {
+            if (obj.chapnhandieukhoan == false)
+            {
+                ViewBag.DK = "HÃY NHẤP VÀO Ô CHẤP NHẬN ĐIỀU KHOẢN.";
+                return View();
+            }
+
+            if (this.IsCaptchaValid("SAI CAPTCHA. HÃY NHẬP LẠI."))
+            {
+                return View();
+            }
+
+            ViewBag.ErrMsg = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
+
+            return View();
+        }
+
+        public JsonResult ValidationUser(String tendn)
+        {
+            var ent = new sellLaptopEntities();
+            String ten = tendn;
+            if (ent.khach_hang.Where(a=>a.tendn==tendn).ToList().Count!=0)
+            {
+                return Json("TÀI KHOẢN BỊ TRÙNG. HÃY NHẬP LẠI TÊN TÀI KHOẢN.", JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ValidationDieuKhoan(bool chapnhandieukhoan)
+        {
+            var ent = new sellLaptopEntities();
+            if (chapnhandieukhoan==false)
+            {
+                return Json("HÃY NHẤP VÀO Ô CHẤP NHẬN ĐIỀU KHOẢN.", JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ValidationNgSinh(String ngsinh)
+        {
+            var ent = new sellLaptopEntities();DateTime dt;
+            if (String.IsNullOrEmpty(ngsinh)||DateTime.TryParse(ngsinh,out dt)==false)
+            {
+                return Json("NGÀY SINH ĐỊNH DẠNG CHƯA ĐÚNG.", JsonRequestBehavior.AllowGet);
+            }
+            if (dt.Year>=DateTime.Now.AddYears(-12).Year)
+            {
+                return Json("KHÁCH HÀNG PHẢI TRÊN 12 TUỐI MỚI ĐƯỢC THAM GIA.", JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
         // source: http://www.hanhtranglaptrinh.com/2012/06/ma-hoa-md5-trong-c-aspnet.html
         public string GetMD5(string str)
         {
