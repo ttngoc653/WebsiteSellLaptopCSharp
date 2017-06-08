@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SellLaptop.Models.san_pham>
+﻿@using System.Globalization;
+@model IEnumerable<SellLaptop.Models.san_pham>
 
 @foreach (var item in Model)
 {
@@ -6,14 +7,14 @@
         <a href="@Url.Action("","Detail", new { id=item.masp})" title="@item.tencartdohoa,@item.cpu.congnghe, RAM @item.ramdl GB">
             <img width="120px" height="120px" src="@String.Format("image/{0}/{1}",item.masp,item.icon)" />
             <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.tenhangsx @item.tensp</div>
-            <div style="font: bold 12px arial;    color: #f30;">Giá: @String.Format("{0:C}", item.gia)</div>
+            <div style="font: bold 12px arial;    color: #f30;">Giá: @item.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ</div>
             <div>@item.luotview lượt xem</div>
             @if (Session["role"] != null)
             {
                 using (Html.BeginForm("Add", "Cart", FormMethod.Post))
                 {
                     <input type="hidden" name="id" value="@item.masp" />
-                    <button title="Đặt hàng" type="submit"><span class="glyphicon glyphicon-shopping-cart" /></button>
+                    <button title="Đặt hàng" type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-shopping-cart" /></button>
                 }
             }
         </a>

@@ -461,6 +461,7 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\typings\bootstrap-touchspin\index.d.ts" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -562,6 +563,7 @@
     <Content Include="Views\Cart\Add.cshtml" />
     <Content Include="Views\Default\Register.cshtml" />
     <Content Include="Views\Default\Register1.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

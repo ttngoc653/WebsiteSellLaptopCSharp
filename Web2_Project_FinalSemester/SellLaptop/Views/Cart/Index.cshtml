@@ -1,0 +1,72 @@
+﻿@using System.Globalization;
+
+@model IEnumerable<SellLaptop.Models.CartItem>
+
+@{
+    ViewBag.Title = "GIỎ HÀNG HIỆN TẠI";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            TÊN SẢN PHẨM
+        </th>
+        <th>
+            ĐƠN GIÁ
+        </th>
+        <th>
+            SỐ LƯỢNG
+        </th>
+        <th>
+            THÀNH TIỀN
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="4" class="text-center text-info">GIỎ TRỔNG</td>
+        </tr>
+    }
+    else
+    {
+        int total=0;
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sp.tensp)
+                </td>
+                <td>
+                    @item.sp.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES"))
+                </td>
+                <td>
+                        <input type="number" class="form-control" id="inputQ_@item.sp.masp" min="1" value="@item.Quatity" />
+                </td>
+                <td>
+                    @{ 
+                        int thanhtien = item.Quatity * item.sp.gia;
+                        total += thanhtien;
+                    }
+                    @thanhtien.ToString("N", CultureInfo.CreateSpecificCulture("es-ES"))
+                </td>
+                <td>
+                    <a id="btnUpdate" href="javascript:void" title="Cập nhật" class="btn btn-success btn-xs" data-id="@item.sp.masp">UPDATE</a>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.sp.masp }, new { @class = "btn btn-danger btn-xs" })
+                </td>
+            </tr>
+        }
+                            <tr>
+                                <th></th>
+                                <th colspan="2">TỔNG TIỀN GIỎ HÀNG:</th>
+                                <th>@total.ToString("N", CultureInfo.CreateSpecificCulture("es-ES"))</th>
+                                <th></th>
+                            </tr>
+    }
+
+</table>
+
+<form id="frmUpdate" action="@Url.Action("Update","Cart")" method="post">
+    <input type="hidden" name="id" id="id" />
+    <input type="hidden" name="qua" id="qua" />
+</form>

@@ -1,7 +1,8 @@
-﻿@model SellLaptop.Models.san_pham
+﻿@using System.Globalization;
+@model SellLaptop.Models.san_pham
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CHI TIẾT "+Model.tensp;
 }
 
 <div style="text-align: center;">
@@ -18,7 +19,7 @@
             <div class="form-group">
                 <h1 style="text-align: center;">@Model.tenhangsx @Model.tensp</h1>
             </div>
-            <label control-label" style="font-size: 16px;"><i>Giá sản phẩm: @String.Format("{0:C}", Model.gia)</i></label><br>
+            <label control-label" style="font-size: 16px;"><i>Giá sản phẩm: @Model.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ</i></label><br>
             <label control-label"><i><b><h5>@Model.tencartdohoa, @Model.loaicpu, @Model.ramdl GB, @Model.kichthuocmh inch</h5></b></i></label><br>
             <label control-label">Còn @Model.slcon sản phẩm</label><br>
             <label for="SoLuongXem" control-label">Số lượng xem: @Model.luotview</label>

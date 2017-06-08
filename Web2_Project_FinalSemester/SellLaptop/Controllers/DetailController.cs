@@ -23,13 +23,20 @@ namespace SellLaptop.Controllers
         [ChildActionOnly]
         public ActionResult ShowCungHang(String hang)
         {
-            return PartialView();
+            using (var ent=new sellLaptopEntities())
+            {
+                return PartialView(ent.san_pham.Include("cpu").Where(a => a.tenhangsx == hang).Take(5).ToList());
+            }
         }
 
         [ChildActionOnly]
         public ActionResult ShowCungLoai(int loai)
         {
-            return PartialView();
+            using (var ent = new sellLaptopEntities())
+            {
+                loai = (((int)loai / 1000000 - 5) * 1000000);
+                return PartialView(ent.san_pham.Include("cpu").Where(a => a.gia>loai).Take(5).ToList());
+            }
         }
     }
 }
