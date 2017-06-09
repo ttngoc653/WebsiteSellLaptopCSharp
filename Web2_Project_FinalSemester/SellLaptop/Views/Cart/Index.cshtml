@@ -8,16 +8,16 @@
 
 <table class="table">
     <tr>
-        <th>
+        <th style="text-align:center;">
             TÊN SẢN PHẨM
         </th>
-        <th>
+        <th style="text-align:center;">
             ĐƠN GIÁ
         </th>
-        <th>
+        <th width="100px"  style="text-align:center;">
             SỐ LƯỢNG
         </th>
-        <th>
+        <th style="text-align:center;">
             THÀNH TIỀN
         </th>
         <th></th>
@@ -37,18 +37,18 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.sp.tensp)
                 </td>
-                <td>
-                    @item.sp.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES"))
+                <td style="text-align:right;">
+                    @item.sp.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ
                 </td>
                 <td>
-                        <input type="number" class="form-control" id="inputQ_@item.sp.masp" min="1" value="@item.Quatity" />
+                        <input type="number" size="15" class="form-control" id="inputQ_@item.sp.masp" min="1" value="@item.Quatity" />
                 </td>
-                <td>
+                <td  style="text-align:right;">
                     @{ 
                         int thanhtien = item.Quatity * item.sp.gia;
                         total += thanhtien;
                     }
-                    @thanhtien.ToString("N", CultureInfo.CreateSpecificCulture("es-ES"))
+                    @thanhtien.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ
                 </td>
                 <td>
                     <a id="btnUpdate" href="javascript:void" title="Cập nhật" class="btn btn-success btn-xs" data-id="@item.sp.masp">UPDATE</a>
@@ -59,7 +59,7 @@
                             <tr>
                                 <th></th>
                                 <th colspan="2">TỔNG TIỀN GIỎ HÀNG:</th>
-                                <th>@total.ToString("N", CultureInfo.CreateSpecificCulture("es-ES"))</th>
+                                <th style="text-align:right;">@total.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ</th>
                                 <th></th>
                             </tr>
     }

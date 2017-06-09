@@ -97,7 +97,7 @@ namespace SellLaptop.Controllers
             return View();
         }
 
-        public ActionResult Remove(int id)
+        public ActionResult Delete(int id)
         {
             if (Session["user"] == null)
             {
@@ -117,7 +117,7 @@ namespace SellLaptop.Controllers
             if (ct==null)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG TỒN TẠI SẢN PHẨM TRONG GIỎ HÀNG!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index");
             }
 
             Session["count_sp"] = ((int)Session["count_sp"]) - ct.Quatity;

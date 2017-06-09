@@ -14,7 +14,7 @@
         <img src="@String.Format("/image/{0}/{1}", Model.masp, Model.icon)" width="300px" width="300px" />
     </div>
     <div class="col-lg-7">
-        @using (Html.BeginForm("Add", "Cart", FormMethod.Get, new { @class = "form-horizontal" }))
+        @using (Html.BeginForm("Add", "Cart", FormMethod.Post, new { @class = "form-horizontal" }))
         { 
             <div class="form-group">
                 <h1 style="text-align: center;">@Model.tenhangsx @Model.tensp</h1>
@@ -26,9 +26,9 @@
             if (Session["role"] != null)
             {
                 <div class="form-group">
-                    <input type="hidden" name="gio" value="'@Model.masp'" placeholder="">
+                    <input type="hidden" name="id" value="@Model.masp">
                     <label for="SoLuongDat" class="col-md-7" style="text-align:right;" control-label">Số lượng muốn đặt:</label>
-                    <input class="col-md-3" type="number" name="sl" value="1" min="0" max="@Model.slcon" class="form-control" id="SoLuongDat">
+                    <input class="col-md-3" type="number" name="sl" value="1" min="1" max="@Model.slcon" class="form-control" id="SoLuongDat">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">

@@ -10,10 +10,22 @@ namespace SellLaptop.Controllers
     public class MenuController : Controller
     {
         [ChildActionOnly]
+        public ActionResult MenuTool()
+        {
+            if (Session["role"]!=null)
+            {
+                return PartialView();
+            }
+            return PartialView("Empty");
+        }
+
         public ActionResult MenuAdmin()
         {
-
-            return PartialView();
+            if ((Boolean)Session["role"] == true)
+            {
+                return PartialView();
+            }
+            return PartialView("Empty");
         }
 
         [ChildActionOnly]

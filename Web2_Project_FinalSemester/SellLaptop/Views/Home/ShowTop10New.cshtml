@@ -2,8 +2,8 @@
 @model IEnumerable<SellLaptop.Models.san_pham>
 
 @foreach (var item in Model) {
-    <div style="border: dotted;margin: 5px;    float: none;    width: 137px;   text-align: center;    border-radius: 10px;    float: left;    border-color:#faebcc;">
-        <a href="@Url.Action("","Detail", new { id=item.masp})" title="@item.tencartdohoa,@item.cpu.congnghe, RAM @item.ramdl GB">
+    <div style="border: dotted;margin: 5px;    float: none;    width: 137px;  min-height:238px; position:relative;  text-align: center;    border-radius: 10px;    float: left;    border-color:#faebcc;">
+        <a href="@Url.Action("","Detail", new { id=item.masp})" title="@item.tencartdohoa,@item.cpu.congnghe, RAM @item.ramdl GB" style="position:absolute;top:50%;left:50%;width:136px;-webkit-transform:translateX(-50%) translateY(-50%);">
             <img width="120px" height="120px" src="@String.Format("image/{0}/{1}",item.masp,item.icon)" />
             <div style="font: bold 14px arial;    color: #f39;    margin-top: 2px;">@item.tenhangsx @item.tensp</div>
             <div style="font: bold 12px arial;    color: #f30;">Giá: @item.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ</div>
