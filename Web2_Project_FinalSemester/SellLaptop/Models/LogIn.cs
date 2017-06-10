@@ -14,6 +14,6 @@ namespace SellLaptop.Models
         [Required(ErrorMessage ="Hãy nhập mật khẩu")]
         public String pass { get; set; }
 
-        public Boolean remenber { get; set; }
+        public Boolean remember { get; set; }
     }
 }

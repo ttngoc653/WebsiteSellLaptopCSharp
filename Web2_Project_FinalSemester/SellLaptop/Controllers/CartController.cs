@@ -27,7 +27,8 @@ namespace SellLaptop.Controllers
             return View(l);
         }
 
-        public ActionResult Pay()
+        [HttpPost]
+        public ActionResult Pay(String address,long total)
         {
             if (Session["user"] == null)
             {
@@ -39,6 +40,45 @@ namespace SellLaptop.Controllers
             if (Session["cart"] != null)
             {
                 l = Session["cart"] as List<CartItem>;
+                DateTime dtorder = DateTime.Now;
+                using (var ent=new sellLaptopEntities())
+                {
+                    don_hang dh = new don_hang()
+                    {
+                        dagiao = false,
+                        diachinhan = address,
+                        khachhang = (String)Session["user"],
+                        ngaygiolap = dtorder,
+                        tongtien = total,
+                        khach_hang = ent.khach_hang.Where(a => a.tendn == (String)Session["user"]).FirstOrDefault(),
+                        chi_tiet_don_hang = null
+                    };
+                    ent.don_hang.Add(dh);
+                    ent.SaveChanges();
+
+                    int id = ent.don_hang.Where(a => a.khachhang == (String)Session["user"] && a.ngaygiolap == dtorder && a.tongtien == total).Select(a => a.madh).FirstOrDefault();
+
+                    foreach (var item in l)
+                    {
+                        chi_tiet_don_hang ctdh = new chi_tiet_don_hang()
+                        {
+                            don_hang = ent.don_hang.Where(a => a.madh == id).FirstOrDefault(),
+                            madh = id,
+                            masp = item.sp.masp,
+                            san_pham = ent.san_pham.Where(a => a.masp == item.sp.masp).FirstOrDefault(),
+                            soluongsp = item.Quatity
+                        };
+
+                        san_pham sp = ent.san_pham.Where(a => a.masp == item.sp.masp).FirstOrDefault();
+                        sp.slcon -= item.Quatity;
+
+                        ent.chi_tiet_don_hang.Add(ctdh);
+
+                        ent.SaveChanges();
+                    }
+
+                    Session["cart"] = null;
+                }
             }
             return RedirectToAction("Index");
         }

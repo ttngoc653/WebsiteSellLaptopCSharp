@@ -113,7 +113,7 @@ namespace SellLaptop.Controllers
             else
             {
                 if (Session["count_sp"] == null) Session["count_sp"] = 0;
-                if (login.remenber==true)
+                if (login.remember==true)
                 {
                     Response.Cookies["user"]["name"] = u.tendn;
                     Response.Cookies["user"]["role"] = u.quyen.ToString();

@@ -364,13 +364,6 @@
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\sellLaptopModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>sellLaptopModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\sellLaptopModel.edmx.diagram">
-      <DependentUpon>sellLaptopModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-datepicker3.standalone.min.css.map" />
     <Content Include="Content\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker3.min.css.map" />
@@ -379,6 +372,13 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <EntityDeploy Include="Models\sellLaptopModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>sellLaptopModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\sellLaptopModel.edmx.diagram">
+      <DependentUpon>sellLaptopModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -558,8 +558,7 @@
     <Content Include="Views\Menu\RightBoNho.cshtml" />
     <Content Include="Views\Search\SearchSP.cshtml" />
     <Content Include="Views\Detail\Index.cshtml" />
-    <Content Include="Views\Detail\ShowCungLoai.cshtml" />
-    <Content Include="Views\Detail\ShowCungHang.cshtml" />
+    <Content Include="Views\Detail\Show5SPCung.cshtml" />
     <Content Include="Views\Cart\Add.cshtml" />
     <Content Include="Views\Default\Register.cshtml" />
     <Content Include="Views\Default\Register1.cshtml" />
@@ -567,6 +566,7 @@
     <Content Include="Views\Menu\Empty.cshtml" />
     <Content Include="Views\Menu\MenuTool.cshtml" />
     <Content Include="Views\Menu\MenuAdmin.cshtml" />
+    <Content Include="Views\Default\LogIn1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

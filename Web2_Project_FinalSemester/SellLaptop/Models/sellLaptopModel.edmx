@@ -62,7 +62,7 @@
           <Property Name="khachhang" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="ngaygiolap" Type="datetime" Nullable="false" />
           <Property Name="diachinhan" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="tongtien" Type="int" Nullable="false" />
+          <Property Name="tongtien" Type="bigint" Nullable="false" />
           <Property Name="dagiao" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="hang_sx">
@@ -407,7 +407,7 @@
           <Property Name="khachhang" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ngaygiolap" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="diachinhan" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="tongtien" Type="Int32" Nullable="false" />
+          <Property Name="tongtien" Type="Int64" Nullable="false" />
           <Property Name="dagiao" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="chi_tiet_don_hang" Relationship="Self.FK_chi_tiet_don_hang_don_hang" FromRole="don_hang" ToRole="chi_tiet_don_hang" />
           <NavigationProperty Name="khach_hang" Relationship="Self.FK_don_hang_khach_hang" FromRole="don_hang" ToRole="khach_hang" />

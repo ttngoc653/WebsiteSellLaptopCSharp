@@ -21,7 +21,7 @@ namespace SellLaptop.Controllers
 
         public ActionResult MenuAdmin()
         {
-            if ((Boolean)Session["role"] == true)
+            if (Convert.ToBoolean(Session["role"]) == true)
             {
                 return PartialView();
             }

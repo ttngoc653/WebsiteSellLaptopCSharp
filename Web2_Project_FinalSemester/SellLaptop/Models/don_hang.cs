@@ -24,7 +24,7 @@ namespace SellLaptop.Models
         public string khachhang { get; set; }
         public System.DateTime ngaygiolap { get; set; }
         public string diachinhan { get; set; }
-        public int tongtien { get; set; }
+        public long tongtien { get; set; }
         public bool dagiao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

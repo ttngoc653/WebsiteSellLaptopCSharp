@@ -14,7 +14,7 @@
                     <input type="password" name="pass" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
                 </div>
                     <div class="form-group">
-                        <input type="checkbox" tabindex="3" name="remember" id="remember">
+                        @Html.EditorFor(model => model.remember)
                         <label for="remember"> Remember Me</label>
                         <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
                 </div>
