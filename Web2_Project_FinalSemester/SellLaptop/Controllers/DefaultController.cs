@@ -147,20 +147,42 @@ namespace SellLaptop.Controllers
         [HttpPost]
         public ActionResult Register(Register obj,HttpPostedFileBase icon)
         {
-            if (obj.chapnhandieukhoan==false)
-            {
-                WebMsgBox.ShowMessage("HÃY CHẤP NHẬN ĐIỀU KHOẢN.");
-                ViewBag.DK = "HÃY NHẤP VÀO Ô CHẤP NHẬN ĐIỀU KHOẢN.";
-                return View();
-            }
 
             if (this.IsCaptchaValid("SAI CAPTCHA. HÃY NHẬP LẠI."))
             {
-                WebMsgBox.ShowMessage("CHÚC MỪNG BẠN ĐÃ ĐĂNG KÝ THÀNH CÔNG.");
-                return RedirectToAction("Index","Home");
+                if (Request.Files.Count == 0)
+                {
+                    ViewBag.Message = "Invalid file type";
+                }
+                else
+                {
+                    using (var ent = new sellLaptopEntities())
+                    {
+                        khach_hang kh = new khach_hang()
+                        {
+                            danh_gia = null,
+                            don_hang = null,
+                            email = obj.email,
+                            gioitinh = obj.gioitinh,
+                            hoten = obj.hoten,
+                            mk = GetMD5(obj.mk),
+                            ngsinh = obj.ngsinh,
+                            quyen = false,
+                            sdt = Convert.ToInt32(obj.sdt),
+                            tendn = obj.tendn,
+                        };
+                        ent.khach_hang.Add(kh);
+                        ent.SaveChanges();
+                    }
+                    string str = obj.tendn + ".jpg";
+                    System.IO.File.Move(obj.icon.FileName, obj.tendn+".jpg");
+                    var path = Server.MapPath("~/Images/"+ obj.tendn);
+                    icon.SaveAs(path);
+                }
+                return View("Success");
             }
-            WebMsgBox.ShowMessage("LỖI: CAPTCHA KHÔNG HỢP LỆ.");
-            ViewBag.ErrMsg = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
+
+            Session["captcha"] = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
 
             return View();
         }
@@ -174,18 +196,43 @@ namespace SellLaptop.Controllers
         [HttpPost]
         public ActionResult Register1(Register obj, HttpPostedFileBase icon)
         {
-            if (obj.chapnhandieukhoan == false)
-            {
-                ViewBag.DK = "HÃY NHẤP VÀO Ô CHẤP NHẬN ĐIỀU KHOẢN.";
-                return View();
-            }
 
             if (this.IsCaptchaValid("SAI CAPTCHA. HÃY NHẬP LẠI."))
             {
+                if (Request.Files.Count == 0)
+                {
+                    ViewBag.Message = "Invalid file type";
+                }
+                else
+                {
+                    using (var ent = new sellLaptopEntities())
+                    {
+                        khach_hang kh = new khach_hang()
+                        {
+                            danh_gia = null,
+                            don_hang = null,
+                            email = obj.email,
+                            gioitinh = obj.gioitinh,
+                            hoten = obj.hoten,
+                            mk = GetMD5(obj.mk),
+                            ngsinh = obj.ngsinh,
+                            quyen = false,
+                            sdt = Convert.ToInt32(obj.sdt),
+                            tendn = obj.tendn,
+                        };
+                        ent.khach_hang.Add(kh);
+                        ent.SaveChanges();
+                    }
+                    var fileName = Path.GetFileName(icon.FileName);
+                    //File.Copy(obj.tendn, ob)
+                    var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    icon.SaveAs(path);
+                    ViewBag.Message = "File uploaded successfully";
+                }
                 return View();
             }
 
-            ViewBag.ErrMsg = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
+            Session["captcha"] = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
 
             return View();
         }
@@ -201,15 +248,15 @@ namespace SellLaptop.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ValidationDieuKhoan(bool chapnhandieukhoan)
+        /*public JsonResult ValidationDieuKhoan(String chapnhandieukhoan)
         {
             var ent = new sellLaptopEntities();
-            if (chapnhandieukhoan==false)
+            if (chapnhandieukhoan=="false")
             {
                 return Json("HÃY NHẤP VÀO Ô CHẤP NHẬN ĐIỀU KHOẢN.", JsonRequestBehavior.AllowGet);
             }
             return Json(true, JsonRequestBehavior.AllowGet);
-        }
+        }*/
 
         public JsonResult ValidationNgSinh(String ngsinh)
         {

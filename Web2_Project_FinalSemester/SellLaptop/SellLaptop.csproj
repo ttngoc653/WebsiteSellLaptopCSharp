@@ -567,6 +567,7 @@
     <Content Include="Views\Menu\MenuTool.cshtml" />
     <Content Include="Views\Menu\MenuAdmin.cshtml" />
     <Content Include="Views\Default\LogIn1.cshtml" />
+    <Content Include="Views\Default\SucsessRegister.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

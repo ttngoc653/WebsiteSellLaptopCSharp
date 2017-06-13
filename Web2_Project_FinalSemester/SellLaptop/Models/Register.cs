@@ -42,12 +42,14 @@ namespace SellLaptop.Models
         [Required(ErrorMessage = "HÃY NHẬP EMAIL")]
         [RegularExpression(@"([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})",ErrorMessage ="EMAIL KHÔNG HỢP LỆ")]
         public string email { get; set; }
-
+        /*
         [Required(ErrorMessage = "HÃY CHẤP NHẬN ĐIỀU KHOẢN.")]
         [AccessDK(Value =true,ErrorMessage ="HÃY CHẤP NHẬN ĐIỀU KHOẢN ĐI BẠN.")]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Is Active must be checked.")]
         [Remote("ValidationDieuKhoan", "Default")]
         public Boolean chapnhandieukhoan { get; set; }
-
+        */
+        [Required(ErrorMessage ="HÃY THÊM ẢNH ĐẠI DIỆN.")]
         [ValidateFile(ErrorMessage = "HÃY THÊM ẢNH ĐẠI DIỆN CỦA QUÝ KHÁCH.")]
         public HttpPostedFileBase icon { get; set; }
     }

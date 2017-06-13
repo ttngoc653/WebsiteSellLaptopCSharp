@@ -7,7 +7,7 @@
     ViewBag.Title = "ĐĂNG KÍ TÀI KHOẢN";
 }
 
-@using (Ajax.BeginForm("Register", "Default", new AjaxOptions {  LoadingElementId = "progress",LoadingElementDuration=1000,  }, new { enctype = "multipart/form-data" }))
+@using (Ajax.BeginForm("Register", "Default", new AjaxOptions {  LoadingElementId = "progress",LoadingElementDuration=1000,  }, new { enctype = "multipart/form-data", name="" }))
 {
     <div class="form-horizontal">
         <div id="progress" class="modal">
@@ -90,7 +90,7 @@
                 @Html.ValidationMessageFor(model => model.icon, "", new { @class = "text-danger bg-danger" })
             </div>
         </div>
-
+        @{ /*
         <div class="form-group">
             <div class="col-md-4"></div>            
             <div class="col-md-8">
@@ -100,13 +100,16 @@
                     @Html.ValidationMessageFor(model => model.chapnhandieukhoan, "", new { @class = "text-danger bg-danger" })
                 </div>
             </div>
-        </div>
-
+        </div>*/
+        }
         <div class="form-group">
             <div class="col-md-4"></div>
             <div class="col-md-8">
                 @Html.MathCaptcha()
-                <p class = "text-danger bg-danger"> @ViewBag.ErrMsgCaptcha </p>
+                <p class = "text-danger bg-danger"> @if (Session["captcha"]!=null)
+                {
+                    String.Format("{0}", Session["captcha"]);
+                } </p>
             </div>
         </div>
 
