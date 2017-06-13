@@ -19,7 +19,7 @@ namespace SellLaptop.Controllers
                 return RedirectToAction("Index", "Index");
             }
 
-            List<CartItem> l = null;
+            List<CartItem> l = new List<CartItem>();
             if (Session["cart"]!=null)
             {
                 l = Session["cart"] as List<CartItem>;
@@ -199,6 +199,24 @@ namespace SellLaptop.Controllers
             Session["cart"] = l;
 
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult HistoryBuy()
+        {
+            if (Session["user"] == null)
+            {
+                WebMsgBox.ShowMessage(@"YÊU CẦU ĐĂNG NHẬP!");
+                return RedirectToAction("Index", "Index");
+            }
+
+            using (var ent = new sellLaptopEntities())
+            {
+                List<don_hang> l = new List<don_hang>();
+                String user = Session["user"] as String;
+                l = ent.don_hang.Include("chi_tiet_don_hang").Where(a => a.khachhang == user).OrderByDescending(a=>a.ngaygiolap).ToList();
+                return View(l);
+            }
         }
     }
 }

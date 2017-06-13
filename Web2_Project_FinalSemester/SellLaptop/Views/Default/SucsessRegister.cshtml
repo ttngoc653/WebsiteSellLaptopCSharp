@@ -1,7 +1,11 @@
 ﻿
 @{
     ViewBag.Title = "ĐĂNG KÝ THÀNH CÔNG";
+    Session["url"] = HttpContext.Current.Request.Url.Authority;
 }
 
 <h2>CHÚC MỪNG BẠN ĐÃ ĐĂNG KÝ THÀNH VIÊN THÀNH CÔNG</h2>
-
+<script type="text/javascript">
+    alert('NHẤP ĐỂ CHUYỂN QUA TRANG CHỦ. VÀ ĐĂNG NHẬP.');
+    window.location = "@Session["url"]";
+</script>

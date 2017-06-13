@@ -115,7 +115,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-4 col-md-8">
-                <input type="submit" value="Đăng ký" class="btn btn-success" />
+                <input id="btnRegister" type="submit" value="Đăng ký" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -124,29 +124,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#ngsinh').datepicker({
-            dateFormat: "dd/mm/yy",
-            showStatus: true,
-            showWeeks: true,
-            currentText: 'Now',
-            autoSize: true,
-            gotoCurrent: true,
-            showAnim: 'blind',
-            autoClose: true,
-            highlightWeek: true,
-            endDate:'@DateTime.Now.Date'
-        });
-    });
-
-    $.ajax({
-        url: this.action,
-        type: this.method,
-        data: $(this).serialize(),
-        success: function (html) {
-            alert("ĐÃ TẠO THÀNH CÔNG TÀI KHOẢN.");
-        }
-    });
-</script>

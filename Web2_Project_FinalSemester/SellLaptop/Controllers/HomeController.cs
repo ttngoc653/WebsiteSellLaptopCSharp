@@ -24,12 +24,6 @@ namespace SellLaptop.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult Search(searchProduct pro)
-        {
-            return View();
-        }
         
         [ChildActionOnly]
         public ActionResult ShowTop10Buy()

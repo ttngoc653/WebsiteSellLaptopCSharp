@@ -1,0 +1,59 @@
+﻿@using System.Globalization;
+
+@model IEnumerable<SellLaptop.Models.don_hang>
+
+@{
+    ViewBag.Title = "LỊCH SỬ MUA HÀNG";
+}
+
+<div class="table-responsive">
+    <table class="table" style="color: black;">
+        <thead>
+            <tr style="text-align:center;">
+                <th>NGÀY ĐẶT</th>
+                <th>ĐỊA CHỈ NHẬN</th>
+                <th>ĐƠN HÀNG</th>
+                <th>TÌNH TRẠNG</th>
+                <th>CHI TIẾT</th>
+            </tr>
+        </thead>
+@if (Model.Count() == 0)
+{
+    <tr>
+        <td colspan="4" class="text-center text-info">ĐƠN HÀNG TRỐNG VÌ CHƯA TỪNG ĐẶT HÀNG</td>
+    </tr>
+}
+else
+{
+    foreach (var i in Model)
+    {
+    <tbody>
+        <tr style="background-color: @if (i.dagiao == true)
+        { @Html.Raw("#9f6");
+        }
+        else
+        { @Html.Raw("#f99");
+        };">
+            <td>@i.ngaygiolap</td>
+            <td>
+                @i.diachinhan
+            </td>
+            <td>
+    Tiền thanh toán: @i.tongtien.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ<br />
+    Số lượng sản phẩm: @i.chi_tiet_don_hang.Sum(a => a.soluongsp)
+            </td>
+            <td style="text-align: center;">@if (i.dagiao == true)
+            { @Html.Raw("đã giao");
+            }
+            else
+            { @Html.Raw("chưa giao");
+            }</td>
+            <td>
+                <a href="@Url.Action("Detail", "Cart", new { id = i.madh })" class="btn btn-info" title="">Xem Chi tiết</a>
+            </td>
+        </tr>
+    </tbody>
+    }
+}
+    </table>
+</div>

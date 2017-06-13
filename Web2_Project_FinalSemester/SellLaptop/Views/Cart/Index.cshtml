@@ -23,7 +23,7 @@
         </th>
         <th></th>
     </tr>
-    @if (Model.Count() == 0)
+    @if (Session["cart"]==null||Model.Count() == 0)
     {
         <tr>
             <td colspan="4" class="text-center text-info">GIỎ TRỔNG</td>

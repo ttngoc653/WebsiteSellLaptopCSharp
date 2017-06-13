@@ -150,7 +150,8 @@ namespace SellLaptop.Controllers
 
             if (this.IsCaptchaValid("SAI CAPTCHA. HÃY NHẬP LẠI."))
             {
-                if (Request.Files.Count == 0)
+                HttpPostedFileBase hpf = Request.Files["icon"] as HttpPostedFileBase;
+                if (hpf.ContentLength == 0)
                 {
                     ViewBag.Message = "Invalid file type";
                 }
@@ -179,7 +180,7 @@ namespace SellLaptop.Controllers
                     var path = Server.MapPath("~/Images/"+ obj.tendn);
                     icon.SaveAs(path);
                 }
-                return View("Success");
+                return View("SuccessRegister");
             }
 
             Session["captcha"] = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
