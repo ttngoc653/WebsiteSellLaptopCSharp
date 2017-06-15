@@ -21,13 +21,13 @@ namespace SellLaptop.Controllers
             if (Session["role"] == null)
             {
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             if ((bool)Session["role"] != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View();
@@ -39,13 +39,13 @@ namespace SellLaptop.Controllers
             if (Session["role"]==null)
             {
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             if ((bool)Session["role"]!=true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             if (!ModelState.IsValid)
@@ -145,13 +145,13 @@ namespace SellLaptop.Controllers
             if (Session["role"] == null)
             {
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             if ((bool)Session["role"] != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             var ent = new sellLaptopEntities();
@@ -180,6 +180,18 @@ namespace SellLaptop.Controllers
 
         public ActionResult ManagerAccount()
         {
+            if (Session["role"] == null)
+            {
+                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
+                return RedirectToAction("Index", "Home");
+            }
+
+            if ((bool)Session["role"] != true)
+            {
+                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
+                return RedirectToAction("Index", "Home");
+            }
+
             using (var ent=new sellLaptopEntities())
             {
                 List<khach_hang> l = ent.khach_hang.ToList();
@@ -206,6 +218,18 @@ namespace SellLaptop.Controllers
 
         public ActionResult XoaNguoiDung(String id)
         {
+            if (Session["role"] == null)
+            {
+                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
+                return RedirectToAction("Index", "Home");
+            }
+
+            if ((bool)Session["role"] != true)
+            {
+                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
+                return RedirectToAction("Index", "Home");
+            }
+
             using (var ent = new sellLaptopEntities())
             {
                 khach_hang kh = ent.khach_hang.Where(a => a.tendn == id).First();
@@ -223,10 +247,47 @@ namespace SellLaptop.Controllers
 
         public ActionResult ManagerOrder()
         {
+            if (Session["role"] == null)
+            {
+                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
+                return RedirectToAction("Index", "Home");
+            }
+
+            if ((bool)Session["role"] != true)
+            {
+                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
+                return RedirectToAction("Index", "Home");
+            }
+
             using (var ent = new sellLaptopEntities())
             {
-                List<don_hang> l = ent.don_hang.ToList();
+                List<don_hang> l = ent.don_hang.Include("khach_hang").Include("chi_tiet_don_hang").OrderByDescending(a=>a.ngaygiolap).ToList();
                 return View(l);
+            }
+        }
+
+        public ActionResult ChangeOrder(int id)
+        {
+            if (Session["role"] == null)
+            {
+                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
+                return RedirectToAction("Index", "Home");
+            }
+
+            if ((bool)Session["role"] != true)
+            {
+                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
+                return RedirectToAction("Index", "Home");
+            }
+            using (var ent = new sellLaptopEntities())
+            {
+                don_hang dh = ent.don_hang.Where(a => a.madh == id).First();
+                if (dh!=null)
+                {
+                    dh.dagiao = dh.dagiao ? false : true;
+                    ent.SaveChanges();
+                }
+                return RedirectToAction("ManagerOrder", "Admin");
             }
         }
 

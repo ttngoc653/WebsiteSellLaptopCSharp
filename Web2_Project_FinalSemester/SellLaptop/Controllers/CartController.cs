@@ -16,7 +16,7 @@ namespace SellLaptop.Controllers
             if (Session["user"]==null)
             {
                 WebMsgBox.ShowMessage(@"YÊU CẦU ĐĂNG NHẬP!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             List<CartItem> l = new List<CartItem>();
@@ -33,7 +33,7 @@ namespace SellLaptop.Controllers
             if (Session["user"] == null)
             {
                 WebMsgBox.ShowMessage(@"YÊU CẦU ĐĂNG NHẬP!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             List<CartItem> l;
@@ -142,13 +142,13 @@ namespace SellLaptop.Controllers
             if (Session["user"] == null)
             {
                 WebMsgBox.ShowMessage(@"YÊU CẦU ĐĂNG NHẬP!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             if (Session["cart"]==null)
             {
                 WebMsgBox.ShowMessage(@"HÃY THÊM SẢN PHẨM VÀO GIỎ!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             List<CartItem> l = Session["cart"] as List<CartItem>;
@@ -174,13 +174,13 @@ namespace SellLaptop.Controllers
             if (Session["user"] == null)
             {
                 WebMsgBox.ShowMessage(@"YÊU CẦU ĐĂNG NHẬP!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             if (Session["cart"] == null)
             {
                 WebMsgBox.ShowMessage(@"HÃY THÊM SẢN PHẨM VÀO GIỎ!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             List<CartItem> l = Session["cart"] as List<CartItem>;
@@ -189,7 +189,7 @@ namespace SellLaptop.Controllers
             if (ct == null)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG TỒN TẠI SẢN PHẨM TRONG GIỎ HÀNG!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
             Session["count_sp"] = ((int)Session["count_sp"]) - ct.Quatity + qua;
 
@@ -207,7 +207,7 @@ namespace SellLaptop.Controllers
             if (Session["user"] == null)
             {
                 WebMsgBox.ShowMessage(@"YÊU CẦU ĐĂNG NHẬP!");
-                return RedirectToAction("Index", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             using (var ent = new sellLaptopEntities())
