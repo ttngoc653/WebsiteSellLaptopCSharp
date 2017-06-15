@@ -23,10 +23,38 @@ namespace SellLaptop.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult ShowCungHang(String hang)
+        public ActionResult ShowComment(int id)
         {
             using (var ent=new sellLaptopEntities())
             {
+                return PartialView(ent.danh_gia.Include("khach_hang").Where(a=>a.masp== id).ToList());
+            }
+        }
+
+        [ChildActionOnly]
+        public ActionResult CreateComment(int id)
+        {
+            return PartialView(id);
+        }
+
+        [HttpPost]
+        public ActionResult CreateComment(danh_gia model)
+        {
+            using (var ent =new sellLaptopEntities())
+            {
+                model.san_pham = ent.san_pham.Where(a => a.masp == model.masp).First();
+                model.khach_hang = ent.khach_hang.Where(a => a.tendn == model.khachhang).First();
+                ent.danh_gia.Add(model);
+                ent.SaveChanges();
+            }
+            return RedirectToAction("Index", "Detail", new { id = model.masp });
+        }
+
+        [ChildActionOnly]
+        public ActionResult ShowCungHang(String hang)
+        {
+            using (var ent=new sellLaptopEntities())
+            {                
                 return PartialView("Show5SPCung", ent.san_pham.Include("cpu").Where(a => a.tenhangsx == hang).Take(5).ToList());
             }
         }

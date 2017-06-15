@@ -47,7 +47,7 @@
     <Property Name="khachhang" Type="varchar" MaxLength="32" Nullable="false" />
     <Property Name="thoigian" Type="datetime" Nullable="false" />
     <Property Name="diem" Type="int" />
-    <Property Name="noidung" Type="text" />
+    <Property Name="noidung" Type="ntext" />
   </EntityType>
   <EntityType Name="don_hang">
     <Key>

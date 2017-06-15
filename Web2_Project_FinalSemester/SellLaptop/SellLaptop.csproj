@@ -580,6 +580,11 @@
     <Content Include="Views\Admin\UpdateCountProduct.cshtml" />
     <Content Include="Views\Admin\ManagerAccount.cshtml" />
     <Content Include="Views\Admin\ManagerOrder.cshtml" />
+    <Content Include="Views\Default\Error.cshtml" />
+    <Content Include="Views\Cart\Detail.cshtml" />
+    <Content Include="Views\Detail\ShowComment.cshtml" />
+    <Content Include="Views\Detail\CreateComment.cshtml" />
+    <Content Include="Views\Default\ChangeInfomationUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

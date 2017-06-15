@@ -52,7 +52,7 @@
           <Property Name="khachhang" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="thoigian" Type="datetime" Nullable="false" />
           <Property Name="diem" Type="int" />
-          <Property Name="noidung" Type="text" />
+          <Property Name="noidung" Type="ntext" />
         </EntityType>
         <EntityType Name="don_hang">
           <Key>
@@ -395,7 +395,7 @@
           <Property Name="khachhang" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="thoigian" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="diem" Type="Int32" />
-          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="khach_hang" Relationship="Self.FK_danh_gia_khach_hang" FromRole="danh_gia" ToRole="khach_hang" />
           <NavigationProperty Name="san_pham" Relationship="Self.FK_danh_gia_san_pham" FromRole="danh_gia" ToRole="san_pham" />
         </EntityType>

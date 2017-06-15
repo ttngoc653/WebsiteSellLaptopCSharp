@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SellLaptop.Models.danh_gia>
+
+
+<table class="table">
+    <caption>BÌNH LUẬN LAPTOP</caption>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td><p><i>SẢN PHẨM CHƯA ĐƯỢC ĐÁNH GIÁ!!!</i></p></td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td width="150">
+                    @item.khach_hang.hoten <br />
+                    @item.thoigian <br />
+                </td>
+                <td>
+                    @if (item.diem != null)
+                    {
+                        @item.diem; @Html.Raw("/ 10 <br />");
+                    }
+                    @Html.Raw(item.noidung)
+                </td>
+            </tr>
+
+        }
+    }
+</table>
+
+
+

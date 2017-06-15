@@ -2,7 +2,7 @@
 @model SellLaptop.Models.san_pham
 
 @{
-    ViewBag.Title = "CHI TIẾT "+Model.tensp;
+    ViewBag.Title = "CHI TIẾT " + Model.tensp;
 }
 
 <div style="text-align: center;">
@@ -15,7 +15,7 @@
     </div>
     <div class="col-lg-7">
         @using (Html.BeginForm("Add", "Cart", FormMethod.Post, new { @class = "form-horizontal" }))
-        { 
+        {
             <div class="form-group">
                 <h1 style="text-align: center;">@Model.tenhangsx @Model.tensp</h1>
             </div>
@@ -204,11 +204,11 @@
                         <td>Màn hình cảm ứng</td>
                         <td>@{if (Model.camung)
                             {
-                                String.Format("có");
+                                @Html.Raw("có");
                             }
                             else
                             {
-                                String.Format("không");
+                                @Html.Raw("không");
                             }}</td>
                     </tr>
                 </tbody>
@@ -267,22 +267,22 @@
                         <td>DHMI</td>
                         <td>@{if (Model.hdmi)
                             {
-                                String.Format("có");
+                                @Html.Raw("có");
                             }
                             else
                             {
-                                String.Format("không");
+                                @Html.Raw("không");
                             }}</td>
                     </tr>
                     <tr>
                         <td>Đọc thẻ nhớ (SD)</td>
                         <td>@{if (Model.cartsd)
                             {
-                                String.Format("có");
+                                @Html.Raw("có");
                             }
                             else
                             {
-                                String.Format("không");
+                                @Html.Raw("không");
                             }}</td>
                     </tr>
                     <tr>
@@ -308,11 +308,11 @@
                         <td>Kết nối không dây</td>
                         <td>@{if (Model.btoothver != "không")
                             {
-                                String.Format("Bluetooth {0}", Model.btoothver);
+                                @String.Format("Bluetooth {0}", Model.btoothver);
                             }
                             else
                             {
-                                String.Format("{0}", Model.btoothver);
+                                @String.Format("{0}", Model.btoothver);
                             }}</td>
                     </tr>
                 </tbody>
@@ -374,5 +374,12 @@
                 </tbody>
             </table>
         </div>
+        @{ 
+            if (Session["user"]!=null)
+            {
+                Html.RenderAction("CreateComment", "Detail", new { id = Model.masp });
+            }
+        }
+        @{ Html.RenderAction("ShowComment", "Detail", new { id = Model.masp });}
     </div>
 </p>

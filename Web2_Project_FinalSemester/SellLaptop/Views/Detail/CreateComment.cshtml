@@ -1,0 +1,62 @@
+﻿@model int
+
+@using (Html.BeginForm("CreateComment", "Detail", FormMethod.Post))
+{
+    <input type="hidden" name="masp" value="@Model" />
+    <input type="hidden" name="khachhang" value="@Session["user"]" />
+    <input type="hidden" name="thoigian" value="@DateTime.Now" />
+    <table style="margin-top:25px;">
+        <caption>HÃY ĐỂ BÌNH LUẬN CHO CHÚNG TÔI</caption>
+        <tr>
+            <th>Điểm</th>
+            <td>
+                <div class="form-group">
+                    <label class="radio-inline" for="radios-0">
+                        <input type="radio" name="diem" id="radios-0" value="1"> 1
+                    </label>
+                    <label class="radio-inline" for="radios-1">
+                        <input type="radio" name="diem" id="radios-1" value="2"> 2
+                    </label>
+                    <label class="radio-inline" for="radios-2">
+                        <input type="radio" name="diem" id="radios-2" value="3"> 3
+                    </label>
+                    <label class="radio-inline" for="radios-3">
+                        <input type="radio" name="diem" id="radios-3" value="4"> 4
+                    </label>
+                    <label class="radio-inline" for="radios-4">
+                        <input type="radio" name="diem" id="radios-4" value="5"> 5
+                    </label>
+                    <label class="radio-inline" for="radios-5">
+                        <input type="radio" name="diem" id="radios-5" value="6"> 6
+                    </label>
+                    <label class="radio-inline" for="radios-6">
+                        <input type="radio" name="diem" id="radios-6" value="7"> 7
+                    </label>
+                    <label class="radio-inline" for="radios-7">
+                        <input type="radio" name="diem" id="radios-7" value="8"> 8
+                    </label>
+                    <label class="radio-inline" for="radios-8">
+                        <input type="radio" name="diem" id="radios-8" value="9"> 9
+                    </label>
+                    <label class="radio-inline" for="radios-9">
+                        <input type="radio" name="diem" id="radios-9" value="10"> 10
+                    </label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th width="50">Bình<br />luận</th>
+            <td>
+                <textarea class="form-control" id="textarea" name="noidung"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <p class="text-center" style="margin-top:10px;">
+                    <button type="submit" class="btn btn-success">Gửi</button>
+                </p>
+            </td>
+        </tr>
+    </table>
+}

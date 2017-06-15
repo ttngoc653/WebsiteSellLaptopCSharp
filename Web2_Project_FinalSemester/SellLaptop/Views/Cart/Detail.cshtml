@@ -1,0 +1,51 @@
+﻿@using System.Globalization;
+@using SellLaptop.Models;
+@model don_hang
+
+@{
+    ViewBag.Title = "CHI TIẾT ĐƠN HÀNG " + Model.madh;
+}
+
+<p style="width: 424px;float: left;">Người đặt hóa đơn: @Model.khach_hang.hoten</p>
+<p style="float: right;">Thời gian nhận hóa đơn: @Model.ngaygiolap </p>
+<p style="float: left;">Địa chỉ nhận hàng: @Model.diachinhan </p>
+<p style="float: right;">Tình trạng hiện tại: @if (Model.dagiao == true){ @Html.Raw("đã giao hàng");}else{ @Html.Raw("chưa giao hàng");} </p>
+
+<table style="width: 780px;">
+    <caption><h4>CHI TIẾT CÁC SẢN PHẨM: </h4></caption>
+    <thead>
+        <tr style="text-align: center;">
+            <th width="40px;" style="text-align: center;">STT</th>
+            <th width="200px" style="text-align: center;">TÊN SẢN PHẨM</th>
+            <th width="150px" style="text-align: center;">ĐƠN GIÁ</th>
+            <th width="100px" style="text-align: center;">SỐ LƯỢNG MÁY</th>
+            <th width="130px" style="text-align: center;">THÀNH TIỀN</th>
+        </tr>
+    </thead>
+    @{ var i = 0; var total = 0; var sum = 0;
+        foreach (var item in Model.chi_tiet_don_hang)
+        {
+            var ent = new sellLaptopEntities();
+            san_pham sp = ent.san_pham.Where(a => a.masp == item.masp).First();
+            i++;
+            total = item.soluongsp * sp.gia;
+            sum += total;
+    <tbody>
+        <tr>
+            <td style="text-align: center;">@i</td>
+            <td>&nbsp; &nbsp; @sp.tenhangsx @sp.tensp</td>
+            <td style="text-align: right;"> @sp.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ&nbsp; &nbsp;</td>
+            <td style="text-align: center;">@item.soluongsp</td>            
+            <td style="text-align: right;">@total.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ&nbsp; &nbsp; </td>
+        </tr>
+    </tbody>
+        }
+    <tbody>
+        <tr>
+            <th colspan="3" style="text-align: right;">TỔNG CỘNG</th>
+            <th style="text-align: center;">@Model.chi_tiet_don_hang.Sum(a=>a.soluongsp)</th>
+            <th style="text-align: right;">@sum.ToString("N", CultureInfo.CreateSpecificCulture("es-ES"))&nbsp;VNĐ&nbsp; &nbsp; </th>
+        </tr>
+    </tbody>
+    }
+</table>

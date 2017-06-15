@@ -150,6 +150,24 @@ namespace SellLaptop.Controllers
 
             if (this.IsCaptchaValid("SAI CAPTCHA. HÃY NHẬP LẠI."))
             {
+                using (var ent = new sellLaptopEntities())
+                {
+                    khach_hang kh = new khach_hang()
+                    {
+                        danh_gia = null,
+                        don_hang = null,
+                        email = obj.email,
+                        gioitinh = obj.gioitinh,
+                        hoten = obj.hoten,
+                        mk = GetMD5(obj.mk),
+                        ngsinh = obj.ngsinh,
+                        quyen = false,
+                        sdt = Convert.ToInt32(obj.sdt),
+                        tendn = obj.tendn,
+                    };
+                    ent.khach_hang.Add(kh);
+                    ent.SaveChanges();
+                }
                 HttpPostedFileBase hpf = Request.Files["icon"] as HttpPostedFileBase;
                 if (hpf.ContentLength == 0)
                 {
@@ -157,27 +175,9 @@ namespace SellLaptop.Controllers
                 }
                 else
                 {
-                    using (var ent = new sellLaptopEntities())
-                    {
-                        khach_hang kh = new khach_hang()
-                        {
-                            danh_gia = null,
-                            don_hang = null,
-                            email = obj.email,
-                            gioitinh = obj.gioitinh,
-                            hoten = obj.hoten,
-                            mk = GetMD5(obj.mk),
-                            ngsinh = obj.ngsinh,
-                            quyen = false,
-                            sdt = Convert.ToInt32(obj.sdt),
-                            tendn = obj.tendn,
-                        };
-                        ent.khach_hang.Add(kh);
-                        ent.SaveChanges();
-                    }
                     string str = obj.tendn + ".jpg";
-                    System.IO.File.Move(obj.icon.FileName, obj.tendn+".jpg");
-                    var path = Server.MapPath("~/Images/"+ obj.tendn);
+                    System.IO.File.Move(obj.icon.FileName, obj.tendn + ".jpg");
+                    var path = Server.MapPath("~/Images/" + obj.tendn);
                     icon.SaveAs(path);
                 }
                 return View("SuccessRegister");
@@ -188,7 +188,43 @@ namespace SellLaptop.Controllers
             return View();
         }
 
-        public ActionResult Register1()
+        public ActionResult ChangeInfomationUser()
+        {
+            if (Session["user"]==null)
+            {
+                return RedirectToAction("Error", "Default");
+            }
+
+            using (var ent=new sellLaptopEntities())
+            {
+                String user = Session["user"] as String;
+                khach_hang kh = ent.khach_hang.Where(a => a.tendn == user).First();
+                return View(kh);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ChangeInfomationUser(khach_hang model)
+        {
+            using (var ent = new sellLaptopEntities())
+            {
+                String user = Session["user"] as String;
+                khach_hang kh = ent.khach_hang.Where(a => a.tendn == user).First();
+
+                kh.email = model.email;
+                kh.gioitinh = model.gioitinh;
+                kh.hoten = model.hoten;
+                kh.ngsinh = kh.ngsinh;
+                kh.sdt = model.sdt;
+
+                ent.SaveChanges();
+                
+                return View(kh);
+            }
+        }
+
+
+        /*public ActionResult Register1()
         {
             var model = new Register();
             return View(model);
@@ -236,7 +272,7 @@ namespace SellLaptop.Controllers
             Session["captcha"] = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
 
             return View();
-        }
+        }*/
 
         public JsonResult ValidationUser(String tendn)
         {
@@ -292,6 +328,11 @@ namespace SellLaptop.Controllers
 
             return sbHash.ToString();
 
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
     }
 }

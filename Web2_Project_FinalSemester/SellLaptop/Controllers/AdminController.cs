@@ -21,13 +21,13 @@ namespace SellLaptop.Controllers
             if (Session["role"] == null)
             {
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             if ((bool)Session["role"] != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             return View();
@@ -39,13 +39,13 @@ namespace SellLaptop.Controllers
             if (Session["role"]==null)
             {
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             if ((bool)Session["role"]!=true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             if (!ModelState.IsValid)
@@ -145,13 +145,13 @@ namespace SellLaptop.Controllers
             if (Session["role"] == null)
             {
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             if ((bool)Session["role"] != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             var ent = new sellLaptopEntities();
@@ -183,13 +183,13 @@ namespace SellLaptop.Controllers
             if (Session["role"] == null)
             {
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             if ((bool)Session["role"] != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             using (var ent=new sellLaptopEntities())
@@ -221,13 +221,13 @@ namespace SellLaptop.Controllers
             if (Session["role"] == null)
             {
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             if ((bool)Session["role"] != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             using (var ent = new sellLaptopEntities())
@@ -249,14 +249,15 @@ namespace SellLaptop.Controllers
         {
             if (Session["role"] == null)
             {
+                Session["error"] = @"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.";
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             if ((bool)Session["role"] != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             using (var ent = new sellLaptopEntities())
@@ -270,14 +271,15 @@ namespace SellLaptop.Controllers
         {
             if (Session["role"] == null)
             {
+                Session["error"] = @"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.";
                 WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
 
             if ((bool)Session["role"] != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Default");
             }
             using (var ent = new sellLaptopEntities())
             {

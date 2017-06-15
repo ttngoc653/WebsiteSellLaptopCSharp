@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    if (Session["url"]==null)
+    if (Session["url"] == null)
     {
         Session["url"] = HttpContext.Current.Request.Url.Authority;
     }
@@ -10,4 +10,5 @@
     else if (Request.Url.ToString().Contains("Default/LogOut")) { }
     else if (Request.Url.ToString().Contains("Cart/Add")) { }
     else { Session["url"] = Request.Url.ToString(); }
+    
 }

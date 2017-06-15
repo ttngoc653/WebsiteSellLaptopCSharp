@@ -11,8 +11,7 @@ namespace SellLaptop.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class san_pham
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -76,7 +75,9 @@ namespace SellLaptop.Models
         public static implicit operator san_pham(them_san_pham v)
         {
             san_pham sp = new san_pham();
-            sp.btoothver = v.btoothver;
+
+            sp.an = true;
+            sp.btoothver = sp.btoothver;
             sp.camera = v.camera;
             sp.camung = v.camung;
             sp.cartsd = v.cartsd;
@@ -86,7 +87,7 @@ namespace SellLaptop.Models
             sp.cnmanhinh = v.cnmanhinh;
             sp.dai = v.dai;
             sp.day = v.day;
-            sp.dophangiai = String.Format("{0}x{1}",v.phangiaingang,v.phangiaidoc);
+            sp.dophangiai = v.phangiaingang.ToString() + " " + v.phangiaidoc.ToString();
             sp.gia = v.gia;
             sp.hdh = v.hdh;
             sp.hdmi = v.hdmi;
@@ -99,7 +100,7 @@ namespace SellLaptop.Models
             sp.luotview = 0;
             sp.mau = v.mau;
             sp.oquang = v.oquang;
-            sp.pin = sp.pin;
+            sp.pin = v.pin;
             sp.rambus = v.rambus;
             sp.ramdl = v.ramdl;
             sp.ramloai = v.ramloai;
@@ -110,7 +111,7 @@ namespace SellLaptop.Models
             sp.tenhangsx = v.tenhangsx;
             sp.tensp = v.tensp;
             sp.wifi = v.wifi;
-            sp.an = false;
+            
             return sp;
         }
     }
