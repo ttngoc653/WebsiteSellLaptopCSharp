@@ -1,0 +1,38 @@
+﻿@model IList<SellLaptop.Models.san_pham>
+
+@{
+    ViewBag.Title = "CẬP NHẬT SỐ LƯỢNG MÁY";
+}
+
+<div>
+    <h1 class="tieude">CẬP NHẬT SỐ LƯỢNG SẢN PHẨM</h1><br />
+</div>
+<form class="form-horizontal" action="@Url.Action("UpdateCountProduct","Admin")" name="themSLSP" method="post" accept-charset="utf-8">
+    <fieldset>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="id">Chọn sản phẩm muốn cập nhật</label>
+            <div class="col-md-4">
+                <select id="id" name="id" class="form-control">
+                    @foreach (var i in Model)
+                    {
+                        <option value="@i.masp">@i.tenhangsx @i.tensp</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="slthem">Số lượng LAPTOP muốn cập nhật (máy)</label>
+            <div class="col-sm-4">
+                <input id="slthem" name="number" placeholder="vd: 50" class="form-control input-md" type="number" min="0">
+            </div>
+        </div>
+        <p>
+            <div style="text-align: center;" id="btnSubmit">
+                <input type="submit" name="subthemSLSP" class="btn btn-danger" value="THÊM SỐ LƯỢNG SẢN PHẨM">
+            </div>
+        </p>
+    </fieldset>
+</form>
+
+

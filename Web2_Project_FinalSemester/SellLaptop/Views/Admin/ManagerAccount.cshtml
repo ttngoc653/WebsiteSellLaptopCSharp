@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SellLaptop.Models.khach_hang>
+
+@{
+    ViewBag.Title = "ManagerAccount";
+}
+
+<p style="color: red"><i>ghi chú: có màu là quyền quản lý</i></p>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th width="200px" style="text-align: center;">TÊN ĐĂNG NHẬP <br />HỌ TÊN NGƯỜI DÙNG</th>
+            <th width="200px" style="text-align: center;">NGÀY SINH <br />GIỚI TÍNH</th>
+            <th width="200px" style="text-align: center;">EMAIL<br />ĐIỆN THOẠI</th>
+            <th width="200px" style="text-align: center;">ĐỔI QUYỀN</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr style="background-color:@if (item.quyen==true)
+	{
+		 @Html.Raw("#9f6");
+	};">
+                <td style="text-align: center;">@item.tendn<br />@item.hoten</td>
+                <td style="text-align: center;">@item.ngsinh.Date<br />@if (item.gioitinh==false)
+	{
+		 @Html.Raw("Nam");
+                }
+                else
+                {
+                    @Html.Raw("Nữ");
+                }</td>
+                <td style="text-align: center;">@item.email<br />@item.sdt</td>
+                <td style="text-align: center;">
+                    <a href="@Url.Action("DoiQuyen","Admin", new { id=item.tendn})" title="">ĐỔI QUYỀN</a><br />
+                    <a href="@Url.Action("XoaNguoiDung","Admin", new { id=item.tendn})" title="">XÓA</a>
+                </td>
+            </tr>
+        </tbody>
+}
+</table>

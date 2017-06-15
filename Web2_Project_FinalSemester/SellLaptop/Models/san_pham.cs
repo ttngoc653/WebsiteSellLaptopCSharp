@@ -11,7 +11,8 @@ namespace SellLaptop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class san_pham
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -71,5 +72,46 @@ namespace SellLaptop.Models
         public virtual hang_sx hang_sx { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<o_dia_cung> o_dia_cung { get; set; }
+
+        public static implicit operator san_pham(them_san_pham v)
+        {
+            san_pham sp = new san_pham();
+            sp.btoothver = v.btoothver;
+            sp.camera = v.camera;
+            sp.camung = v.camung;
+            sp.cartsd = v.cartsd;
+            sp.chatlieu = v.chatlieu;
+            sp.chucnangkhac = v.chucnangkhac;
+            sp.cnamthanh = v.cnamthanh;
+            sp.cnmanhinh = v.cnmanhinh;
+            sp.dai = v.dai;
+            sp.day = v.day;
+            sp.dophangiai = String.Format("{0}x{1}",v.phangiaingang,v.phangiaidoc);
+            sp.gia = v.gia;
+            sp.hdh = v.hdh;
+            sp.hdmi = v.hdmi;
+            sp.icon = v.icon.FileName;
+            sp.ketnoikhac = v.ketnoikhac;
+            sp.khoiluong = v.khoiluong;
+            sp.kichthuocmh = v.kichthuocmh;
+            sp.lan = v.lan;
+            sp.loaicpu = v.loaicpu;
+            sp.luotview = 0;
+            sp.mau = v.mau;
+            sp.oquang = v.oquang;
+            sp.pin = sp.pin;
+            sp.rambus = v.rambus;
+            sp.ramdl = v.ramdl;
+            sp.ramloai = v.ramloai;
+            sp.rong = v.rong;
+            sp.slcon = v.slcon;
+            sp.sousb = v.sousb;
+            sp.tencartdohoa = v.tencartdohoa;
+            sp.tenhangsx = v.tenhangsx;
+            sp.tensp = v.tensp;
+            sp.wifi = v.wifi;
+            sp.an = false;
+            return sp;
+        }
     }
 }

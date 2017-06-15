@@ -1,0 +1,7 @@
+﻿@model IEnumerable<String>
+
+<option value="0">chọn tên hãng</option>
+@foreach (var i in Model)
+{
+    <option value="@i">@i</option>
+}

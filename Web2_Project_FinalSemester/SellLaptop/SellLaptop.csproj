@@ -531,6 +531,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>sellLaptopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\them_san_pham.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -572,6 +573,12 @@
     <Content Include="Views\Default\SucsessRegister.cshtml" />
     <Content Include="Views\Cart\HistoryBuy.cshtml" />
     <Content Include="Views\Admin\AddProduct.cshtml" />
+    <Content Include="Views\Admin\ListCPU.cshtml" />
+    <Content Include="Views\Admin\ListRAM.cshtml" />
+    <Content Include="Views\Admin\ListDoHoa.cshtml" />
+    <Content Include="Views\Admin\ListHangSX.cshtml" />
+    <Content Include="Views\Admin\UpdateCountProduct.cshtml" />
+    <Content Include="Views\Admin\ManagerAccount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

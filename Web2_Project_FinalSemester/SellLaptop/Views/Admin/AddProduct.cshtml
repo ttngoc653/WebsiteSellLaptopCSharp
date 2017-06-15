@@ -1,0 +1,437 @@
+﻿@model SellLaptop.Models.them_san_pham
+
+@{
+    ViewBag.Title = "THÊM SẢN PHẨM";
+}
+
+
+<div>
+    <h1 class="tieude">THÊM SẢN PHẨM</h1><br />
+</div>
+@using (Html.BeginForm("AddProduct","Admin",FormMethod.Post, new { @enctype = "multipart/form-data", onsubmit = "return ktradieukien();" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend><h2>Thông tin cơ bản</h2></legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ten">Nhập tên máy</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.tensp, new { htmlAttributes = new { @class = "form-control input-md", id = "ten", placeholder = "Inpiron 15" } })
+                    @Html.ValidationMessageFor(model => model.tensp, "", new { @class = "text-danger" })
+                    <span class="help-block" style="color: red; font-size: 12px;">ví dụ: Inspiron 3542 74514G50G</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="hangsx">Hãng Sản xuất</label>
+                <div class="col-sm-4">
+                    <select id="hangsx" name="tenhangsx" class="form-control">
+                        @{ Html.RenderAction("ListHangSX", "Admin");}
+                    </select>
+                    @Html.ValidationMessageFor(model => model.tenhangsx, "", new { @class = "text-danger" })
+                    <span class="help-block" style="color: red; font-size: 12px;">nếu không có trong sự lựa chọn này thì hãy thêm hãng sản xuất <a href="index.php?act=themnsx" target="_blank">tại đây</a></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="gia">Giá tiền (VNĐ)</label>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control input-md", id = "gia", min = "500000", placeholder = "18590000" } })
+                    @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="mausac">Màu</label>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.mau, new { htmlAttributes = new { @class = "form-control input-md", id = "mausac", placeholder = "xám, đen, bạc,..." } })
+                    @Html.ValidationMessageFor(model => model.mau, "", new { @class = "text-danger" })
+                    <span class="help-block" style="color: red; font-size: 12px;">có thể nhập nhiều màu</span>
+                </div>
+            </div>
+
+
+        </fieldset>
+        <fieldset>
+
+            <legend><h2>Phần cứng</h2></legend>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="loaicpu">Mã CPU</label>
+                <div class="col-sm-4">
+                    <select id="cpu" name="loaicpu" class="form-control">
+                        <option value=""></option>
+                        @{ Html.RenderAction("ListCPU", "Admin"); }
+                        @Html.ValidationMessageFor(model => model.loaicpu, "", new { @class = "text-danger" })
+                        <span class="help-block" style="color: red; font-size: 12px;">nếu không có thì hãy thêm cpu <a href="index.php?act=themcpu" target="_blank">tại đây</a></span>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ramdl">Dung lượng RAM (GB)</label>
+                <div class="col-sm-2">
+                    <select id="ramdl" name="ramdl" class="form-control">
+                        @{ Html.RenderAction("ListRAM", "Admin"); }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.ramdl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="ramloai">Loại RAM</label>
+                <div class="col-sm-4">
+                    <input id="ramloai" name="ramloai" type="text" placeholder="vd: DDR3L" class="form-control input-md">
+                    @Html.ValidationMessageFor(model => model.ramloai, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="rambus">Tốc độ bus (MHz)</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.rambus, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.rambus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="carddh">Card đồ họa</label>
+                <div class="col-sm-5">
+                    <select id="carddh" name="tencartdohoa" class="form-control">
+                        @{ Html.RenderAction("ListDoHoa", "Admin");}
+                    </select>
+                    @Html.ValidationMessageFor(model => model.tencartdohoa, "", new { @class = "text-danger" })
+                    <span class="help-block" style="color: red; font-size: 12px;">nếu không có trong sự lựa chọn trong này thì hãy thêm card Màn hình <a href="index.php?act=themcartmh" target="_blank">tại đây</a></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="congngheat">Công nghệ âm thanh</label>
+                <div class="col-sm-4">
+                    <input id="congngheat" name="cnamthanh" type="text" placeholder="vd: 2.0, Microspeak..." class="form-control input-md">
+                    @Html.ValidationMessageFor(model => model.cnamthanh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </fieldset>
+        <fieldset>
+
+            <legend><h2>Bộ nhớ máy (ROM)</h2></legend>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="odia" style="text-align: right;">Loại  ổ cứng</label>
+                @Html.ValidationMessageFor(model => model.ocung, "", new { @class = "text-danger" })
+                <label class="col-sm-4 control-label" for="dungluong" style="text-align: left;">Dung lượng tương ứng (GB)</label>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-4" style="text-align: right;">
+                    <input id="odia1" name="ocung" type="text" placeholder="vd: HDD (loại thứ 1)" class="form-control input-md">
+                    @Html.ValidationMessageFor(model => model.ocung, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4" style="text-align: left;">
+                    <input id="odia1dl" name="ocungdl" type="number" min="0" placeholder="vd: 500 (dung lượng ổ cứng loại thứ 1)" class="form-control input-md">
+                    @Html.ValidationMessageFor(model => model.ocungdl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4" style="text-align: right;">
+                    <input id="odia2" name="ocung1" type="text" placeholder="vd: SSD (loại thứ 2)" class="form-control input-md">
+                    @Html.ValidationMessageFor(model => model.ocung1, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4" style="text-align: left;">
+                    <input id="odia2dl" name="odia2dl" type="number" min="0" placeholder="vd: vd: 220 (dung lượng ổ cứng loại thứ 2)" class="form-control input-md">
+                    @Html.ValidationMessageFor(model => model.ocungdl1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend><h2>Màn hình Desktop</h2></legend>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="kichthuoc">Kích thước màn hình (inch)</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.kichthuocmh, new { htmlAttributes = new { @class = "form-control input-md", id = "kichthuoc", placeholder = "vd: 15.6" } })
+                    @Html.ValidationMessageFor(model => model.kichthuocmh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="pgngang">Độ phân giải (pixels)</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.phangiaingang, new { htmlAttributes = new { @class = "form-control input-md", id = "pgngang", min = "0", placeholder = "vd: 1366" } })
+                    @Html.ValidationMessageFor(model => model.phangiaingang, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.phangiaidoc, new { htmlAttributes = new { @class = "form-control input-md", id = "pgdoc", min = "0", placeholder = "vd: 768" } })
+                    @Html.ValidationMessageFor(model => model.phangiaidoc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="congnghemh">Công nghệ màn hình</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.cnmanhinh, new { htmlAttributes = new { @class = "form-control input-md", id = "congnghemh", placeholder = "vd: HD, ..." } })
+                    @Html.ValidationMessageFor(model => model.cnmanhinh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="camung">Màn hình cảm ứng</label>
+                <div class="col-sm-4">
+                    <label class="radio-inline" for="camung-0">
+                        <input type="radio" name="camung" id="camung-0" value="true">
+                        Có
+                    </label>
+                    <label class="radio-inline" for="camung-1">
+                        <input type="radio" name="camung" id="camung-1" value="false" checked="checked">
+                        Không
+                    </label>
+                    @Html.ValidationMessageFor(model => model.camung, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </fieldset>
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend><h2>Kết nối</h2></legend>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="oquang">Ổ đĩa quang</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.oquang, new { htmlAttributes = new { @class = "form-control input-md", id = "oquang", placeholder = "vd: đọc/ghi DVD" } })
+                    @Html.ValidationMessageFor(model => model.oquang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="usb">Số lượng cổng USB (cổng)</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.sousb, new { htmlAttributes = new { @class = "form-control input-md", id = "usb", min = "0", placeholder = "vd: 3" } })
+                    @Html.ValidationMessageFor(model => model.sousb, "", new { @class = "text-danger" })
+                    <span class="help-block">USB 3.0 + USB 2.0</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="congother">Có cổng hổ trợ</label>
+                <div class="col-sm-4">
+                    <label class="checkbox-inline" for="congother-0">
+                        @Html.EditorFor(model => model.hdmi) HDMI
+                        @Html.ValidationMessageFor(model => model.hdmi, "", new { @class = "text-danger" })
+                    </label>
+                    <label class="checkbox-inline" for="congother-1">
+                        @Html.EditorFor(model => model.cartsd) Đọc thẻ nhớ (SD)
+                        @Html.ValidationMessageFor(model => model.cartsd, "", new { @class = "text-danger" })
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="cother">Các cổng khác hỗ trợ</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.ketnoikhac, new { htmlAttributes = new { @class = "form-control input-md", id = "cother", placeholder = "vd: LAN (RJ45)" } })
+                    @Html.ValidationMessageFor(model => model.ketnoikhac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="wifi">Chuẩn WiFi</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.wifi, new { htmlAttributes = new { @class = "form-control input-md", id = "wifi", placeholder = "vd: 802.11b/g/n" } })
+                    @Html.ValidationMessageFor(model => model.wifi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="lan">Chuẩn LAN (Mbps Ethernet)</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.lan, new { htmlAttributes = new { @class = "form-control input-md", id = "lan", placeholder = "vd: 10/100 Mbps" } })
+                    @Html.ValidationMessageFor(model => model.lan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="bluetooth">Phiên bản bluetooth</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.btoothver, new { htmlAttributes = new { @class = "form-control input-md", id = "bluetooth", placeholder = "vd: v4.0" } })
+                    @Html.ValidationMessageFor(model => model.btoothver, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </fieldset>
+        <fieldset>
+
+            <legend><h2>Thông tin thêm</h2></legend>
+            
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="camera">Độ phân giải Webcam (MP)</label>
+                <div class="col-sm-2">
+
+                    @Html.EditorFor(model => model.camera, new { htmlAttributes = new { @class = "form-control input-md", id = "camera", placeholder = "vd: 1.3" } })
+                    @Html.ValidationMessageFor(model => model.camera, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="hdh">Hệ điều hành</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.hdh, new { htmlAttributes = new { @class = "form-control input-md", id = "hdh", placeholder = "vd: Windows 10" } })
+                    @Html.ValidationMessageFor(model => model.hdh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="tinhnangbosung">Các tính năng đặc biệt khác</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.chucnangkhac, new { htmlAttributes = new { @class = "form-control input-md", id = "tinhnangbosung", placeholder = "vd: One Key Recovery, AccuType Keyboard" } })
+                    @Html.ValidationMessageFor(model => model.chucnangkhac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend><h2>Thông tin vật lý</h2></legend>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="pin">Thông tin pin</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.pin, new { htmlAttributes = new { @class = "form-control input-md", id = "pin", placeholder = "vd: 2 cell 8.400 mAh" } })
+                    @Html.ValidationMessageFor(model => model.pin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="nang">Khối lượng (kg)</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.khoiluong, new { htmlAttributes = new { @class = "form-control input-md", id = "nang", placeholder = "vd: 1.92" } })
+                    @Html.ValidationMessageFor(model => model.khoiluong, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="dai">Chiều dài (mm)</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.dai, new { htmlAttributes = new { @class = "form-control input-md", min = "1", id = "dai", placeholder = "vd: 292" } })
+                    @Html.ValidationMessageFor(model => model.dai, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="rong">Chiều rộng (mm)</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.rong, new { htmlAttributes = new { @class = "form-control input-md", id = "rong", placeholder = "vd: 202", min = "1" } })
+                    @Html.ValidationMessageFor(model => model.rong, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="day">Độ dày (mm)</label>
+                <div class="col-sm-2">
+                    @Html.EditorFor(model => model.day, new { htmlAttributes = new { @class = "form-control input-md", id = "day", placeholder = "vd: 17", min = "1" } })
+                    @Html.ValidationMessageFor(model => model.day, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="chlieu">Chất liệu</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.chatlieu, new { htmlAttributes = new { @class = "form-control input-md", id = "chlieu", placeholder = "vd: nhôm nguyên khối" } })
+                    @Html.ValidationMessageFor(model => model.chatlieu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="slhienco">Số lượng LAPTOP hiện tại (máy)</label>
+                <div class="col-sm-4">
+                    @Html.EditorFor(model => model.slcon, new { htmlAttributes = new { @class = "form-control input-md", id = "slhienco", placeholder = "vd: 50", min = "1" } })
+                    @Html.ValidationMessageFor(model => model.slcon, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <!-- Form Name -->
+            <legend><h2>Hình LAPTOP</h2></legend>
+
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="file0">Ảnh đại diện</label>
+                <div class="col-sm-4">
+                    <input id="file0" name="icon" class="input-file" type="file" accept="image/gif, image/jpeg, image/png" onchange="testFile0();">
+                    <p><div id="tbfile0" style="color: red;font-size: 12px;"></div></p>
+                    @Html.ValidationMessageFor(model => model.icon, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="file1">Ảnh lớn</label>
+                <div class="col-sm-4">
+                    <input id="file1" name="anh1" class="input-file" type="file" accept="image/gif, image/jpeg, image/png" onchange="testFile1();">
+                    <p><div id="tbfile1" style="color: red;font-size: 12px;"></div></p>
+                    @Html.ValidationMessageFor(model => model.anh1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="file2">Ảnh chi tiết 1</label>
+                <div class="col-sm-4">
+                    <input id="file2" name="anh2" class="input-file" type="file" accept="image/gif, image/jpeg, image/png" onchange="testFile2();">
+                    <p><div id="tbfile2" style="color: red;font-size: 12px;"></div></p>
+                    @Html.ValidationMessageFor(model => model.anh2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="file3">Ảnh chi tiết 2</label>
+                <div class="col-sm-4">
+                    <input id="file3" name="anh3" class="input-file" type="file" accept="image/gif, image/jpeg, image/png" onchange="testFile3();">
+                    <p><div id="tbfile3" style="color: red;font-size: 12px;"></div></p>
+                    @Html.ValidationMessageFor(model => model.anh3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="file4">Ảnh chi tiết 3</label>
+                <div class="col-sm-4">
+                    <input id="file4" name="anh4" class="input-file" type="file" accept="image/gif, image/jpeg, image/png" onchange="testFile4();">
+                    <p><div id="tbfile4" style="color: red;font-size: 12px;"></div></p>
+                    @Html.ValidationMessageFor(model => model.anh4, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <p id="demo"></p>
+        </fieldset>
+        <div style="text-align: center;" id="btnSubmit">
+            <input type="submit" name="guiSP" class="btn btn-success" value="thêm Sản phẩm">
+        </div>
+    </div>
+    }
