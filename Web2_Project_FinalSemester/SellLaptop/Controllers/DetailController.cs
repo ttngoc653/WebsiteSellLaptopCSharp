@@ -12,6 +12,10 @@ namespace SellLaptop.Controllers
         // GET: Detail
         public ActionResult Index(int? id)
         {
+            if (id==null)
+            {
+                return RedirectToAction("Error","Default");
+            }
             using (var ent=new sellLaptopEntities())
             {                
                 san_pham sp = ent.san_pham.Include("o_dia_cung").Include("cart_do_hoa").Include("anh_sp").Include("hang_sx").Include("cpu").Where(a => a.masp == id).FirstOrDefault();

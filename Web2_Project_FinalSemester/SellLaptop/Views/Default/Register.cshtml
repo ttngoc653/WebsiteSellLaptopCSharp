@@ -83,25 +83,25 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.icon, "Ảnh đại diện:", htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
-                <input type="file" name="@Html.NameFor(model=>model.icon)" id="@Html.IdFor(model=>model.icon)" accept="image/gif, image/jpeg, image/png" value="" class="form-control" />
-                @Html.ValidationMessageFor(model => model.icon, "", new { @class = "text-danger bg-danger" })
-            </div>
+@{ /*
+    <div class="form-group">
+        @Html.LabelFor(model => model.icon, "Ảnh đại diện:", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <input type="file" name="@Html.NameFor(model=>model.icon)" id="@Html.IdFor(model=>model.icon)" accept="image/gif, image/jpeg, image/png" value="" class="form-control" />
+            @Html.ValidationMessageFor(model => model.icon, "", new { @class = "text-danger bg-danger" })
         </div>
-        @{ /*
-        <div class="form-group">
-            <div class="col-md-4"></div>            
+    </div>
+    <div class="form-group">
+        <div class="col-md-4"></div>
             <div class="col-md-8">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.chapnhandieukhoan) <b>@Html.LabelFor(model => model.chapnhandieukhoan, "Chấp nhận điều khoản")</b>
                     <div class="text-danger bg-danger field-validation-error">@ViewBag.DK</div>
                     @Html.ValidationMessageFor(model => model.chapnhandieukhoan, "", new { @class = "text-danger bg-danger" })
-                </div>
             </div>
-        </div>*/
-        }
+        </div>
+    </div>*/
+}
         <div class="form-group">
             <div class="col-md-4"></div>
             <div class="col-md-8">

@@ -585,6 +585,9 @@
     <Content Include="Views\Detail\ShowComment.cshtml" />
     <Content Include="Views\Detail\CreateComment.cshtml" />
     <Content Include="Views\Default\ChangeInfomationUser.cshtml" />
+    <Content Include="Views\Admin\AddHangSX.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\AddCPU.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

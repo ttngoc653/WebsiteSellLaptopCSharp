@@ -6,68 +6,71 @@
 }
 
 <div style="text-align: center;">
-    <div style="font-size: 16px;">
-        <p><h1><b>THÔNG TIN SẢN PHẨM</b></h1></p>
-        <br>
-    </div>
-    <div class="col-lg-5" style="text-align: center;">
-        <img src="@String.Format("/image/{0}/{1}", Model.masp, Model.icon)" width="300px" width="300px" />
-    </div>
-    <div class="col-lg-7">
-        @using (Html.BeginForm("Add", "Cart", FormMethod.Post, new { @class = "form-horizontal" }))
-        {
-            <div class="form-group">
-                <h1 style="text-align: center;">@Model.tenhangsx @Model.tensp</h1>
-            </div>
-            <label control-label" style="font-size: 16px;"><i>Giá sản phẩm: @Model.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ</i></label><br>
-            <label control-label"><i><b><h5>@Model.tencartdohoa, @Model.loaicpu, @Model.ramdl GB, @Model.kichthuocmh inch</h5></b></i></label><br>
-            <label control-label">Còn @Model.slcon sản phẩm</label><br>
-            <label for="SoLuongXem" control-label">Số lượng xem: @Model.luotview</label>
-            if (Session["role"] != null)
+    <fieldset>
+        <div style="font-size: 16px;">
+            <p><h1><b>THÔNG TIN SẢN PHẨM</b></h1></p>
+            <br>
+        </div>
+        <div class="col-lg-5" style="text-align: center;">
+            <img src="@String.Format("/image/{0}/{1}", Model.masp, Model.icon)" width="300px" width="300px" />
+        </div>
+        <div class="col-lg-7">
+            @using (Html.BeginForm("Add", "Cart", FormMethod.Post, new { @class = "form-horizontal" }))
             {
                 <div class="form-group">
-                    <input type="hidden" name="id" value="@Model.masp">
-                    <label for="SoLuongDat" class="col-md-7" style="text-align:right;" control-label">Số lượng muốn đặt:</label>
-                    <input class="col-md-3" type="number" name="sl" value="1" min="1" max="@Model.slcon" class="form-control" id="SoLuongDat">
+                    <h1 style="text-align: center;">@Model.tenhangsx @Model.tensp</h1>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa fa-check"></i>Thêm vào giỏ hàng
-                    </button>
-                </div>
-            }
-        }
-    </div>
-</div>
-<br />
-<p>
-    <div class="col-lg-12" style="margin-bottom: 20px">
-        <div style="text-align: center;background-color: #c9e1e3;opacity: 0.9;margin-bottom: 450px;">
-            <h2>Hình ảnh sản phẩm</h2>
-            <div class="col-sm-10 image-run">
-                <img style="width:680px;height:378px;margin-left:15px;" src="@String.Format("/image/{0}/{1}", Model.masp, Model.icon)" id="photo">
-            </div>
-
-            <div class="col-sm-12">
-                @{
-                    int i = 0;
-                    foreach (var item in Model.anh_sp)
-                    {
-                        <img style="width:85px;height:47px" onmousemove="@String.Format("img{0}()", i)" class="img-change" id="@i" src="/image/@Model.masp/@item.tenfile">
-                        <script>
-                            function @String.Format("img{0}()", i) {
-                                var x=document.getElementById("photo")
-                                if (x) {
-                                    x.src = "/image/@String.Format("{0}", item.masp)/@String.Format("{0}", item.tenfile)"
-                                }
-                            }
-                        </script>
-                        i++;
-                    }
+                <label control-label" style="font-size: 16px;"><i>Giá sản phẩm: @Model.gia.ToString("N", CultureInfo.CreateSpecificCulture("es-ES")) VNĐ</i></label><br>
+                <label control-label"><i><b><h5>@Model.tencartdohoa, @Model.loaicpu, @Model.ramdl GB, @Model.kichthuocmh inch</h5></b></i></label><br>
+                <label control-label">Còn @Model.slcon sản phẩm</label><br>
+                <label for="SoLuongXem" control-label">Số lượng xem: @Model.luotview</label>
+                if (Session["role"] != null)
+                {
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="@Model.masp">
+                        <label for="SoLuongDat" class="col-md-7" style="text-align:right;" control-label">Số lượng muốn đặt:</label>
+                        <input class="col-md-3" type="number" name="sl" value="1" min="1" max="@Model.slcon" class="form-control" id="SoLuongDat">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-check"></i>Thêm vào giỏ hàng
+                        </button>
+                    </div>
                 }
+            }
+        </div>
+    </fieldset>
+</div>
+<p>
+    <fieldset>
+        <div class="col-lg-12" style="margin-bottom: 20px">
+            <div style="text-align: center;background-color: #c9e1e3;opacity: 0.9;margin-bottom: 450px;">
+                <h2>Hình ảnh sản phẩm</h2>
+                <div class="col-sm-10 image-run">
+                    <img style="width:680px;height:378px;margin-left:15px;" src="@String.Format("/image/{0}/{1}", Model.masp, Model.icon)" id="photo">
+                </div>
+
+                <div class="col-sm-12">
+                    @{
+                        int i = 0;
+                        foreach (var item in Model.anh_sp)
+                        {
+                            <img style="width:85px;height:47px" onmousemove="@String.Format("img{0}()", i)" class="img-change" id="@i" src="/image/@Model.masp/@item.tenfile">
+                            <script>
+                                function @String.Format("img{0}()", i) {
+                                    var x=document.getElementById("photo")
+                                    if (x) {
+                                        x.src = "/image/@String.Format("{0}", item.masp)/@String.Format("{0}", item.tenfile)"
+                                    }
+                                }
+                            </script>
+                            i++;
+                        }
+                    }
+                </div>
             </div>
         </div>
-    </div>
+    </fieldset>
 </p>
 <p>
     <div class="col-lg-4">
@@ -89,297 +92,324 @@
         </div>
     </div>
     <div style="opacity: 0.9;" class="col-lg-8">
-        <div style="border-style: groove; background-color: #82a1a6; text-align: center;border-top-right-radius: 8px; border-top-left-radius: 8px;">
-            <h3><b>THÔNG SỐ SẢN PHẨM</b></h3>
-        </div>
-        <div style="border-style: groove; background-color: #c9e1e3;margin-top: -4px;margin-bottom: -6px; text-align: center;border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;">
+        <fieldset>
+            <div style="border-style: groove; background-color: #82a1a6; text-align: center;border-top-right-radius: 8px; border-top-left-radius: 8px;">
+                <h3><b>THÔNG SỐ SẢN PHẨM</b></h3>
+            </div>
+            <div style="border-style: groove; background-color: #c9e1e3;margin-top: -4px;margin-bottom: -6px; text-align: center;border-bottom-right-radius: 8px; border-bottom-left-radius: 8px;">
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th colspan="2">Bộ xử lý</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td width="226px">Hãng CPU</td>
-                        <td>@Model.cpu.hangsx</td>
-                    </tr>
-                    <tr>
-                        <td>Công nghệ CPU</td>
-                        <td>@Model.cpu.congnghe</td>
-                    </tr>
-                    <tr>
-                        <td>Loại CPU</td>
-                        <td>@Model.cpu.maloai</td>
-                    </tr>
-                    <tr>
-                        <td>Tốc độ CPU</td>
-                        <td>@Model.cpu.tocdo GHz</td>
-                    </tr>
-                    <tr>
-                        <td>Bộ nhớ đệm</td>
-                        <td>@Model.cpu.thongtinbodem</td>
-                    </tr>
-                    <tr>
-                        <td>Tốc độ tối đa</td>
-                        <td>@Model.cpu.tocdotoida GHz</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Bộ nhớ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>RAM</td>
-                        <td>@Model.ramdl GB</td>
-                    </tr>
-                    <tr>
-                        <td>Loại RAM</td>
-                        <td>@Model.ramloai</td>
-                    </tr>
-                    <tr>
-                        <td>Tốc độ Bus</td>
-                        <td>@Model.rambus MHz</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Đĩa cứng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Loại ổ đĩa</td>
-                        <td>@{
-                            i = 0;
-                            foreach (var item in Model.o_dia_cung)
-                            {
-                                if (i > 0)
-                                {
-                                    String.Format(" + ");
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Bộ xử lý</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td width="226px">Hãng CPU</td>
+                            <td>@Model.cpu.hangsx</td>
+                        </tr>
+                        <tr>
+                            <td>Công nghệ CPU</td>
+                            <td>@Model.cpu.congnghe</td>
+                        </tr>
+                        <tr>
+                            <td>Loại CPU</td>
+                            <td>@Model.cpu.maloai</td>
+                        </tr>
+                        <tr>
+                            <td>Tốc độ CPU</td>
+                            <td>@Model.cpu.tocdo GHz</td>
+                        </tr>
+                        <tr>
+                            <td>Bộ nhớ đệm</td>
+                            <td>@Model.cpu.thongtinbodem</td>
+                        </tr>
+                        <tr>
+                            <td>Tốc độ tối đa</td>
+                            <td>@Model.cpu.tocdotoida GHz</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Bộ nhớ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RAM</td>
+                            <td>@Model.ramdl GB</td>
+                        </tr>
+                        <tr>
+                            <td>Loại RAM</td>
+                            <td>@Model.ramloai</td>
+                        </tr>
+                        <tr>
+                            <td>Tốc độ Bus</td>
+                            <td>@Model.rambus MHz</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Đĩa cứng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Loại ổ đĩa</td>
+                            <td>
+                                @{
+                                    i = 0;
+                                    foreach (var item in Model.o_dia_cung)
+                                    {
+                                        if (i > 0)
+                                        {
+                                            String.Format(" + ");
+                                        }
+                                        @item.loaiodia
+                                        i++;
+                                    }
                                 }
-                                @item.loaiodia
-                                i++;
-                            }
-                        }</td>
-                    </tr>
-                    <tr>
-                        <td>Ổ cứng</td>
-                        <td>@{
-                            i = 0;
-                            foreach (var item in Model.o_dia_cung)
-                            {
-                                if (i > 0)
-                                {
-                                    String.Format(" + ");
-                                }
-                                @item.dungluong
-                                i++;
-                            }
-                        } GB</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Màn hình</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Kích thước màn hình</td>
-                        <td>@Model.kichthuocmh inch</td>
-                    </tr>
-                    <tr>
-                        <td>Độ phân giải (W x H)</td>
-                        <td>@Model.dophangiai pixels</td>
-                    </tr>
-                    <tr>
-                        <td>Công nghệ màn hình</td>
-                        <td>@Model.cnmanhinh</td>
-                    </tr>
-                    <tr>
-                        <td>Màn hình cảm ứng</td>
-                        <td>@{if (Model.camung)
-                            {
-                                @Html.Raw("có");
-                            }
-                            else
-                            {
-                                @Html.Raw("không");
-                            }}</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Đồ họa</th>
-                    </tr>                    
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Chipset đồ họa</td>
-                        <td>@Model.cart_do_hoa.tencartdohoa</td>
-                    </tr>
-                    <tr>
-                        <td>Bộ nhớ đồ họa</td>
-                        <td>@Model.cart_do_hoa.dungluong GB</td>
-                    </tr>
-                    <tr>
-                        <td>Thiết kế card</td>
-                        <td>@Model.cart_do_hoa.thietke</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Âm thanh</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Kênh âm thanh & Thông tin thêm </td>
-                        <td>@Model.cnamthanh</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Đĩa quang</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Loại đĩa quang</td>
-                        <td>@Model.oquang</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Cổng giao tiếp</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Số lượng cổng USB (2.0 và 3.0)</td>
-                        <td>@Model.sousb cổng</td>
-                    </tr>
-                    <tr>
-                        <td>DHMI</td>
-                        <td>@{if (Model.hdmi)
-                            {
-                                @Html.Raw("có");
-                            }
-                            else
-                            {
-                                @Html.Raw("không");
-                            }}</td>
-                    </tr>
-                    <tr>
-                        <td>Đọc thẻ nhớ (SD)</td>
-                        <td>@{if (Model.cartsd)
-                            {
-                                @Html.Raw("có");
-                            }
-                            else
-                            {
-                                @Html.Raw("không");
-                            }}</td>
-                    </tr>
-                    <tr>
-                        <td>Các cổng giao tiếp khác</td>
-                        <td>@Model.ketnoikhac</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Giao tiếp mạng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>LAN</td>
-                        <td>@Model.lan Ethernet LAN</td>
-                    </tr>
-                    <tr>
-                        <td>Chuẩn Wifi</td>
-                        <td>@Model.wifi</td>
-                    </tr>
-                    <tr>
-                        <td>Kết nối không dây</td>
-                        <td>@{if (Model.btoothver != "không")
-                            {
-                                @String.Format("Bluetooth {0}", Model.btoothver);
-                            }
-                            else
-                            {
-                                @String.Format("{0}", Model.btoothver);
-                            }}</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Webcam</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Độ phân giải WC</td>
-                        <td>@Model.camera</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Thông tin PIN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Thông tin Pin</td>
-                        <td>@Model.pin</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Hệ điều hành</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Hệ điều hành</td>
-                        <td>@Model.hdh</td>
-                    </tr>
-                    <tr>
-                        <td>Tính năng mở rộng</td>
-                        <td>@Model.chucnangkhac</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th colspan="2">Kích thước & Trọng lượng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Kích thước (ngang x dọc x dày)</td>
-                        <td>@String.Format("{0} mm x {1} mm x {2} mm", Model.dai, Model.rong, Model.day)</td>
-                    </tr>
-                    <tr>
-                        <td>Trọng lượng (kg)</td>
-                        <td>@Model.khoiluong kg</td>
-                    </tr>
-                    <tr>
-                        <td>Chất liệu</td>
-                        <td>@Model.chatlieu</td>
-                    </tr>
-                </tbody>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ổ cứng</td>
+                            <td>
+                                @{
+                                    i = 0;
+                                    foreach (var item in Model.o_dia_cung)
+                                    {
+                                        if (i > 0)
+                                        {
+                                            String.Format(" + ");
+                                        }
+                                        @item.dungluong
+                                        i++;
+                                    }
+                                } GB
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Màn hình</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kích thước màn hình</td>
+                            <td>@Model.kichthuocmh inch</td>
+                        </tr>
+                        <tr>
+                            <td>Độ phân giải (W x H)</td>
+                            <td>@Model.dophangiai pixels</td>
+                        </tr>
+                        <tr>
+                            <td>Công nghệ màn hình</td>
+                            <td>@Model.cnmanhinh</td>
+                        </tr>
+                        <tr>
+                            <td>Màn hình cảm ứng</td>
+                            <td>
+                                @{if (Model.camung)
+                                    {
+                                        @Html.Raw("có");
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("không");
+                                    }}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Đồ họa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chipset đồ họa</td>
+                            <td>@Model.cart_do_hoa.tencartdohoa</td>
+                        </tr>
+                        <tr>
+                            <td>Bộ nhớ đồ họa</td>
+                            <td>@Model.cart_do_hoa.dungluong GB</td>
+                        </tr>
+                        <tr>
+                            <td>Thiết kế card</td>
+                            <td>@Model.cart_do_hoa.thietke</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Âm thanh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kênh âm thanh & Thông tin thêm </td>
+                            <td>@Model.cnamthanh</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Đĩa quang</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Loại đĩa quang</td>
+                            <td>@Model.oquang</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Cổng giao tiếp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Số lượng cổng USB (2.0 và 3.0)</td>
+                            <td>@Model.sousb cổng</td>
+                        </tr>
+                        <tr>
+                            <td>DHMI</td>
+                            <td>
+                                @{if (Model.hdmi)
+                                    {
+                                        @Html.Raw("có");
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("không");
+                                    }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Đọc thẻ nhớ (SD)</td>
+                            <td>
+                                @{if (Model.cartsd)
+                                    {
+                                        @Html.Raw("có");
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("không");
+                                    }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Các cổng giao tiếp khác</td>
+                            <td>@Model.ketnoikhac</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Giao tiếp mạng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>LAN</td>
+                            <td>@Model.lan Ethernet LAN</td>
+                        </tr>
+                        <tr>
+                            <td>Chuẩn Wifi</td>
+                            <td>@Model.wifi</td>
+                        </tr>
+                        <tr>
+                            <td>Kết nối không dây</td>
+                            <td>
+                                @{if (Model.btoothver != "không")
+                                    {
+                                        @String.Format("Bluetooth {0}", Model.btoothver);
+                                    }
+                                    else
+                                    {
+                                        @String.Format("{0}", Model.btoothver);
+                                    }}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Webcam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Độ phân giải WC</td>
+                            <td>@Model.camera</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Thông tin PIN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Thông tin Pin</td>
+                            <td>@Model.pin</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Hệ điều hành</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hệ điều hành</td>
+                            <td>@Model.hdh</td>
+                        </tr>
+                        <tr>
+                            <td>Tính năng mở rộng</td>
+                            <td>@Model.chucnangkhac</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Kích thước & Trọng lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kích thước (ngang x dọc x dày)</td>
+                            <td>@String.Format("{0} mm x {1} mm x {2} mm", Model.dai, Model.rong, Model.day)</td>
+                        </tr>
+                        <tr>
+                            <td>Trọng lượng (kg)</td>
+                            <td>@Model.khoiluong kg</td>
+                        </tr>
+                        <tr>
+                            <td>Chất liệu</td>
+                            <td>@Model.chatlieu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <fieldset style="margin:10px;">
+            <table>
+                <caption>THÔNG TIN HÃNG SẢN XUẤT</caption>
+                <tr>
+                    <td>@Model.hang_sx.truso</td>
+                </tr>
+                <tr>
+                    <td style="text-align:justify;">@Model.hang_sx.mota</td>
+                </tr>
             </table>
-        </div>
-        @{ 
-            if (Session["user"]!=null)
-            {
-                Html.RenderAction("CreateComment", "Detail", new { id = Model.masp });
+        </fieldset>
+        <fieldset>
+            @{
+                if (Session["user"] != null)
+                {
+                    Html.RenderAction("CreateComment", "Detail", new { id = Model.masp });
+                }
             }
-        }
-        @{ Html.RenderAction("ShowComment", "Detail", new { id = Model.masp });}
+            @{ Html.RenderAction("ShowComment", "Detail", new { id = Model.masp });}
+        </fieldset>
     </div>
 </p>

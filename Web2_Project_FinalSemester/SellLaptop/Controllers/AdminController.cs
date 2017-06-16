@@ -24,7 +24,7 @@ namespace SellLaptop.Controllers
                 return RedirectToAction("Error", "Default");
             }
 
-            if ((bool)Session["role"] != true)
+            if (Convert.ToBoolean(Session["role"]) != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
                 return RedirectToAction("Error", "Default");
@@ -42,7 +42,7 @@ namespace SellLaptop.Controllers
                 return RedirectToAction("Error", "Default");
             }
 
-            if ((bool)Session["role"]!=true)
+            if (Convert.ToBoolean(Session["role"]) != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
                 return RedirectToAction("Error", "Default");
@@ -148,7 +148,7 @@ namespace SellLaptop.Controllers
                 return RedirectToAction("Error", "Default");
             }
 
-            if ((bool)Session["role"] != true)
+            if (Convert.ToBoolean(Session["role"]) != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
                 return RedirectToAction("Error", "Default");
@@ -178,6 +178,47 @@ namespace SellLaptop.Controllers
             return View();
         }
 
+        public ActionResult AddCPU()
+        {
+            if (Session["role"] == null)
+            {
+                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
+                return RedirectToAction("Error", "Default");
+            }
+
+            if (Convert.ToBoolean(Session["role"]) != true)
+            {
+                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
+                return RedirectToAction("Error", "Default");
+            }            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCPU(cpu model)
+        {
+            try
+            {
+                using (var ent = new sellLaptopEntities())
+                {
+                    if (ent.cpus.Where(a=>a.maloai==model.maloai).Count()!=0)
+                    {
+                        WebMsgBox.ShowMessage(@"ĐÃ CPU CÓ MÃ " + model.maloai + @" TRONG DỮ LIỆU");
+                        return View(model);
+                    }
+                    model.an = 0;
+                    ent.cpus.Add(model);
+                    ent.SaveChanges();
+                    WebMsgBox.ShowMessage(@"THÊM CPU CÓ MÃ " + model.maloai + @" THÀNH CÔNG");
+                }
+            }
+            catch (Exception)
+            {
+                WebMsgBox.ShowMessage(@"THÊM CPU CÓ MÃ " + model.maloai + @" THẤT BẠI");
+            }
+            return View(model);
+        }
+
         public ActionResult ManagerAccount()
         {
             if (Session["role"] == null)
@@ -186,7 +227,7 @@ namespace SellLaptop.Controllers
                 return RedirectToAction("Error", "Default");
             }
 
-            if ((bool)Session["role"] != true)
+            if (Convert.ToBoolean(Session["role"]) != true)
             {
                 WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
                 return RedirectToAction("Error", "Default");
@@ -265,6 +306,47 @@ namespace SellLaptop.Controllers
                 List<don_hang> l = ent.don_hang.Include("khach_hang").Include("chi_tiet_don_hang").OrderByDescending(a=>a.ngaygiolap).ToList();
                 return View(l);
             }
+        }
+
+        public ActionResult AddHangSX()
+        {
+            if (Session["role"] == null)
+            {
+                Session["error"] = @"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.";
+                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
+                return RedirectToAction("Error", "Default");
+            }
+
+            if (Convert.ToBoolean(Session["role"]) != true)
+            {
+                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
+                return RedirectToAction("Error", "Default");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddHangSX(hang_sx model)
+        {            
+            try
+            {
+                using (var ent = new sellLaptopEntities())
+                {
+                    if (ent.hang_sx.Where(a=>a.tenhangsx==model.tenhangsx).First()!=null)
+                    {
+                        WebMsgBox.ShowMessage("ĐÃ CÓ HÃNG "+model.tenhangsx+" TRONG DỮ LIỆU!");
+                        return View(model);
+                    }
+                    ent.hang_sx.Add(model);
+                    ent.SaveChanges();
+                }
+                WebMsgBox.ShowMessage("THÊM HÃNG " + model.tenhangsx + "THÀNH CÔNG");
+            }
+            catch (Exception e)
+            {
+                WebMsgBox.ShowMessage("LỖI KHI THÊM " + e);
+            }
+            return View(model);
         }
 
         public ActionResult ChangeOrder(int id)

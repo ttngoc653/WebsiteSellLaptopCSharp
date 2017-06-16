@@ -95,7 +95,7 @@ namespace SellLaptop.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult LogIn(LogIn login)
         {
@@ -172,6 +172,7 @@ namespace SellLaptop.Controllers
                 if (hpf.ContentLength == 0)
                 {
                     ViewBag.Message = "Invalid file type";
+                    return View("SuccessRegister");
                 }
                 else
                 {
@@ -199,23 +200,24 @@ namespace SellLaptop.Controllers
             {
                 String user = Session["user"] as String;
                 khach_hang kh = ent.khach_hang.Where(a => a.tendn == user).First();
-                return View(kh);
+                Register r = kh;
+                return View(r);
             }
         }
 
         [HttpPost]
-        public ActionResult ChangeInfomationUser(khach_hang model)
+        public ActionResult ChangeInfomationUser(Register model)
         {
             using (var ent = new sellLaptopEntities())
             {
                 String user = Session["user"] as String;
                 khach_hang kh = ent.khach_hang.Where(a => a.tendn == user).First();
-
+                
                 kh.email = model.email;
                 kh.gioitinh = model.gioitinh;
                 kh.hoten = model.hoten;
-                kh.ngsinh = kh.ngsinh;
-                kh.sdt = model.sdt;
+                kh.ngsinh = model.ngsinh;
+                kh.sdt = Convert.ToInt32(model.sdt);
 
                 ent.SaveChanges();
                 

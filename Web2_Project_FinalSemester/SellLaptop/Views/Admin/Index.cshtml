@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "CHỨC NĂNG CỦA ADMIN";
+}
+<div class="btn-group-vertical" style="width:750px; margin:10px;" role="group">
+    <a class="btn btn-info" href="@Url.Action("AddProduct","Admin")">Thêm Sản phẩm</a>
+    <a class="btn btn-info" href="@Url.Action("UpdateCountProduct","Admin")">Thay đổi số lượng sản phẩm hiện có</a>
+    <a class="btn btn-info" href="@Url.Action("AddCPU","Admin")">Thêm loại CPU</a>
+    <a class="btn btn-info" href="@Url.Action("Error","Default")">Thêm Cart màn hình</a>
+    <a class="btn btn-info" href="@Url.Action("AddHangSX","Admin")">Thêm Hãng xản xuất</a>
+</div>
+<br />
+<div class="btn-group-vertical" style="width:750px; margin:10px;" role="group">
+    <a class="btn btn-info" href="@Url.Action("ManagerAccount","Admin")">Quản lý Người dùng</a>
+    <a class="btn btn-info" href="@Url.Action("ManagerOrder","Admin")">Quản lý Đơn hàng</a>
+</div>

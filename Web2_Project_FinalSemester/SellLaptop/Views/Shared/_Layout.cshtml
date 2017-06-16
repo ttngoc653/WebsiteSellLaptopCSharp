@@ -20,15 +20,15 @@
             <a href="@Url.Action("Index", "Home")" class="navbar-brand"><span class="glyphicon glyphicon-home"></span></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                @{ Html.RenderAction("Log", "Default");}
+            </ul>
             <div class="navbar-form navbar-left">
                 @{ Html.RenderAction("Search", "Default");}
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">LIÊN HỆ <span class="sr-only">(current)</span></a></li>
                 @{ Html.RenderAction("MenuTool", "Menu");}
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                @{ Html.RenderAction("Log","Default");}                
             </ul>
         </div>
     </div>
@@ -62,5 +62,12 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/script.js"></script>
+    @if (Session["error"]!=null)
+    {
+        <script>
+            alert("@Session["error"]");
+        </script>
+        Session.Remove("error");
+    }
 </body>
 </html>

@@ -102,9 +102,14 @@ namespace SellLaptop.Controllers
                 }
                 else
                 {
-                    if (Session["cart"] == null)
+                    if (sp.slcon < sl)
+                    {
+                        WebMsgBox.ShowMessage("KHÔNG THỂ THÊM VÌ SỐ LƯỢNG MÀ SHOP HIỆN CÓ KHÔNG ĐỦ");
+                    }
+                    else if (Session["cart"] == null)
                     {
                         l = new List<CartItem>();
+                        
                         l.Add(new CartItem { sp = sp, Quatity = sl });
                         WebMsgBox.ShowMessage(@"ĐÃ THÊM THÀNH CÔNG \n HIỆN TẠI CÓ " + sl + @" MÁY " + sp.tenhangsx + " " + sp.tensp + @" TRONG GIỎ!");
                         Session["count_sp"] = sl;
@@ -119,12 +124,20 @@ namespace SellLaptop.Controllers
                         if (temp!=0)
                         {
                             CartItem ct = l.Where(a => a.sp.masp == id).FirstOrDefault();
-                            l.Remove(ct);
-                            l.Add(new CartItem { sp = sp, Quatity = sl + ct.Quatity });
 
-                            WebMsgBox.ShowMessage(@"ĐÃ THÊM THÀNH CÔNG \n HIỆN TẠI CÓ " + (ct.Quatity + sl) + @" MÁY " + sp.tenhangsx + " " + sp.tensp + @" TRONG GIỎ!");
+                            if (sp.slcon < sl+ct.Quatity)
+                            {
+                                WebMsgBox.ShowMessage("KHÔNG THỂ THÊM VÌ SỐ LƯỢNG MÀ SHOP HIỆN CÓ KHÔNG ĐỦ");
+                            }
+                            else
+                            {
+                                l.Remove(ct);
+                                l.Add(new CartItem { sp = sp, Quatity = sl + ct.Quatity });
 
-                            Session["cart"] = l;
+                                WebMsgBox.ShowMessage(@"ĐÃ THÊM THÀNH CÔNG \n HIỆN TẠI CÓ " + (ct.Quatity + sl) + @" MÁY " + sp.tenhangsx + " " + sp.tensp + @" TRONG GIỎ!");
+
+                                Session["cart"] = l;
+                            }
                         }
                         else
                         {
@@ -191,13 +204,19 @@ namespace SellLaptop.Controllers
                 WebMsgBox.ShowMessage(@"KHÔNG TỒN TẠI SẢN PHẨM TRONG GIỎ HÀNG!");
                 return RedirectToAction("Index", "Home");
             }
+
             Session["count_sp"] = ((int)Session["count_sp"]) - ct.Quatity + qua;
-
-            l.Remove(ct);
-            ct.Quatity = qua;
-            l.Add(ct);
-            Session["cart"] = l;
-
+            if (ct.sp.slcon < qua)
+            {
+                WebMsgBox.ShowMessage("KHÔNG THỂ THÊM VÌ SỐ LƯỢNG MÀ SHOP HIỆN CÓ KHÔNG ĐỦ");
+            }
+            else
+            {
+                l.Remove(ct);
+                ct.Quatity = qua;
+                l.Add(ct);
+                Session["cart"] = l;
+            }
             return RedirectToAction("Index");
         }
 

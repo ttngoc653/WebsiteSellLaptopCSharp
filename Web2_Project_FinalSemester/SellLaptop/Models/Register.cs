@@ -52,5 +52,17 @@ namespace SellLaptop.Models
         [Required(ErrorMessage ="HÃY THÊM ẢNH ĐẠI DIỆN.")]
         [ValidateFile(ErrorMessage = "HÃY THÊM ẢNH ĐẠI DIỆN CỦA QUÝ KHÁCH.")]
         public HttpPostedFileBase icon { get; set; }
+
+        public static implicit operator Register(khach_hang v)
+        {
+            Register r = new Register();
+            r.email = v.email;
+            r.gioitinh = v.gioitinh;
+            r.hoten = v.hoten;
+            r.ngsinh = v.ngsinh;
+            r.sdt = String.Format("0{0}", v.sdt);
+            r.tendn = r.tendn;
+            return r;
+        }
     }
 }

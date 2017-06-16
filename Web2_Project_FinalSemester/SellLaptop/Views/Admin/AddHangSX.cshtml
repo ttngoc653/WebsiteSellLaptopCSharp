@@ -1,0 +1,45 @@
+﻿@model SellLaptop.Models.hang_sx
+
+@{
+    ViewBag.Title = "THÊM HÃNG SẢN XUẤT";
+}
+
+@using (Html.BeginForm("AddHangSX","Admin",FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>hang_sx</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-4">TÊN HÃNG SẢN XUẤT:</label>
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.tenhangsx, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tenhangsx, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4">TRỤ SỞ CHÍNH:</label>
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.truso, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.truso, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4">CHI TIẾT VỀ CÔNG TY:</label>
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.mota, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mota, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <input type="submit" value="Thêm" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
