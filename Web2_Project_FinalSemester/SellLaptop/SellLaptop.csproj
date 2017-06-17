@@ -588,6 +588,13 @@
     <Content Include="Views\Admin\AddHangSX.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AddCPU.cshtml" />
+    <Content Include="Views\Admin\AddCartDoHoa.cshtml" />
+    <Content Include="Views\Menu\MenuSystem.cshtml" />
+    <Content Include="Views\Menu\SystemBoNho.cshtml" />
+    <Content Include="Views\Menu\SystemHDH.cshtml" />
+    <Content Include="Views\Menu\SystemRAM.cshtml" />
+    <Content Include="Views\Menu\SystemCPU.cshtml" />
+    <Content Include="Views\Menu\SystemHangSX.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,35 @@
+﻿<div class="main_menu">
+    <dl>
+        <dt>
+            <a href="" title=""><button class="buttn" style="width: 200px;">HÃNG SẢN XUẤT</button></a>
+            <dl style="width: 200px;">
+                @{ Html.RenderAction("SystemHangSX", "Menu");}
+            </dl>
+        </dt>
+        <dt>
+            <a href="" title=""><button class="buttn" style="width: 174px;">RAM</button></a>
+            <dl>
+                @{ Html.RenderAction("SystemRAM", "Menu");}
+            </dl>
+        </dt>
+        <dt>
+            <a href="" title=""><button class="buttn" style="width: 180px;">LOẠI CPU</button></a>
+            <dl style="width: 180px;">
+                @{ Html.RenderAction("SystemCPU", "Menu");}
+            </dl>
+        </dt>
+        <dt>
+            <a href="" title=""><button class="buttn" style="width: 220px;">HỆ ĐIỀU HÀNH</button></a>
+            <dl style="margin-left: 220px;width: 100px;">
+                @{ Html.RenderAction("SystemHDH", "Menu");}
+            </dl>
+        </dt>
+        <dt>
+            <a href="" title=""><button class="buttn" style="width: 250px;">BỘ NHỚ TRONG CỦA MÁY</button></a>
+            <dl style="margin-left: 250px;width: 100px;">
+                @{ Html.RenderAction("SystemBoNho","Menu");}
+            </dl>
+        </dt>
+        <dt>
+    </dl>
+</div>

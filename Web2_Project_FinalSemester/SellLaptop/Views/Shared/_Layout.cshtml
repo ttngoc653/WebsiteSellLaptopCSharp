@@ -33,6 +33,7 @@
         </div>
     </div>
     <div class="container" style="width:1024px;margin-top:10px;">
+        @{ Html.RenderAction("MenuSystem","Menu");}
         <div class="menu-right">
             @{ Html.RenderAction("MenuRight", "Menu");}
         </div>
@@ -65,7 +66,7 @@
     @if (Session["error"]!=null)
     {
         <script>
-            alert("@Session["error"]");
+            alert("@Html.Raw(Session["error"])");
         </script>
         Session.Remove("error");
     }

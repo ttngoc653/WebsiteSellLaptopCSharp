@@ -55,15 +55,15 @@ namespace SellLaptop.Controllers
             }
         }*/
         
-        public ActionResult SearchSPByHangSX(string hangsx=null)
+        public ActionResult SearchSPByHangSX(String id=null)
         {
             using (var ent=new sellLaptopEntities())
             {
                 List<san_pham> l = ent.san_pham.Include("cpu").ToList();
-                if (hangsx!=null)
+                if (id!=null)
                 {
-                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM THUỘC HÃNG " + hangsx;
-                    l = l.Where(a => a.tenhangsx==hangsx).ToList();
+                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM THUỘC HÃNG " + id;
+                    l = l.Where(a => a.tenhangsx==id).ToList();
                 }
                 Session["sp"] = l;
                 Session["npage"] = l.Count / 8 + ((l.Count % 8 > 0) ? 1 : 0);
@@ -72,15 +72,15 @@ namespace SellLaptop.Controllers
             }
         }
 
-        public ActionResult SearchSPByCPU(string cpu = null)
+        public ActionResult SearchSPByCPU(string id = null)
         {
             using (var ent = new sellLaptopEntities())
             {
                 List<san_pham> l = ent.san_pham.Include("cpu").ToList();                
-                if (cpu != null)
+                if (id != null)
                 {
-                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM CÓ CPU " + cpu;
-                    l = l.Where(a => a.cpu.congnghe == cpu).ToList();
+                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM CÓ CPU " + id;
+                    l = l.Where(a => a.cpu.congnghe == id).ToList();
                 }
                 Session["sp"] = l;
                 Session["npage"] = l.Count / 8 + ((l.Count % 8 > 0) ? 1 : 0);
@@ -88,32 +88,15 @@ namespace SellLaptop.Controllers
                 return View("SearchSP", l.Take(8).ToList());
             }
         }
-        public ActionResult SearchSPByRAM(int ram = -1)
+        public ActionResult SearchSPByRAM(int id = -1)
         {
             using (var ent = new sellLaptopEntities())
             {
                 List<san_pham> l = ent.san_pham.Include("cpu").ToList();                
-                if (ram != -1)
+                if (id != -1)
                 {
-                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM CÓ RAM " + ram+" GB";
-                    l = l.Where(a => a.ramdl == ram).ToList();
-                }
-                Session["sp"] = l;
-                Session["npage"] = l.Count / 8 + ((l.Count % 8 > 0) ? 1 : 0);
-                Session["page"] = 1;
-                return View("SearchSP", l.Take(8).ToList());
-            }
-        }
-
-        public ActionResult SearchSPByHDH(string hdh = null)
-        {
-            using (var ent = new sellLaptopEntities())
-            {
-                List<san_pham> l = ent.san_pham.Include("cpu").ToList();                
-                if (hdh != null)
-                {
-                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM CÓ THỂ CHẠY HỆ ĐIỀU HÀNH " + hdh;
-                    l = l.Where(a => a.hdh == hdh).ToList();
+                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM CÓ RAM " + id+" GB";
+                    l = l.Where(a => a.ramdl == id).ToList();
                 }
                 Session["sp"] = l;
                 Session["npage"] = l.Count / 8 + ((l.Count % 8 > 0) ? 1 : 0);
@@ -122,15 +105,32 @@ namespace SellLaptop.Controllers
             }
         }
 
-        public ActionResult SearchSPByBoNho(int bonho = -1)
+        public ActionResult SearchSPByHDH(string id = null)
+        {
+            using (var ent = new sellLaptopEntities())
+            {
+                List<san_pham> l = ent.san_pham.Include("cpu").ToList();                
+                if (id != null)
+                {
+                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM CÓ THỂ CHẠY HỆ ĐIỀU HÀNH " + id;
+                    l = l.Where(a => a.hdh == id).ToList();
+                }
+                Session["sp"] = l;
+                Session["npage"] = l.Count / 8 + ((l.Count % 8 > 0) ? 1 : 0);
+                Session["page"] = 1;
+                return View("SearchSP", l.Take(8).ToList());
+            }
+        }
+
+        public ActionResult SearchSPByBoNho(int id = -1)
         {
             using (var ent = new sellLaptopEntities())
             {
                 List<san_pham> l = ent.san_pham.Include("cpu").Include("o_dia_cung").ToList();
-                if (bonho != -1)
+                if (id != -1)
                 {
-                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM CÓ BỘ NHỚ " + bonho+" GB";
-                    l = ent.o_dia_cung.Include("san_pham").GroupBy(a => a.san_pham).Where(a => a.Sum(b => b.dungluong) == bonho).Select(a => a.Key).ToList();
+                    ViewBag.Title = "KẾT QUẢ TÌM KIẾM SẢN PHẨM CÓ BỘ NHỚ " + id+" GB";
+                    l = ent.o_dia_cung.Include("san_pham").GroupBy(a => a.san_pham).Where(a => a.Sum(b => b.dungluong) == id).Select(a => a.Key).ToList();
                 }
                 Session["sp"] = l;
                 Session["npage"] = l.Count / 8 + ((l.Count % 8>0) ? 1 : 0);

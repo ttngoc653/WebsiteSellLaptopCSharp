@@ -1,0 +1,6 @@
+﻿@model IEnumerable<String>
+
+@foreach (var item in Model)
+{
+    <dt><a href="@Url.Action("SearchSPByHangSX","Search",new { id=item})">@item</a></dt>
+}

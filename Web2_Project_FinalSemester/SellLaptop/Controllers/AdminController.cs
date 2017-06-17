@@ -13,21 +13,18 @@ namespace SellLaptop.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            if (ktraQuyen() != null)
+            {
+                return ktraQuyen();
+            }
             return View();
         }
 
         public ActionResult AddProduct()
         {
-            if (Session["role"] == null)
+            if (ktraQuyen() != null)
             {
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
-            }
-
-            if (Convert.ToBoolean(Session["role"]) != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
 
             return View();
@@ -36,16 +33,9 @@ namespace SellLaptop.Controllers
         [HttpPost]
         public ActionResult AddProduct(them_san_pham model)
         {
-            if (Session["role"]==null)
+            if (ktraQuyen() != null)
             {
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
-            }
-
-            if (Convert.ToBoolean(Session["role"]) != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
 
             if (!ModelState.IsValid)
@@ -56,18 +46,24 @@ namespace SellLaptop.Controllers
             {
                 using (var ent = new sellLaptopEntities())
                 {
+                    if (ent.san_pham.Where(a=>a.tensp==model.tensp).First()!=null)
+                    {
+                        Session["error"] = "LAP TOP "+model.tensp+" ĐÃ TỒN TẠI";
+                        return View(model);
+                    }
+
                     san_pham sp = model;
                     ent.san_pham.Add(sp);
                     ent.SaveChanges();
 
 
-                    int id = ent.san_pham.Where(a => a.tensp == model.tensp).Select(a=>a.masp).First();
+                    int id = sp.masp;
 
                     anh_sp anhsp = new anh_sp()
                     {
                         masp = id,
                         tenfile = model.anh1.FileName,
-                        san_pham = ent.san_pham.Where(a => a.tensp == model.tensp).First()
+                        san_pham = sp
                     };
                     ent.anh_sp.Add(anhsp);
                     ent.SaveChanges();
@@ -90,7 +86,7 @@ namespace SellLaptop.Controllers
                         dungluong = model.ocungdl,
                         loaiodia = model.ocung,
                         masp = id,
-                        san_pham = ent.san_pham.Where(a => a.tensp == model.tensp).First()
+                        san_pham = sp
                     };
 
                     ent.o_dia_cung.Add(odc);
@@ -142,16 +138,9 @@ namespace SellLaptop.Controllers
 
         public ActionResult UpdateCountProduct()
         {
-            if (Session["role"] == null)
+            if (ktraQuyen() != null)
             {
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
-            }
-
-            if (Convert.ToBoolean(Session["role"]) != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
 
             var ent = new sellLaptopEntities();
@@ -163,6 +152,10 @@ namespace SellLaptop.Controllers
         [HttpPost]
         public ActionResult UpdateCountProduct(int id, int number)
         {
+            if (ktraQuyen() != null)
+            {
+                return ktraQuyen();
+            }
             if (number<=0)
             {
                 WebMsgBox.ShowMessage(@"SỐ LƯỢNG HÀNG CẬP NHẬT KHÔNG HỢP LỆ!");
@@ -180,23 +173,20 @@ namespace SellLaptop.Controllers
 
         public ActionResult AddCPU()
         {
-            if (Session["role"] == null)
+            if (ktraQuyen() != null)
             {
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
-
-            if (Convert.ToBoolean(Session["role"]) != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
-            }            
             return View();
         }
 
         [HttpPost]
         public ActionResult AddCPU(cpu model)
         {
+            if (ktraQuyen() != null)
+            {
+                return ktraQuyen();
+            }
             try
             {
                 using (var ent = new sellLaptopEntities())
@@ -221,16 +211,9 @@ namespace SellLaptop.Controllers
 
         public ActionResult ManagerAccount()
         {
-            if (Session["role"] == null)
+            if (ktraQuyen() != null)
             {
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
-            }
-
-            if (Convert.ToBoolean(Session["role"]) != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
 
             using (var ent=new sellLaptopEntities())
@@ -242,6 +225,11 @@ namespace SellLaptop.Controllers
 
         public ActionResult DoiQuyen(String id)
         {
+            if (ktraQuyen() != null)
+            {
+                return ktraQuyen();
+            }
+
             using (var ent =new sellLaptopEntities())
             {
                 khach_hang kh = ent.khach_hang.Where(a => a.tendn == id).First();
@@ -259,20 +247,18 @@ namespace SellLaptop.Controllers
 
         public ActionResult XoaNguoiDung(String id)
         {
-            if (Session["role"] == null)
+            if (ktraQuyen() != null)
             {
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
-            }
-
-            if ((bool)Session["role"] != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
 
             using (var ent = new sellLaptopEntities())
             {
+                if (ent.don_hang.Where(a=>a.khachhang== id).Count()>0)
+                {
+                    Session["error"] = "KHÔNG THỂ XÓA "+id+ "\nVÌ " + id + " ĐÃ MUA HÀNG";
+                    return RedirectToAction("ManagerAccount", "Admin");
+                }
                 khach_hang kh = ent.khach_hang.Where(a => a.tendn == id).First();
 
                 if (kh != null)
@@ -288,17 +274,9 @@ namespace SellLaptop.Controllers
 
         public ActionResult ManagerOrder()
         {
-            if (Session["role"] == null)
+            if (ktraQuyen() != null)
             {
-                Session["error"] = @"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.";
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
-            }
-
-            if ((bool)Session["role"] != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
 
             using (var ent = new sellLaptopEntities())
@@ -310,17 +288,9 @@ namespace SellLaptop.Controllers
 
         public ActionResult AddHangSX()
         {
-            if (Session["role"] == null)
+            if (ktraQuyen() != null)
             {
-                Session["error"] = @"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.";
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
-            }
-
-            if (Convert.ToBoolean(Session["role"]) != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
             return View();
         }
@@ -351,18 +321,11 @@ namespace SellLaptop.Controllers
 
         public ActionResult ChangeOrder(int id)
         {
-            if (Session["role"] == null)
+            if (ktraQuyen() != null)
             {
-                Session["error"] = @"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.";
-                WebMsgBox.ShowMessage(@"CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.");
-                return RedirectToAction("Error", "Default");
+                return ktraQuyen();
             }
 
-            if ((bool)Session["role"] != true)
-            {
-                WebMsgBox.ShowMessage(@"KHÔNG CÓ QUYỀN VÀO TRANG NÀY.");
-                return RedirectToAction("Error", "Default");
-            }
             using (var ent = new sellLaptopEntities())
             {
                 don_hang dh = ent.don_hang.Where(a => a.madh == id).First();
@@ -373,6 +336,55 @@ namespace SellLaptop.Controllers
                 }
                 return RedirectToAction("ManagerOrder", "Admin");
             }
+        }
+
+        public ActionResult AddCartDoHoa()
+        {
+            if (ktraQuyen() != null)
+            {
+                return ktraQuyen();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCartDoHoa(cart_do_hoa model)
+        {
+            if (ktraQuyen() != null)
+            {
+                return ktraQuyen();
+            }
+
+            using (var ent=new sellLaptopEntities())
+            {
+                if (ent.cart_do_hoa.Where(a=>a.tencartdohoa==model.tencartdohoa).First()!=null)
+                {
+                    Session["error"] = "ĐÃ CÓ CART ĐỒ HỌA "+model.tencartdohoa+" TRONG DỮ LIỆU";
+                    return View(model);
+                }
+                model.an = false;
+                ent.cart_do_hoa.Add(model);
+                ent.SaveChanges();
+            }
+           
+            return View(model);
+        }
+
+        public ActionResult ktraQuyen()
+        {
+            if (Session["role"] == null)
+            {
+                Session["error"] = "CHỨC NĂNG NÀY ĐÃ BỊ KHÓA.";
+                return RedirectToAction("Error", "Default");
+            }
+
+            if (Convert.ToBoolean(Session["role"]) != true)
+            {
+                Session["error"] = "KHÔNG CÓ QUYỀN VÀO TRANG NÀY.";
+                return RedirectToAction("Error", "Default");
+            }
+
+            return null;
         }
 
         public ActionResult ListHangSX()

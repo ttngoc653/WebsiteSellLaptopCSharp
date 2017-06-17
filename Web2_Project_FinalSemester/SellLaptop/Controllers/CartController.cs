@@ -43,20 +43,19 @@ namespace SellLaptop.Controllers
                 DateTime dtorder = DateTime.Now;
                 using (var ent=new sellLaptopEntities())
                 {
-                    don_hang dh = new don_hang()
-                    {
-                        dagiao = false,
-                        diachinhan = address,
-                        khachhang = (String)Session["user"],
-                        ngaygiolap = dtorder,
-                        tongtien = total,
-                        khach_hang = ent.khach_hang.Where(a => a.tendn == (String)Session["user"]).FirstOrDefault(),
-                        chi_tiet_don_hang = null
-                    };
+                    don_hang dh = new don_hang();
+
+                    dh.dagiao = false;
+                    dh.diachinhan = address;
+                    dh.khachhang = Convert.ToString(Session["user"]);
+                    dh.ngaygiolap = dtorder;
+                    dh.tongtien = total;
+                    dh.chi_tiet_don_hang = null;
+
                     ent.don_hang.Add(dh);
                     ent.SaveChanges();
-
-                    int id = ent.don_hang.Where(a => a.khachhang == (String)Session["user"] && a.ngaygiolap == dtorder && a.tongtien == total).Select(a => a.madh).FirstOrDefault();
+                    
+                    int id = dh.madh;
 
                     foreach (var item in l)
                     {
@@ -192,7 +191,7 @@ namespace SellLaptop.Controllers
 
             if (Session["cart"] == null)
             {
-                WebMsgBox.ShowMessage(@"HÃY THÊM SẢN PHẨM VÀO GIỎ!");
+                Session["error"] = @"HÃY THÊM SẢN PHẨM VÀO GIỎ!";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -201,14 +200,14 @@ namespace SellLaptop.Controllers
             CartItem ct = l.Where(a => a.sp.masp == id).First();
             if (ct == null)
             {
-                WebMsgBox.ShowMessage(@"KHÔNG TỒN TẠI SẢN PHẨM TRONG GIỎ HÀNG!");
+                Session["error"] = @"KHÔNG TỒN TẠI SẢN PHẨM TRONG GIỎ HÀNG!";
                 return RedirectToAction("Index", "Home");
             }
 
             Session["count_sp"] = ((int)Session["count_sp"]) - ct.Quatity + qua;
             if (ct.sp.slcon < qua)
             {
-                WebMsgBox.ShowMessage("KHÔNG THỂ THÊM VÌ SỐ LƯỢNG MÀ SHOP HIỆN CÓ KHÔNG ĐỦ");
+                Session["error"] = "KHÔNG THỂ THÊM VÌ SỐ LƯỢNG MÀ SHOP HIỆN CÓ KHÔNG ĐỦ CUNG CẤP";
             }
             else
             {

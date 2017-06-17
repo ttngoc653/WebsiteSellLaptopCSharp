@@ -37,7 +37,7 @@
                         @{ Html.RenderAction("ListHangSX", "Admin");}
                     </select>
                     @Html.ValidationMessageFor(model => model.tenhangsx, "", new { @class = "text-danger" })
-                    <span class="help-block" style="color: red; font-size: 12px;">nếu không có trong sự lựa chọn này thì hãy thêm hãng sản xuất <a href="index.php?act=themnsx" target="_blank">tại đây</a></span>
+                    <span class="help-block" style="color: red; font-size: 12px;">nếu không có trong sự lựa chọn này thì hãy thêm hãng sản xuất <a href="@Url.Action("AddHangSX","Admin")">tại đây</a></span>
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
                         <option value=""></option>
                         @{ Html.RenderAction("ListCPU", "Admin"); }
                         @Html.ValidationMessageFor(model => model.loaicpu, "", new { @class = "text-danger" })
-                        <span class="help-block" style="color: red; font-size: 12px;">nếu không có thì hãy thêm cpu <a href="index.php?act=themcpu" target="_blank">tại đây</a></span>
+                        <span class="help-block" style="color: red; font-size: 12px;">nếu không có thì hãy thêm cpu <a href="@Url.Action("AddCPU","Admin")">tại đây</a></span>
                     </select>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                         @{ Html.RenderAction("ListDoHoa", "Admin");}
                     </select>
                     @Html.ValidationMessageFor(model => model.tencartdohoa, "", new { @class = "text-danger" })
-                    <span class="help-block" style="color: red; font-size: 12px;">nếu không có trong sự lựa chọn trong này thì hãy thêm card Màn hình <a href="index.php?act=themcartmh" target="_blank">tại đây</a></span>
+                    <span class="help-block" style="color: red; font-size: 12px;">nếu không có trong sự lựa chọn trong này thì hãy thêm card Màn hình <a href="@Url.Action("AddCartDoHoa","Admin")" target="_blank">tại đây</a></span>
                 </div>
             </div>
 

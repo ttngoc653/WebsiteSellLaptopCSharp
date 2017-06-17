@@ -85,3 +85,59 @@ textarea {
     opacity: 1;
     -moz-opacity: 1;
 }
+
+.buttn{
+	border:none;
+	height: 41px;
+	font-size: 14px;
+	font-weight: normal;
+	color: white;
+	background-color: #4d7080;
+	/*background-color: rgba(255, 165, 0, 0.3)*/
+	display: indtne-block;
+}
+	.buttn:hover{
+		background-color: black;
+		height: 50px;
+		/*background-color: rgba(255, 165, 0, 0.8)*/
+		font-size: 14px;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+
+.main_menu{ 
+	margin-top: -20px;
+	margin-bottom: 60px;
+    width:1024px;
+    margin-left:-15px;
+}
+.main_menu>dl>dt{ 
+	float: left; 
+	position: relative;
+	font-stretch: normal;
+}
+.main_menu>dl>dt>dl{ 
+	text-align: center;
+	display: none; 
+	position: absolute; 
+	background: blue;
+	width: 200px;
+	background-color: #4d7080;
+	z-index: 1;
+}
+.main_menu>dl>dt:hover dl{ 
+	display: block;
+	z-index: 1;
+}
+.main_menu dl dt:hover{
+	font-weight: bold;
+	background: black; 
+	transition: all 0.5s;
+}
+.main_menu>dl>dt>dl>dt{
+	padding: 5px 10px;
+	font-weight: normal;
+}
+.main_menu>dl>dt>dl>dt>a{ 
+	color: white;
+}

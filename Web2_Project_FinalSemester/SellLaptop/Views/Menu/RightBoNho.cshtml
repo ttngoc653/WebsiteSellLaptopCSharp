@@ -2,5 +2,5 @@
 
 @foreach (var item in Model)
 {
-    <a href="@Url.Action("SearchSPByBoNho","Search",new { bonho=item})" class="list-group-item"><div style="opacity: 1">@item GB</div></a>
+    <a href="@Url.Action("SearchSPByBoNho","Search",new { id=item})" class="list-group-item"><div style="opacity: 1">@item GB</div></a>
 }

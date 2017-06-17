@@ -6,9 +6,6 @@
 
 <p style="color: red"><i>ghi chú: có màu là quyền quản lý</i></p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -26,7 +23,7 @@
 		 @Html.Raw("#9f6");
 	};">
                 <td style="text-align: center;">@item.tendn<br />@item.hoten</td>
-                <td style="text-align: center;">@item.ngsinh.Date<br />@if (item.gioitinh==false)
+                <td style="text-align: center;">@String.Format("{0:d}",item.ngsinh)<br />@if (item.gioitinh==false)
 	{
 		 @Html.Raw("Nam");
                 }
@@ -34,7 +31,7 @@
                 {
                     @Html.Raw("Nữ");
                 }</td>
-                <td style="text-align: center;">@item.email<br />@item.sdt</td>
+                <td style="text-align: center;">@item.email<br />@String.Format("0{0}", item.sdt)</td>
                 <td style="text-align: center;">
                     <a href="@Url.Action("DoiQuyen","Admin", new { id=item.tendn})" title="">ĐỔI QUYỀN</a><br />
                     <a href="@Url.Action("XoaNguoiDung","Admin", new { id=item.tendn})" title="">XÓA</a>
