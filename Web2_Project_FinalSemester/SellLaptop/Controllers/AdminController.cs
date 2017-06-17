@@ -370,6 +370,19 @@ namespace SellLaptop.Controllers
             return View(model);
         }
 
+        public ActionResult StatisticasProduct()
+        {
+            if (ktraQuyen()!=null)
+            {
+                return ktraQuyen();
+            }
+            using (var ent=new sellLaptopEntities())
+            {
+                List<hang_sx> l = ent.hang_sx.Include("san_pham").Include("chi_tiet_don_hang").ToList();
+                return View(l);
+            }
+        }
+
         public ActionResult ktraQuyen()
         {
             if (Session["role"] == null)

@@ -597,6 +597,7 @@
     <Content Include="Views\Menu\SystemCPU.cshtml" />
     <Content Include="Views\Menu\SystemHangSX.cshtml" />
     <Content Include="Views\Default\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\StatisticasProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

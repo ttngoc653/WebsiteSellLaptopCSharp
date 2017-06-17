@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SellLaptop.Models.hang_sx>
+
+@{
+    ViewBag.Title = "THỐNG KÊ TỔNG DOANH SỐ";
+}
+
+<table>
+    <tr>
+        <th>HÃNG SẢN XUẤT</th>
+        <th>SẢN PHẨM</th>
+        <th>SỐ LƯỢNG BÁN</th>
+        <th>SỐ LƯỢNG TRONG KHO</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td rowspan="@item.san_pham.Count" align="center">@item.tenhangsx</td>
+            @foreach (var i in item.san_pham.ToList())
+            {
+                <td>@i.tensp</td>
+                <td>@i.chi_tiet_don_hang.Sum(a=>a.soluongsp)</td>
+                <td>@i.slcon</td>
+            }
+        </tr>
+    }
+</table>
