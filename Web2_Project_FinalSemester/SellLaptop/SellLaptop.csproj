@@ -486,6 +486,7 @@
     <Compile Include="Models\cart_do_hoa.cs">
       <DependentUpon>sellLaptopModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\chi_tiet_don_hang.cs">
       <DependentUpon>sellLaptopModel.tt</DependentUpon>
     </Compile>
@@ -595,6 +596,7 @@
     <Content Include="Views\Menu\SystemRAM.cshtml" />
     <Content Include="Views\Menu\SystemCPU.cshtml" />
     <Content Include="Views\Menu\SystemHangSX.cshtml" />
+    <Content Include="Views\Default\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

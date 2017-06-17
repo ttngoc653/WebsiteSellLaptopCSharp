@@ -184,7 +184,7 @@ namespace SellLaptop.Controllers
                 return View("SuccessRegister");
             }
 
-            Session["captcha"] = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
+            Session["error"] = "LỖI: CAPTCHA KHÔNG HỢP LỆ.";
 
             return View();
         }
@@ -225,6 +225,35 @@ namespace SellLaptop.Controllers
             }
         }
 
+        public ActionResult ChangePassword()
+        {
+            if (Session["user"]==null)
+            {
+                return RedirectToAction("Error","Default");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePassword model)
+        {
+            using (var ent=new sellLaptopEntities())
+            {
+                khach_hang kh = ent.khach_hang.Where(a => a.mk == GetMD5(model.passOld) && a.tendn == Convert.ToString(Session["user"])).First();
+                if (kh==null)
+                {
+                    Session["error"] = "KHÔNG THỂ ĐỔI MẬT KHẨU\nVÌMẬT KHẨU CŨ KHÔNG CHÍNH XÁC";
+                }
+                else
+                {
+                    kh.mk = GetMD5(model.passNew);
+                    ent.SaveChanges();
+                    Session["error"] = "ĐỔI MẬT KHẨU THÀNH CÔNG";
+                }
+            }
+
+            return View();
+        }
 
         /*public ActionResult Register1()
         {
