@@ -11,14 +11,14 @@
 <p style="float: left;">Địa chỉ nhận hàng: @Model.diachinhan </p>
 <p style="float: right;">Tình trạng hiện tại: @if (Model.dagiao == true){ @Html.Raw("đã giao hàng");}else{ @Html.Raw("chưa giao hàng");} </p>
 
-<table style="width: 780px;">
+<table class="table table-condensed table-striped table-hover">
     <caption><h4>CHI TIẾT CÁC SẢN PHẨM: </h4></caption>
     <thead>
         <tr style="text-align: center;">
             <th width="40px;" style="text-align: center;">STT</th>
             <th width="200px" style="text-align: center;">TÊN SẢN PHẨM</th>
             <th width="150px" style="text-align: center;">ĐƠN GIÁ</th>
-            <th width="100px" style="text-align: center;">SỐ LƯỢNG MÁY</th>
+            <th width="100px" style="text-align: center;">SỐ LƯỢNG</th>
             <th width="130px" style="text-align: center;">THÀNH TIỀN</th>
         </tr>
     </thead>

@@ -85,7 +85,7 @@ namespace SellLaptop.Controllers
                 using (var ent = new sellLaptopEntities())
                 {
                     String username = Session["user"].ToString();
-                    u = ent.khach_hang.Where(x => x.tendn == username).FirstOrDefault();
+                    u = ent.khach_hang.Where(x => x.tendn == username).First();
                 }
                 return PartialView("LogIned",u);
             }
@@ -128,13 +128,21 @@ namespace SellLaptop.Controllers
 
         public ActionResult LogOut()
         {
+
             if (Request.Cookies["user"] != null)
             {
-                Response.Cookies["user"].Expires = DateTime.Now.AddDays(-1);
+                HttpCookie myCookie = new HttpCookie("user");
+                myCookie.Expires = DateTime.Now.AddDays(-1d);
+                Response.Cookies.Add(myCookie);
             }
+
             String url = Session["url"].ToString();
             Session.RemoveAll();
             Session["url"] = url;
+            if (Request.Cookies["user"] != null)
+            {
+                return RedirectToAction("LogOut");
+            }
             return View("LogIn");
         }
 

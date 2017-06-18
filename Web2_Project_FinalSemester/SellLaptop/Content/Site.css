@@ -25,6 +25,12 @@
     margin-right: 5px;
 }
 
+.footers{
+    opacity:0.9; 
+    width:1024px; 
+    text-align:center;
+}
+
 /*.........................*/
 .item-sp{
     border: outset;

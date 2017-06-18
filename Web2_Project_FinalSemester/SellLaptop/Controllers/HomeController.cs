@@ -24,6 +24,11 @@ namespace SellLaptop.Controllers
         {
             return View();
         }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
         
         [ChildActionOnly]
         public ActionResult ShowTop10Buy()
