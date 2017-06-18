@@ -1,26 +1,44 @@
-﻿@model IEnumerable<SellLaptop.Models.hang_sx>
+﻿@using SellLaptop.Models
+@model IEnumerable<hang_sx>
 
 @{
     ViewBag.Title = "THỐNG KÊ TỔNG DOANH SỐ";
 }
 
-<table>
-    <tr>
-        <th>HÃNG SẢN XUẤT</th>
-        <th>SẢN PHẨM</th>
-        <th>SỐ LƯỢNG BÁN</th>
-        <th>SỐ LƯỢNG TRONG KHO</th>
+<table class="table table-striped table-hover text-center">
+    <tr class="text-center">
+        <th class="text-center">HÃNG SẢN XUẤT</th>
+        <th class="text-center">SẢN PHẨM</th>
+        <th class="text-center">SỐ LƯỢNG BÁN</th>
+        <th class="text-center">SỐ LƯỢNG TRONG KHO</th>
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td rowspan="@item.san_pham.Count" align="center">@item.tenhangsx</td>
-            @foreach (var i in item.san_pham.ToList())
+        if (@item.san_pham.Count != 0)
+        {
+            var count = @item.san_pham.Count + 1;
+
+            @Html.Raw("<tr>");
+            <td rowspan="@count" align="center">@item.tenhangsx</td>
+            foreach (var i in item.san_pham.ToList())
             {
+                var sum = 0;
+                using (var ent = new sellLaptopEntities())
+                {
+                    if (ent.chi_tiet_don_hang.Where(a => a.masp == i.masp).Count()>0)
+                    {
+                        sum = ent.chi_tiet_don_hang.Where(a => a.masp == i.masp).Sum(a => a.soluongsp);
+                    }
+                    if (ent.san_pham.Where(a=>a.tenhangsx==i.tenhangsx).First()!=i)
+                    {
+                        @Html.Raw("<tr>");
+                    }
+                }
                 <td>@i.tensp</td>
-                <td>@i.chi_tiet_don_hang.Sum(a=>a.soluongsp)</td>
-                <td>@i.slcon</td>
+                <td>@sum</td>
+                <td>@i.slcon</td>                            
+                @Html.Raw("</tr>")
             }
-        </tr>
+        }
     }
 </table>

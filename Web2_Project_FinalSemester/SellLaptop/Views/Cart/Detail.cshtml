@@ -7,7 +7,7 @@
 }
 
 <p style="width: 424px;float: left;">Người đặt hóa đơn: @Model.khach_hang.hoten</p>
-<p style="float: right;">Thời gian nhận hóa đơn: @Model.ngaygiolap </p>
+<p style="float: right;">Thời gian nhận đơn hàng: @Model.ngaygiolap </p>
 <p style="float: left;">Địa chỉ nhận hàng: @Model.diachinhan </p>
 <p style="float: right;">Tình trạng hiện tại: @if (Model.dagiao == true){ @Html.Raw("đã giao hàng");}else{ @Html.Raw("chưa giao hàng");} </p>
 

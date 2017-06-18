@@ -378,7 +378,7 @@ namespace SellLaptop.Controllers
             }
             using (var ent=new sellLaptopEntities())
             {
-                List<hang_sx> l = ent.hang_sx.Include("san_pham").Include("chi_tiet_don_hang").ToList();
+                List<hang_sx> l = ent.hang_sx.Include("san_pham").ToList();
                 return View(l);
             }
         }
