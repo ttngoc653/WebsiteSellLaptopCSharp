@@ -1,0 +1,12 @@
+﻿@model SellLaptop.Models.san_pham
+
+@{ var sum = 0;
+    if (Model.chi_tiet_don_hang.Sum(a => a.soluongsp) > 0)
+    {
+        sum = Model.chi_tiet_don_hang.Sum(a => a.soluongsp);
+    }
+}
+                <td>@Model.tensp</td>
+                <td>@sum</td>
+                <td>@Model.slcon</td>
+                </tr>

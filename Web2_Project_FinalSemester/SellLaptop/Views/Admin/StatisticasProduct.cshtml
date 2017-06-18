@@ -16,28 +16,17 @@
     {
         if (@item.san_pham.Count != 0)
         {
-            var count = @item.san_pham.Count + 1;
+            var count = @item.san_pham.Count + 0;
 
             @Html.Raw("<tr>");
             <td rowspan="@count" align="center">@item.tenhangsx</td>
             foreach (var i in item.san_pham.ToList())
             {
-                var sum = 0;
-                using (var ent = new sellLaptopEntities())
+                if (item.san_pham.First() != i)
                 {
-                    if (ent.chi_tiet_don_hang.Where(a => a.masp == i.masp).Count()>0)
-                    {
-                        sum = ent.chi_tiet_don_hang.Where(a => a.masp == i.masp).Sum(a => a.soluongsp);
-                    }
-                    if (ent.san_pham.Where(a=>a.tenhangsx==i.tenhangsx).First()!=i)
-                    {
-                        @Html.Raw("<tr>");
-                    }
+                    @Html.Raw("<tr>");
                 }
-                <td>@i.tensp</td>
-                <td>@sum</td>
-                <td>@i.slcon</td>                            
-                @Html.Raw("</tr>")
+                Html.RenderAction("Statistical1Product", "Admin", new { id = i.masp });
             }
         }
     }

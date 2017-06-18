@@ -14,7 +14,7 @@ namespace SellLaptop.Models
 
         [Display(Name ="NHẬP MẬT KHẨU MỚI:")]
         [Required(ErrorMessage = "HÃY NHẬP MẬT KHẨU MỚI")]
-        [Range(8, 100, ErrorMessage = "MẬT KHẨU PHẢI TỪ 8 KÝ TỰ TRỢ LÊN")]
+        //[Range(8, 100, ErrorMessage = "MẬT KHẨU PHẢI TỪ 8 KÝ TỰ TRỢ LÊN")]
         [StringLength(100,MinimumLength =8,ErrorMessage = "MẬT KHẨU PHẢI TỪ 8 KÝ TỰ TRỢ LÊN")]
         public String passNew { get; set; }
 

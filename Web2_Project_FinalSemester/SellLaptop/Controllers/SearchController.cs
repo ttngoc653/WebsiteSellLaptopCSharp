@@ -13,16 +13,17 @@ namespace SellLaptop.Controllers
         {
             using (var ent=new sellLaptopEntities())
             {
-                List<san_pham> l = ent.san_pham.Where(a => a.gia >= search.tu*100000 && a.gia <= search.den*100000).ToList();
-                if (search.key != null || search.key.Trim() != "") { l = l.Where(a => a.tenhangsx+" "+a.tensp==search.key).ToList(); }
-                if (search.hang != null || search.hang != "") { l = l.Where(a => a.tenhangsx == search.hang).ToList(); }
-                if (search.cpu != null || search.cpu != "") { l = l.Where(a => a.cpu.congnghe == search.cpu).ToList(); }
-                if (search.ram != null || search.ram != 0) { l = l.Where(a => a.ramdl == search.ram).ToList(); }
-                if (search.dohoa != null || search.dohoa != "") { l = l.Where(a => a.cart_do_hoa.thietke == search.dohoa).ToList(); }
+                List<san_pham> l = ent.san_pham.Include("cpu").Where(a => a.gia >= search.tu*100000 && a.gia <= search.den*100000).ToList();
+                if (search.key != null) { l = l.Where(a => String.Concat(a.tenhangsx+" "+a.tensp).ToUpper().Contains(search.key.ToUpper())).ToList(); }
+                if (search.hang != null) { l = l.Where(a => a.tenhangsx == search.hang).ToList(); }
+                if (search.cpu != null) { l = l.Where(a => a.cpu.congnghe == search.cpu).ToList(); }
+                if (search.ram != 0) { l = l.Where(a => a.ramdl == search.ram).ToList(); }
+                if (search.dohoa != null) { l = l.Where(a => a.cart_do_hoa.thietke == search.dohoa).ToList(); }
 
                 Session["sp"] = l;
                 Session["npage"] = l.Count / 8 + ((l.Count % 8 > 0) ? 1 : 0);
                 Session["page"] = 1;
+                ViewBag.Title = "KẾT QUẢ TÌM KIẾM";
                 return View("SearchSP", l.Take(8).ToList());
             }
         }

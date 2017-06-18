@@ -383,6 +383,16 @@ namespace SellLaptop.Controllers
             }
         }
 
+        public ActionResult Statistical1Product(int id)
+        {
+            using (var ent=new sellLaptopEntities())
+            {
+                san_pham sp = ent.san_pham.Include("chi_tiet_don_hang").Where(a => a.masp == id).First();
+
+                return PartialView(sp);
+            }
+        }
+
         public ActionResult ktraQuyen()
         {
             if (Session["role"] == null)

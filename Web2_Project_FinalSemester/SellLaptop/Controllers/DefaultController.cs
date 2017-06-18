@@ -99,6 +99,10 @@ namespace SellLaptop.Controllers
         [HttpPost]
         public ActionResult LogIn(LogIn login)
         {
+            if (login.pass==null)
+            {
+                login.pass = ".";
+            }
             String p = GetMD5(login.pass);
             khach_hang u;
             using (var ent=new sellLaptopEntities())
@@ -247,20 +251,22 @@ namespace SellLaptop.Controllers
         {
             using (var ent=new sellLaptopEntities())
             {
-                khach_hang kh = ent.khach_hang.Where(a => a.mk == GetMD5(model.passOld) && a.tendn == Convert.ToString(Session["user"])).First();
+                String pass = GetMD5(model.passOld);
+                String user = Convert.ToString(Session["user"]);
+                khach_hang kh = ent.khach_hang.Where(a => a.mk == pass && a.tendn == user).FirstOrDefault();
                 if (kh==null)
                 {
-                    Session["error"] = "KHÔNG THỂ ĐỔI MẬT KHẨU\nVÌMẬT KHẨU CŨ KHÔNG CHÍNH XÁC";
+                    Session["error"] = @"KHÔNG THỂ ĐỔI MẬT KHẨU\nVÌ MẬT KHẨU CŨ KHÔNG CHÍNH XÁC";
                 }
                 else
                 {
                     kh.mk = GetMD5(model.passNew);
                     ent.SaveChanges();
-                    Session["error"] = "ĐỔI MẬT KHẨU THÀNH CÔNG";
+                    Session["error"] = @"ĐỔI MẬT KHẨU THÀNH CÔNG";
                 }
             }
 
-            return View();
+            return View(model);
         }
 
         /*public ActionResult Register1()
@@ -349,7 +355,7 @@ namespace SellLaptop.Controllers
         }
 
         // source: http://www.hanhtranglaptrinh.com/2012/06/ma-hoa-md5-trong-c-aspnet.html
-        public string GetMD5(string str)
+        public string GetMD5(string str=" ")
         {
 
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
