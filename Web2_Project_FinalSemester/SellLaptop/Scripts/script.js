@@ -56,12 +56,12 @@ $('#btnRegister').click(function () {
 });
 
 //update count product in cart
-$('#btnUpdate').on('click', function () {
+$('a[name="btnUpdate"]').on('click', function () {
     var pid = $(this).data('id');
     $('#id').val(pid);
     //alert(pid);
     var pqua = $('#inputQ_' + pid).val();
-    //alert(pqua);
+    //alert(pqua+' - '+pid);
     $('#qua').val(pqua);
     $('#frmUpdate').submit();
 });
